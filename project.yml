@@ -1,0 +1,208 @@
+# JEV FIT — specifica XcodeGen (ADR-011).
+# Questo file è la fonte di verità del progetto Xcode: `JevFit.xcodeproj`, `App/Info.plist`
+# e `App/JevFit.entitlements` sono GENERATI da `xcodegen generate` e non vanno versionati.
+# Guida completa: docs/SIGNING.md.
+
+name: JevFit
+
+options:
+  minimumXcodeGenVersion: "2.38.0"
+  developmentLanguage: it
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+# Bundle id e team NON stanno qui: arrivano da Config/Signing.xcconfig, che a sua volta
+# include l'opzionale Config/Signing.local.xcconfig (ignorato da git) per gli override personali.
+# Sono applicati a livello di progetto, quindi valgono per tutti i target salvo override espliciti.
+configFiles:
+  Debug: Config/Signing.xcconfig
+  Release: Config/Signing.xcconfig
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    IPHONEOS_DEPLOYMENT_TARGET: "18.0"
+    TARGETED_DEVICE_FAMILY: "1"
+    MARKETING_VERSION: "0.1.0"
+    # Da incrementare a ogni upload su TestFlight (vedi docs/SIGNING.md).
+    CURRENT_PROJECT_VERSION: "1"
+    LOCALIZATION_PREFERS_STRING_CATALOGS: "YES"
+    SWIFT_EMIT_LOC_STRINGS: "YES"
+    ENABLE_USER_SCRIPT_SANDBOXING: "YES"
+
+# Impostazioni ripetute su OGNI target. Servono anche a livello di target perché i preset
+# di XcodeGen per la piattaforma iOS impostano TARGETED_DEVICE_FAMILY = "1,2" sul target,
+# che altrimenti vincerebbe sul valore di progetto (vogliamo solo iPhone).
+settingGroups:
+  jevTargetDefaults:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    IPHONEOS_DEPLOYMENT_TARGET: "18.0"
+    TARGETED_DEVICE_FAMILY: "1"
+
+packages:
+  JevEngines:
+    path: Packages/JevEngines
+  JevKit:
+    path: Packages/JevKit
+
+fileGroups:
+  - Config
+
+targets:
+  JevFit:
+    type: application
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: App
+        excludes:
+          # Generati da XcodeGen: non devono finire nella fase "Copy Bundle Resources".
+          - Info.plist
+          - JevFit.entitlements
+          # Aggiunto sotto in modo esplicito: se manca, `xcodegen generate` fallisce
+          # invece di produrre in silenzio un'app senza privacy manifest.
+          - PrivacyInfo.xcprivacy
+      - path: App/PrivacyInfo.xcprivacy
+        buildPhase: resources
+    dependencies:
+      # JevKit (Livello 1 + UI)
+      - package: JevKit
+        product: Features
+      - package: JevKit
+        product: DesignSystem
+      - package: JevKit
+        product: Persistence
+      - package: JevKit
+        product: Health
+      - package: JevKit
+        product: Sync
+      - package: JevKit
+        product: Food
+      # JevEngines: il composition root (AppContainer) userà direttamente tipi di base
+      # e di dominio. Gli engine arrivano già in modo transitivo tramite Features.
+      - package: JevEngines
+        product: JevCore
+      - package: JevEngines
+        product: JevDomain
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: JEV FIT
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSRequiresIPhoneOS: true
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UIApplicationSupportsIndirectInputEvents: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        # L'app usa solo la crittografia del sistema (HTTPS): esente dall'export compliance.
+        ITSAppUsesNonExemptEncryption: false
+        NSHealthShareUsageDescription: >-
+          JEV FIT legge da Salute peso, percentuale di massa grassa, passi, energia attiva,
+          allenamenti, sonno, frequenza cardiaca, frequenza cardiaca a riposo e variabilità
+          cardiaca (HRV) per calcolare il trend del peso, il dispendio energetico, il recupero
+          muscolare e JEV READINESS. Sonno, frequenza cardiaca e HRV restano sul tuo iPhone.
+          Puoi negare singoli dati: l'app continua a funzionare con l'inserimento manuale.
+        NSHealthUpdateUsageDescription: >-
+          Solo se lo attivi nelle impostazioni, JEV FIT salva in Salute gli allenamenti
+          completati, le pesate che inserisci e i valori nutrizionali registrati (calorie,
+          proteine, carboidrati, grassi e fibra). Ogni tipo di dato si attiva separatamente.
+        NSCameraUsageDescription: >-
+          JEV FIT usa la fotocamera solo per leggere il codice a barre degli alimenti che
+          registri. Le immagini non vengono salvate né inviate.
+        CFBundleURLTypes:
+          - CFBundleURLName: $(PRODUCT_BUNDLE_IDENTIFIER)
+            CFBundleTypeRole: Viewer
+            CFBundleURLSchemes:
+              - jevfit
+    entitlements:
+      path: App/JevFit.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []
+        com.apple.developer.applesignin:
+          - Default
+    settings:
+      groups:
+        - jevTargetDefaults
+      base:
+        # PRODUCT_BUNDLE_IDENTIFIER e DEVELOPMENT_TEAM volutamente assenti qui:
+        # un valore a livello di target sovrascriverebbe Config/Signing*.xcconfig.
+        CODE_SIGN_STYLE: Automatic
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_PREVIEWS: "YES"
+        SUPPORTS_MACCATALYST: "NO"
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: "NO"
+        SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: "NO"
+
+  JevFitTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: AppTests
+    dependencies:
+      - target: JevFit
+    settings:
+      groups:
+        - jevTargetDefaults
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: "$(JEV_BUNDLE_ID).tests"
+        GENERATE_INFOPLIST_FILE: "YES"
+        CODE_SIGN_STYLE: Automatic
+        # Test "hosted": girano dentro l'app, necessario per `@testable import JevFit`.
+        # XcodeGen li imposterebbe da solo dalla dipendenza; li rendiamo espliciti
+        # con la stessa forma usata dai template di Xcode.
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/JevFit.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JevFit"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+
+  JevFitUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: AppUITests
+    dependencies:
+      - target: JevFit
+    settings:
+      groups:
+        - jevTargetDefaults
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: "$(JEV_BUNDLE_ID).uitests"
+        GENERATE_INFOPLIST_FILE: "YES"
+        CODE_SIGN_STYLE: Automatic
+        TEST_TARGET_NAME: JevFit
+
+schemes:
+  # Un solo scheme con unit test e UI test: un unico `xcodebuild test` in CI e in locale.
+  # In M1 lo smoke test UI dura pochi secondi; quando la suite UI crescerà si potrà
+  # separare con un test plan o con `-skip-testing:JevFitUITests` senza toccare il resto.
+  JevFit:
+    build:
+      targets:
+        JevFit: all
+        JevFitTests: [test]
+        JevFitUITests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: true
+      coverageTargets:
+        - JevFit
+      targets:
+        - name: JevFitTests
+        - name: JevFitUITests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release

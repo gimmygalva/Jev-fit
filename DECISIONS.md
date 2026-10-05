@@ -24,7 +24,7 @@ Un ADR accettato non si modifica: si scrive un nuovo ADR che lo supera.
 **Conseguenze:** testabili con `swift test` anche fuori da Xcode e su Linux; nessun accesso a DB/HealthKit dagli engine; serve un layer (`InsightsPipeline`) che prepara gli input.
 
 ## ADR-004 — GRDB (SQLite) invece di SwiftData
-**Stato:** Proposta (da confermare con l'utente) · 2026-10-05
+**Stato:** Accettata dall'utente · 2026-10-05
 **Contesto:** servono migrazioni prevedibili, record `Sendable` per Swift 6, sync con Postgres, query di aggregazione per i grafici.
 **Decisione:** GRDB 7 con `DatabasePool`, record come `struct`, migrazioni SQL nominate e immutabili, `ValueObservation` per la UI.
 **Alternative considerate:** SwiftData (nativo ma con attriti noti su strict concurrency, migrazioni e query aggregate; controllo meno esplicito per la sync); Core Data (verboso, stesse questioni di concurrency).
@@ -37,7 +37,7 @@ Un ADR accettato non si modifica: si scrive un nuovo ADR che lo supera.
 **Conseguenze:** sync più semplice e sicura; ogni dispositivo ricalcola (costo trascurabile).
 
 ## ADR-006 — Supabase come backend (Postgres + RLS + Auth + Edge Functions)
-**Stato:** Proposta (progetto da creare o indicare) · 2026-10-05
+**Stato:** Accettata dall'utente: nuovo progetto `jev-fit` in regione UE · 2026-10-05
 **Contesto:** il brief cita Supabase RLS; serve backend per sync, auth e proxy AI senza chiavi nel client.
 **Decisione:** Supabase; Sign in with Apple; RLS `user_id = auth.uid()` su ogni tabella; Edge Functions `jev-coach` e `food-search`.
 **Alternative:** CloudKit (sync gratuita ma nessun luogo sicuro per le chiavi AI, meno portabile per un prodotto multipiattaforma); backend custom su Railway (più lavoro operativo).
@@ -66,7 +66,7 @@ Un ADR accettato non si modifica: si scrive un nuovo ADR che lo supera.
 **Conseguenze:** viaggi e cambi DST non spostano i dati tra giorni; i test coprono DST e cambio fuso.
 
 ## ADR-011 — Progetto Xcode generato con XcodeGen; CI su macOS
-**Stato:** Proposta (dipende dalla scelta utente su repo/CI) · 2026-10-05
+**Stato:** Accettata dall'utente: la verifica avviene **solo** tramite CI GitHub Actions · 2026-10-05
 **Contesto:** l'ambiente di sviluppo non ha Xcode; un `.pbxproj` scritto a mano è fragile.
 **Decisione:** `project.yml` versionato, `.xcodeproj` generato. CI GitHub Actions: build + test su simulatore iOS 18 e `swift test` del package con gate di coverage 90% sugli engine.
 **Conseguenze:** "compila" è dimostrato da un log di CI o da una build sul Mac dell'utente, mai dichiarato senza prova.
@@ -87,3 +87,9 @@ Un ADR accettato non si modifica: si scrive un nuovo ADR che lo supera.
 **Contesto:** QA-13: un validatore che confronta i numeri non rileva un numero corretto attribuito al dato sbagliato, né i numeri scritti in lettere.
 **Decisione:** il testo AI può citare valori solo come `{{fact:<id>}}`; il client sostituisce il valore formattato dal fatto dell'engine. Qualsiasi cifra letterale o numero in lettere → validazione fallita → retry → template deterministico. Filtro di sicurezza anche sull'output.
 **Conseguenze:** impossibile per l'AI "inventare" o spostare numeri; prompt e test del gateway devono coprire questo contratto.
+**Estensione (Agent 12, SECURITY.md):** anche i nomi scritti dall'utente o da terzi (alimenti custom, prodotti Open Food Facts, esercizi custom) non vengono inviati al modello: l'AI scrive `{{label:<id>}}` e il client sostituisce il nome. Riduce la superficie di prompt injection.
+
+## ADR-015 — Interfaccia solo in italiano nell'MVP
+**Stato:** Accettata dall'utente · 2026-10-05
+**Decisione:** tutte le stringhe UI passano comunque da un String Catalog (`Localizable.xcstrings`) con lingua di sviluppo `it`; nessuna stringa hard-coded nelle viste. L'inglese verrà aggiunto in V2 senza refactoring.
+**Conseguenze:** meno lavoro di traduzione ora; i test UI usano identificatori di accessibilità, non testi.

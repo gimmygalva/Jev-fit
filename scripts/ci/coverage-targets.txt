@@ -1,0 +1,10 @@
+# Soglie di coverage delle LINEE per modulo di Packages/JevEngines (letto da coverage-gate.sh).
+# Formato: <NomeModulo> <soglia percentuale>   — una riga per modulo, "#" per i commenti.
+# Si conta solo il codice sotto Packages/JevEngines/Sources/<NomeModulo>/.
+#
+# ADR-011: gate al 90% sugli engine. Gli engine vanno aggiunti qui (al 90) nella milestone
+# in cui vengono implementati: WorkoutEngine ed ExerciseCatalog (M4), NutritionEngine (M5),
+# RecoveryEngine (M6), CheckInEngine e CoachKit (milestone del check-in / JEV).
+# Un modulo elencato senza file misurati fa FALLIRE il gate (evita falsi verdi).
+JevCore 90
+JevDomain 90

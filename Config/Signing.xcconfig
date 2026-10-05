@@ -1,0 +1,19 @@
+// Signing.xcconfig — identità di firma condivisa di JEV FIT.
+// Applicato a livello di PROGETTO da project.yml (Debug e Release).
+//
+// Non mettere qui il tuo Team ID: crea Config/Signing.local.xcconfig (ignorato da git)
+// e sovrascrivi lì le variabili. Istruzioni: docs/SIGNING.md.
+
+// Bundle id base. I target di test ne derivano il proprio (".tests", ".uitests"),
+// quindi per cambiare bundle id sovrascrivi JEV_BUNDLE_ID, non PRODUCT_BUNDLE_IDENTIFIER.
+JEV_BUNDLE_ID = com.gianmarcogalvanini.jevfit
+PRODUCT_BUNDLE_IDENTIFIER = $(JEV_BUNDLE_ID)
+
+// Vuoto: in CI non si firma (CODE_SIGNING_ALLOWED=NO) e sul simulatore non serve.
+DEVELOPMENT_TEAM =
+
+CODE_SIGN_STYLE = Automatic
+
+// Override personali opzionali. "#include?" non fallisce se il file non esiste.
+// Deve restare l'ULTIMA riga: in un xcconfig vince l'ultima assegnazione.
+#include? "Signing.local.xcconfig"

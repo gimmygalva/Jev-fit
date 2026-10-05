@@ -1,0 +1,78 @@
+{
+  "sourceLanguage" : "it",
+  "strings" : {
+    "Allenamento" : {
+      "comment" : "Titolo della tab Allenamento (Features/RootView).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allenamento"
+          }
+        }
+      }
+    },
+    "Corpo" : {
+      "comment" : "Titolo della tab Corpo (Features/RootView).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Corpo"
+          }
+        }
+      }
+    },
+    "Nutrizione" : {
+      "comment" : "Titolo della tab Nutrizione (Features/RootView).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nutrizione"
+          }
+        }
+      }
+    },
+    "Oggi" : {
+      "comment" : "Titolo della tab Oggi (Features/RootView).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oggi"
+          }
+        }
+      }
+    },
+    "Progressi" : {
+      "comment" : "Titolo della tab Progressi (Features/RootView).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Progressi"
+          }
+        }
+      }
+    },
+    "Questa sezione è in costruzione." : {
+      "comment" : "Descrizione del segnaposto delle tab in M1 (Features/RootView).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questa sezione è in costruzione."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

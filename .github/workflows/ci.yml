@@ -1,0 +1,215 @@
+# CI di JEV FIT (ADR-011): è l'unica prova che il codice compila e che i test passano.
+#
+# Job:
+#   engines-linux   swift build + swift test con coverage + gate su Linux (container Swift ufficiale)
+#   engines-macos   swift test di JevEngines con l'Xcode stabile più recente
+#   ios-build-test  XcodeGen + build e test dell'app su simulatore iPhone (iOS >= 18) + test di JevKit
+#   secrets-scan    ricerca di chiavi/segreti nei file tracciati
+name: CI
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+
+# Una sola esecuzione per ref: un nuovo push annulla quella precedente sullo stesso branch/PR.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    # Con "shell: bash" esplicita GitHub usa `bash -eo pipefail`: un errore a sinistra di una
+    # pipe (es. xcodebuild | tee) fa fallire lo step.
+    shell: bash
+
+jobs:
+  engines-linux:
+    name: Engines · Linux (swift test + coverage)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Immagine ufficiale Swift. Il package dichiara swift-tools-version 6.0, quindi 6.1 è compatibile;
+    # su Linux verifichiamo che gli engine usino solo Foundation (ADR-003).
+    container: swift:6.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Versioni
+        run: |
+          swift --version
+          uname -a
+
+      - name: Python per il gate di coverage
+        # L'immagine swift non garantisce l'eseguibile python3 (ha solo le librerie).
+        run: |
+          if ! command -v python3 >/dev/null 2>&1; then
+            apt-get update -qq
+            apt-get install -y -qq --no-install-recommends python3
+          fi
+          python3 --version
+
+      - name: swift build
+        working-directory: Packages/JevEngines
+        run: swift build
+
+      - name: swift test (coverage)
+        working-directory: Packages/JevEngines
+        run: swift test --enable-code-coverage
+
+      - name: Coverage gate
+        working-directory: Packages/JevEngines
+        run: bash ../../scripts/ci/coverage-gate.sh
+
+  engines-macos:
+    name: Engines · macOS (swift test)
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Seleziona Xcode stabile più recente
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Versioni
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: swift test
+        working-directory: Packages/JevEngines
+        run: swift test
+
+  ios-build-test:
+    name: iOS · build e test su simulatore
+    runs-on: macos-15
+    timeout-minutes: 60
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+      NSUnbufferedIO: "YES"
+      MIN_IOS_VERSION: "18.0"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Seleziona Xcode stabile più recente
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Versioni e runtime disponibili
+        run: |
+          xcodebuild -version
+          xcrun simctl list runtimes
+
+      - name: Installa XcodeGen
+        run: |
+          brew install xcodegen
+          xcodegen --version
+
+      # Le dipendenze remote (GRDB, supabase-swift e transitive) vengono clonate in una cartella
+      # fissa, passata a xcodebuild con -clonedSourcePackagesDirPath, e messa in cache.
+      - name: Cache Swift Package Manager
+        uses: actions/cache@v4
+        with:
+          path: ~/spm-cache
+          key: spm-${{ runner.os }}-${{ hashFiles('Packages/**/Package.swift', 'Packages/**/Package.resolved', 'project.yml') }}
+          restore-keys: |
+            spm-${{ runner.os }}-
+
+      - name: Genera il progetto (xcodegen generate)
+        run: xcodegen generate --spec project.yml
+
+      - name: Scegli il simulatore
+        id: sim
+        run: |
+          udid="$(bash scripts/ci/pick-simulator.sh)"
+          echo "udid=${udid}" >> "$GITHUB_OUTPUT"
+
+      - name: Build e test app (JevFitTests + JevFitUITests)
+        run: |
+          mkdir -p build/results build/logs
+          rm -rf build/results/JevFit.xcresult
+          xcodebuild \
+            -project JevFit.xcodeproj \
+            -scheme JevFit \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            -destination-timeout 180 \
+            -clonedSourcePackagesDirPath "$HOME/spm-cache" \
+            -skipMacroValidation \
+            -skipPackagePluginValidation \
+            -resultBundlePath build/results/JevFit.xcresult \
+            CODE_SIGNING_ALLOWED=NO \
+            test 2>&1 | tee build/logs/jevfit-test.log
+
+      - name: Test package JevKit
+        # Gira anche se i test dell'app falliscono, purché il simulatore sia stato scelto:
+        # così un solo run mostra tutti i problemi.
+        if: ${{ !cancelled() && steps.sim.outcome == 'success' }}
+        working-directory: Packages/JevKit
+        run: |
+          mkdir -p ../../build/results ../../build/logs
+          rm -rf ../../build/results/JevKit.xcresult
+          # Per un package con più prodotti Xcode genera lo scheme "<Package>-Package" con tutti
+          # i target e i test. Non lo diamo per scontato: lo leggiamo da `xcodebuild -list`.
+          xcodebuild -list -json > ../../build/logs/jevkit-schemes.json
+          scheme="$(python3 - ../../build/logs/jevkit-schemes.json <<'PY'
+          import json, sys
+          # xcodebuild può stampare log di risoluzione dei package prima del JSON: lo cerchiamo.
+          text = open(sys.argv[1]).read()
+          start = text.find("{")
+          if start < 0:
+              sys.exit("Output di 'xcodebuild -list -json' senza JSON")
+          info, _ = json.JSONDecoder().raw_decode(text[start:])
+          container = info.get("workspace") or info.get("project") or {}
+          schemes = container.get("schemes", [])
+          print("Scheme disponibili: " + ", ".join(schemes), file=sys.stderr)
+          for candidate in ("JevKit-Package", "JevKit"):
+              if candidate in schemes:
+                  print(candidate)
+                  break
+          else:
+              sys.exit("Nessuno scheme 'JevKit-Package' o 'JevKit' trovato")
+          PY
+          )"
+          echo "Scheme scelto: ${scheme}"
+          xcodebuild \
+            -scheme "${scheme}" \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            -destination-timeout 180 \
+            -clonedSourcePackagesDirPath "$HOME/spm-cache" \
+            -skipMacroValidation \
+            -skipPackagePluginValidation \
+            -resultBundlePath ../../build/results/JevKit.xcresult \
+            CODE_SIGNING_ALLOWED=NO \
+            test 2>&1 | tee ../../build/logs/jevkit-test.log
+
+      - name: Carica xcresult e log (solo in caso di fallimento)
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-test-results-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            build/results/
+            build/logs/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  secrets-scan:
+    name: Secrets scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cerca segreti nei file tracciati
+        run: bash scripts/ci/check-secrets.sh
