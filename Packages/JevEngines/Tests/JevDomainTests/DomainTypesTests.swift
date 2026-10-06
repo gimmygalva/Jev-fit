@@ -48,7 +48,9 @@ struct DomainTypesTests {
         #expect(abs(portion.energyKcal - 284.8) < 1e-9)
         #expect(abs(portion.fiberGrams! - 1.04) < 1e-9)
         #expect(rice.isPhysicallyPlausiblePer100g)
-        #expect(abs(rice.atwaterEnergyKcal - (7 * 4 + 79 * 4 + 0.6 * 9)) < 1e-9)
+        // Atwater: 4 kcal/g proteine e carboidrati, 9 kcal/g grassi. Tipo esplicito per il type-checker.
+        let expectedAtwater: Double = 7.0 * 4.0 + 79.0 * 4.0 + 0.6 * 9.0
+        #expect(abs(rice.atwaterEnergyKcal - expectedAtwater) < 1e-9)
         let noFiber = NutrientProfile(energyKcal: 100, proteinGrams: 1, carbohydrateGrams: 1, fatGrams: 1)
         #expect(noFiber.scaled(toGrams: 50).fiberGrams == nil)
         #expect(!NutrientProfile(energyKcal: -1, proteinGrams: 0, carbohydrateGrams: 0, fatGrams: 0).isPhysicallyPlausiblePer100g)
