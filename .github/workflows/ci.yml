@@ -192,6 +192,15 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             test 2>&1 | tee ../../build/logs/jevkit-test.log
 
+      - name: Mostra i Package.resolved generati
+        # Servono per versionare le dipendenze risolte (build riproducibili, vedi PROJECT_STATE).
+        if: ${{ !cancelled() }}
+        run: |
+          find . -name Package.resolved -not -path "*/.build/*" -print | while read -r f; do
+            echo "=== ${f}"
+            cat "${f}"
+          done
+
       - name: Carica xcresult e log (solo in caso di fallimento)
         if: ${{ failure() }}
         uses: actions/upload-artifact@v4
