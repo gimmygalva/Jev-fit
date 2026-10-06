@@ -56,12 +56,13 @@ struct SchemaTests {
             "muscle_recovery", "readiness_entry", "daily_nutrition", "energy_expenditure",
             "outbox", "sync_cursor", "schema_meta",
         ]
-        try store.writer.read { db in
-            for table in expected {
-                #expect(try db.tableExists(table), "Manca \(table)")
-            }
-            // I dati fisiologici di HealthKit non stanno nel DB principale (SEC-LS-04).
-            #expect(try !db.tableExists("health_metric_daily"))
+        let existing = try store.writer.read { db in
+            try String.fetchAll(db, sql: "SELECT name FROM sqlite_master WHERE type = 'table'")
         }
+        for table in expected {
+            #expect(existing.contains(table), "Manca \(table)")
+        }
+        // I dati fisiologici di HealthKit non stanno nel DB principale (SEC-LS-04).
+        #expect(!existing.contains("health_metric_daily"))
     }
 }

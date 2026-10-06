@@ -38,11 +38,16 @@ struct DataStoreTests {
             try db.execute(sql: "INSERT INTO schema_meta (key, value) VALUES ('engine_version', '1')")
         }
         _ = try DataStore(writer: queue)
-        try queue.read { db in
-            #expect(try String.fetchOne(db, sql: "SELECT value FROM schema_meta WHERE key = 'engine_version'") == "1")
-            #expect(try db.tableExists("workout_set"))
-            #expect(try db.tableExists("outbox"))
+        let (value, hasSets, hasOutbox) = try queue.read { db in
+            (
+                try String.fetchOne(db, sql: "SELECT value FROM schema_meta WHERE key = 'engine_version'"),
+                try db.tableExists("workout_set"),
+                try db.tableExists("outbox")
+            )
         }
+        #expect(value == "1")
+        #expect(hasSets)
+        #expect(hasOutbox)
     }
 
     @Test("Lo schema rispetta le chiavi esterne")
