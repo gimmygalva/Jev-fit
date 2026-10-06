@@ -1,0 +1,33 @@
+# Xcode / SwiftPM
+*.xcodeproj/
+*.xcworkspace/
+!Packages/**/*.xcworkspace/
+xcuserdata/
+DerivedData/
+.build/
+.swiftpm/
+build/
+*.xcresult
+Package.resolved.bak
+# Coverage / reports
+coverage/
+*.profdata
+# Supabase local
+backend/supabase/.branches/
+backend/supabase/.temp/
+.env
+.env.*
+!.env.example
+# macOS
+.DS_Store
+# Firma personale (vedi docs/SIGNING.md)
+Config/Signing.local.xcconfig
+# Generati da XcodeGen: la fonte di verità è project.yml
+App/Info.plist
+App/JevFit.entitlements
+
+# Chiavi e certificati (SECURITY.md)
+*.p8
+*.p12
+*.mobileprovision
+*.cer
