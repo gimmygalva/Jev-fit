@@ -30,7 +30,10 @@ let package = Package(
                 .product(name: "GRDB", package: "GRDB.swift"),
                 .product(name: "JevCore", package: "JevEngines"),
                 .product(name: "JevDomain", package: "JevEngines"),
-            ]
+            ],
+            // Migrazioni SQL come risorse: lo stesso file è usato dall'app e dai controlli di CI
+            // (schema-parity.py, generate_records.py --check).
+            resources: [.copy("Migrations")]
         ),
         .target(
             name: "Sync",
@@ -77,7 +80,12 @@ let package = Package(
         ),
         .testTarget(
             name: "PersistenceTests",
-            dependencies: ["Persistence", .product(name: "GRDB", package: "GRDB.swift")]
+            dependencies: [
+                "Persistence",
+                .product(name: "GRDB", package: "GRDB.swift"),
+                .product(name: "JevCore", package: "JevEngines"),
+                .product(name: "JevDomain", package: "JevEngines"),
+            ]
         ),
         .testTarget(name: "FoodTests", dependencies: ["Food"]),
         .testTarget(name: "FeaturesTests", dependencies: ["Features"]),

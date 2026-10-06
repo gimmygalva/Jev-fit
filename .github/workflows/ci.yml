@@ -4,6 +4,7 @@
 #   engines-linux   swift build + swift test con coverage + gate su Linux (container Swift ufficiale)
 #   engines-macos   swift test di JevEngines con l'Xcode stabile più recente
 #   ios-build-test  XcodeGen + build e test dell'app su simulatore iPhone (iOS >= 18) + test di JevKit
+#   db-tests        migrazioni Supabase + test pgTAP (RLS, sync): Postgres con shim e Supabase locale vero
 #   secrets-scan    ricerca di chiavi/segreti nei file tracciati
 name: CI
 
@@ -128,6 +129,14 @@ jobs:
       - name: Genera il progetto (xcodegen generate)
         run: xcodegen generate --spec project.yml
 
+      # Versioni delle dipendenze fissate (Packages/JevKit/Package.resolved, build riproducibili):
+      # il progetto generato non è versionato, quindi gli passiamo lo stesso file.
+      - name: Usa le versioni fissate delle dipendenze
+        run: |
+          dest="JevFit.xcodeproj/project.xcworkspace/xcshareddata/swiftpm"
+          mkdir -p "${dest}"
+          cp Packages/JevKit/Package.resolved "${dest}/Package.resolved"
+
       - name: Scegli il simulatore
         id: sim
         run: |
@@ -192,15 +201,6 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             test 2>&1 | tee ../../build/logs/jevkit-test.log
 
-      - name: Mostra i Package.resolved generati
-        # Servono per versionare le dipendenze risolte (build riproducibili, vedi PROJECT_STATE).
-        if: ${{ !cancelled() }}
-        run: |
-          find . -name Package.resolved -not -path "*/.build/*" -print | while read -r f; do
-            echo "=== ${f}"
-            cat "${f}"
-          done
-
       - name: Carica xcresult e log (solo in caso di fallimento)
         if: ${{ failure() }}
         uses: actions/upload-artifact@v4
@@ -211,6 +211,51 @@ jobs:
             build/logs/
           if-no-files-found: ignore
           retention-days: 14
+
+  db-tests:
+    name: Database · migrazioni e test RLS (pgTAP)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 1) Controllo rapido: Postgres del runner + shim di Supabase (stesso script dello sviluppo locale).
+      - name: Postgres locale con pgTAP
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends postgresql-16-pgtap
+          sudo systemctl start postgresql.service
+          sudo -u postgres psql -X -q -c "alter user postgres password 'postgres'"
+
+      - name: Migrazioni e pgTAP (shim)
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: postgres
+        run: bash scripts/ci/db-test.sh
+
+      - name: Record Swift generati aggiornati rispetto allo schema SQL
+        run: python3 tools/codegen/generate_records.py --check
+
+      - name: Schema locale (SQLite) e cloud speculari
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: postgres
+        run: python3 scripts/ci/schema-parity.py
+
+      # 2) Verifica di riferimento: stessa migrazione e stessi test su Supabase locale (immagini ufficiali).
+      - name: Installa la CLI Supabase
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Avvia il database Supabase (applica le migrazioni)
+        run: supabase db start --workdir backend
+
+      - name: supabase test db
+        run: supabase test db --workdir backend
 
   secrets-scan:
     name: Secrets scan

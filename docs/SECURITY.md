@@ -167,8 +167,8 @@ Colonne "CoachContext":
 | `weight_trend_daily` | D | SAN | solo device | qualitativo |
 | `muscle_group` | S | PUB | app bundle | sì (chiave e nome) |
 | `exercise` (catalogo) | S | PUB | app bundle | sì (chiave di catalogo) |
-| `exercise` (custom) | F | PERS (contenuto dell'utente) | device + cloud | label |
-| `exercise_muscle` / `exercise_alternative` | S(+F) | PUB / PERS per i custom | bundle / device + cloud | chiavi di catalogo |
+| `custom_exercise`, `custom_exercise_muscle` | F | PERS (contenuto dell'utente) | device + cloud | label |
+| `exercise_muscle` / `exercise_alternative` (catalogo) | S | PUB | bundle | chiavi di catalogo |
 | `training_program`, `workout_template`, `workout_template_exercise` | F | PERS (fitness) | device + cloud | valore (serie, rep range, RIR target) |
 | `workout_session` | F | SAN | device + cloud | valore aggregato (durata, n. sessioni); **`notes` mai** |
 | `workout_exercise` | F | SAN | device + cloud | label o chiave di catalogo |
@@ -179,9 +179,9 @@ Colonne "CoachContext":
 | `recovery_calibration` | F | PERS (parametro appreso) | device + cloud | no |
 | `readiness_entry` | D | SAN (include componenti HealthKit) | solo device | punteggio totale e sottopunteggi 0–100; confidence |
 | `subjective_check` | F | SAN | device + cloud | sottopunteggio 0–100 |
-| `food` (catalogo) / (cache remota) / (custom) | S / L / F | PUB / TEC / PERS | bundle / device / device + cloud | label per cache e custom (i nomi OFF sono contenuto di terzi non fidato) |
-| `food_serving` | S+F | PUB / PERS | bundle / device + cloud | no |
-| `recipe`, `recipe_ingredient`, `meal` | F | PERS | device + cloud | label |
+| alimenti di catalogo / `food_cache` / `custom_food` | S / L / F | PUB / TEC / PERS | bundle / device / device + cloud | label per cache e custom (i nomi OFF sono contenuto di terzi non fidato) |
+| porzioni di catalogo / `custom_food_serving` | S / F | PUB / PERS | bundle / device + cloud | no |
+| `recipe`, `recipe_ingredient`, `saved_meal`, `saved_meal_item` | F | PERS | device + cloud | label |
 | `food_log_entry` | F | SAN | device + cloud | no come singole voci; solo aggregati giornalieri e settimanali dell'engine |
 | `nutrition_day` | F | SAN | device + cloud | valore (giorni completi) |
 | `daily_nutrition`, `energy_expenditure` | D | SAN | solo device | valore (totali, TDEE, confidence) |

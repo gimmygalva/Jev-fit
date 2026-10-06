@@ -207,3 +207,17 @@ public struct NutrientProfile: Sendable, Hashable, Codable {
         return proteinGrams + carbohydrateGrams + fatGrams <= 100.5 && energyKcal <= 900
     }
 }
+
+/// Area corporea per limitazioni dichiarate, dolore e controindicazioni degli esercizi (PS-ON-08).
+/// Nessun valore diagnostico: serve solo a evitare esercizi che potrebbero dare fastidio.
+public enum BodyArea: String, Sendable, Codable, CaseIterable {
+    case shoulder
+    case elbow
+    case wrist
+    case neck
+    case lowerBack = "lower_back"
+    case hip
+    case knee
+    case ankle
+    case other
+}

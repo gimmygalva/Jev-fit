@@ -1,0 +1,9 @@
+# Configurazione della CLI Supabase per lo sviluppo locale e la CI (`supabase db start`,
+# `supabase test db`). Il progetto remoto (regione UE, ADR-006) si collega in M12 con
+# `supabase link`; nessun segreto in questo file.
+project_id = "jev-fit"
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 17
