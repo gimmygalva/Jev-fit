@@ -5,11 +5,13 @@ App iPhone nativa (iOS 18+, Swift 6, SwiftUI) per allenamento e nutrizione, con 
 **Stato:** M1 (scheletro). Piano approvato; package, contratti core, progetto XcodeGen e CI scritti. La CI non è ancora stata eseguita: nessuna build è verificata (vedi `PROJECT_STATE.md`).
 
 ## Da dove iniziare a leggere
+0. `HANDOFF.md`: come riprendere il lavoro in una nuova sessione.
 1. `PROJECT_STATE.md`: stato attuale, blocchi, prossimi passi.
 2. `docs/ARCHITECTURE_PLAN.md`: architettura, cartelle, schema DB, schermate, algoritmi, agenti, roadmap, rischi, MVP/V2.
 3. `docs/REQUIREMENTS_AUDIT.md`: Fase 0.
 4. `docs/PRODUCT_SPEC.md`, `docs/USER_FLOWS.md`, `docs/SCREEN_MAP.md`: Fase 1.
 5. `DECISIONS.md`: Architecture Decision Records.
+6. `docs/BRIEF.md`: brief originale completo.
 
 ## Build & test
 

@@ -1,7 +1,7 @@
 # PROJECT_STATE — JEV FIT
 
 Memoria condivisa del team. Ogni agente la legge prima di iniziare e il CTO la aggiorna a ogni milestone.
-Ultimo aggiornamento: 2026-10-05 · Agent 00 (CTO)
+Ultimo aggiornamento: 2026-10-06 · Agent 00 (CTO)
 
 ## Current phase
 **M1 / Fase 2: codice scritto, IN ATTESA DELLA PRIMA CI.** M0 approvata dall'utente il 2026-10-05.
@@ -30,7 +30,7 @@ Tre livelli con "numeri solo dagli engine" · engine Swift puri in package local
 
 ## Blocchi reali (ambiente)
 1. **Nessun Xcode e nessun toolchain Swift in questo ambiente.** Il download da swift.org e dalle release di GitHub è bloccato dal proxy (403). Non posso dichiarare "compila" o "test passati" senza una CI macOS o una build sul Mac dell'utente.
-2. **Container effimero.** Il lavoro va salvato su un repository Git remoto. Ora la CLI `gh` non è autenticata: finché non c'è un remote, consegno uno zip a ogni milestone.
+2. **Repository remoto.** Il repository è `https://github.com/gimmygalva/Jev-fit` (creato dall'utente il 2026-10-06, vuoto). La prima sessione non poteva scriverci perché non le era stato assegnato; il lavoro prosegue in una nuova sessione con il repository selezionato all'avvio (vedi HANDOFF.md).
 3. **HealthKit con autorizzazioni reali** è verificabile solo su iPhone fisico, a cura dell'utente con una checklist.
 
 ## Open questions (per l'utente)
@@ -52,6 +52,6 @@ Tre livelli con "numeri solo dagli engine" · engine Swift puri in package local
 - Incertezze che solo la CI può risolvere: nome dello scheme di JevKit, versione di Xcode sul runner, identificatore di accessibilità della TabView, prodotti `Auth`/`PostgREST`/`Functions` di supabase-swift, `DatabaseWriter` Sendable in GRDB 7.
 
 ## Next tasks
-- **Sbloccare la CI**: repository GitHub raggiungibile da questa sessione → push → correggere fino al verde → chiudere M1.
+- **Sbloccare la CI**: nella nuova sessione, push di `main` su `gimmygalva/Jev-fit` → seguire GitHub Actions → correggere fino al verde → chiudere M1 (procedura in HANDOFF.md).
 - **M2 / Fase 3**, Agent 03: `DATA_MODEL.md`, migrazioni GRDB `v001`, migrazioni Supabase + RLS, repository, outbox, test.
 - In parallelo dopo M2: Agent 04 (WorkoutEngine + catalogo), Agent 06 (NutritionEngine + Monte Carlo), Agent 08 (HealthKit).
