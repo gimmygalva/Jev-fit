@@ -4,10 +4,10 @@ Memoria condivisa del team. Ogni agente la legge prima di iniziare e il CTO la a
 Ultimo aggiornamento: 2026-10-06 (seconda sessione) · Agent 00 (CTO)
 
 ## Current phase
-**M1 chiusa · M2 chiusa (dati), in attesa del progetto Supabase remoto.**
+**M1 chiusa · M2 chiusa, compreso il progetto Supabase remoto.**
 - M1: CI verde sul branch `claude/amazing-gauss-oo5oga`, run 37502690931 (4 job). Unica correzione necessaria: un'espressione di test che bloccava il type-checker.
 - M2: CI verde, run 37508884578 (5 job, compreso il nuovo `db-tests`). 27 test Swift di Persistence; 486 asserzioni pgTAP eseguite sia su Postgres con shim sia su Supabase locale vero.
-- Il progetto Supabase remoto (regione UE) **non è ancora stato creato**: serve la conferma dell'utente per i costi (HANDOFF, punto 5).
+- Progetto Supabase `jev-fit` creato il 2026-10-06 (`eu-central-1`, piano Free, ref `xyseraszquglsfcffwny`) con `v001` applicata. Advisor di sicurezza senza segnalazioni; smoke test RLS sul remoto superato. Dettagli e impostazioni da fare nella dashboard in `docs/BACKEND.md`.
 
 ## Completed features / deliverable
 | Deliverable | Autore | Stato |
@@ -45,7 +45,7 @@ Tre livelli con "numeri solo dagli engine" · engine Swift puri in package local
 
 ## Open questions (per l'utente)
 1. ~~Verifica build~~ → **solo CI GitHub Actions** (ADR-011). Repository raggiungibile e CI attiva dal 2026-10-06.
-2. ~~Supabase~~ → **nuovo progetto `jev-fit` in regione UE** (ADR-006). Migrazioni pronte e testate: **serve la tua conferma per crearlo** (possibili costi del piano). Non serve prima di M12 (sync); si può rimandare.
+2. ~~Supabase~~ → progetto `jev-fit` creato in UE (piano Free) e migrato. Restano le impostazioni manuali di `docs/BACKEND.md` (MFA sull'account, provider di login), nessuna urgente prima di M12.
 3. ~~Persistenza~~ → **GRDB** (ADR-004).
 4. ~~Lingua~~ → **solo italiano nell'MVP**, con String Catalog (ADR-015).
 5. ID reali dei modelli richiesti ("GPT-5.6 Terra / Sol"): da verificare sulla documentazione OpenAI in Fase 10.
@@ -65,7 +65,6 @@ Tre livelli con "numeri solo dagli engine" · engine Swift puri in package local
 - Incertezze che solo la CI può risolvere: nome dello scheme di JevKit, versione di Xcode sul runner, identificatore di accessibilità della TabView, prodotti `Auth`/`PostgREST`/`Functions` di supabase-swift, `DatabaseWriter` Sendable in GRDB 7.
 
 ## Next tasks
-- **Decisione utente**: creare ora il progetto Supabase `jev-fit` (UE) e applicare `v001`, oppure rimandare a M12.
 - **M3 / Fase 4**, Agent 02: design system, navigazione 5 tab, onboarding collegato al DB (`FactRepository`), deep link.
 - In parallelo (piano §6): Agent 04 (WorkoutEngine + catalogo ~150 esercizi), Agent 06 (NutritionEngine + Monte Carlo), Agent 08 (HealthKit, scrive in `HealthCacheStore`).
 - Nota di processo: in questa sessione la review di milestone (Agent 11) è stata fatta dal CTO senza un agente separato. È rimasta adversariale: ogni test pgTAP e il controllo di parità sono stati verificati introducendo difetti apposta.

@@ -5,7 +5,7 @@ Riferimenti: `ARCHITECTURE_PLAN.md` §3, `SECURITY.md` §3, §6, §8, `DECISIONS
 
 Fonti di verità, in quest'ordine:
 1. `Packages/JevKit/Sources/Persistence/Migrations/v001_initial.sql`: schema locale (SQLite/GRDB);
-2. `backend/supabase/migrations/20261006120000_v001_initial.sql`: schema cloud (Postgres/Supabase);
+2. `backend/supabase/migrations/20261006190920_v001_initial.sql`: schema cloud (Postgres/Supabase);
 3. questo documento, che spiega le scelte. Se diverge dal codice, vale il codice e il documento va corretto.
 
 Le due migrazioni sono **speculari** per le tabelle sincronizzate. Lo verifica la CI (`scripts/ci/schema-parity.py`), che confronta nomi delle colonne e obbligatorietà. I record Swift si **generano** dallo schema locale (`tools/codegen/generate_records.py`), e la CI fallisce se il file generato non è aggiornato.

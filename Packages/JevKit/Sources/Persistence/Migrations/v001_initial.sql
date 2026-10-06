@@ -1,5 +1,5 @@
 -- JEV FIT — migrazione locale v001_initial (M2, Agent 03). Speculare a
--- backend/supabase/migrations/20261006120000_v001_initial.sql per le tabelle "fatto".
+-- backend/supabase/migrations/20261006190920_v001_initial.sql per le tabelle "fatto".
 -- Riferimento: docs/DATA_MODEL.md. IMMUTABILE dopo il rilascio: le modifiche vanno in v002+.
 --
 -- Convenzioni locali (DATA_MODEL §3):
