@@ -1,11 +1,13 @@
 # PROJECT_STATE — JEV FIT
 
 Memoria condivisa del team. Ogni agente la legge prima di iniziare e il CTO la aggiorna a ogni milestone.
-Ultimo aggiornamento: 2026-10-06 · Agent 00 (CTO)
+Ultimo aggiornamento: 2026-10-06 (seconda sessione) · Agent 00 (CTO)
 
 ## Current phase
-**M1 / Fase 2: codice scritto, IN ATTESA DELLA PRIMA CI.** M0 approvata dall'utente il 2026-10-05.
-Nessuna riga Swift è stata compilata: in questo ambiente non c'è toolchain. M1 si chiude solo con la CI verde su GitHub Actions.
+**M1 chiusa · M2 chiusa (dati), in attesa del progetto Supabase remoto.**
+- M1: CI verde sul branch `claude/amazing-gauss-oo5oga`, run 37502690931 (4 job). Unica correzione necessaria: un'espressione di test che bloccava il type-checker.
+- M2: CI verde, run 37508884578 (5 job, compreso il nuovo `db-tests`). 27 test Swift di Persistence; 486 asserzioni pgTAP eseguite sia su Postgres con shim sia su Supabase locale vero.
+- Il progetto Supabase remoto (regione UE) **non è ancora stato creato**: serve la conferma dell'utente per i costi (HANDOFF, punto 5).
 
 ## Completed features / deliverable
 | Deliverable | Autore | Stato |
@@ -21,21 +23,29 @@ Nessuna riga Swift è stata compilata: in questo ambiente non c'è toolchain. M1
 | `Packages/JevKit`: Persistence (GRDB, bootstrap), Sync (contratto + DisabledSyncService), Health (contratto), Food (`FoodProvider`, query, barcode GS1), DesignSystem (token), Features (RootView a 5 tab) + test | Agent 00 / 13 | scritto, **non compilato** |
 | `project.yml`, app shell, `AppTests`, `AppUITests`, `.github/workflows/ci.yml`, script CI (coverage gate, simulatore, secrets scan), `docs/SIGNING.md` | Agent 13 | scritto; YAML e script validati (actionlint, shellcheck, test con dati finti); **build non verificata** |
 | `docs/SECURITY.md` (regole SEC-*), `App/PrivacyInfo.xcprivacy` | Agent 12 | ✔ (plist validato) |
+| **M1 verificata in CI** (run 37502690931) + `Packages/JevKit/Package.resolved` (GRDB 7.11.1, supabase-swift 2.55.3), passato anche al progetto generato | Agent 13 | ✔ |
+| `docs/DATA_MODEL.md`: classi di tabelle, convenzioni, integrità, contratto di sync (outbox, merge, singleton, pull) | Agent 03 | ✔ |
+| Supabase `v001`: 31 tabelle "fatto" + `user_consent`, RLS per comando con consenso `cloud_sync`, nessun DELETE al client, trigger con clamp dell'orologio, tombstone che vince, last-writer-wins | Agent 03 / 12 | ✔ CI |
+| pgTAP: `rls_facts` (15 casi × 31 tabelle), `rls_meta`, `rls_user_consent`; `scripts/ci/db-test.sh` + shim per Postgres senza Docker | Agent 03 / 11 | ✔ CI (shim + Supabase locale) |
+| GRDB `v001_initial` (SQL come risorsa): fatti, locali, derivati, outbox con trigger e `revision`, FK differite; cache HealthKit `h001` in file separato escluso dal backup | Agent 03 | ✔ CI |
+| Record Swift **generati** dallo schema (`tools/codegen/generate_records.py`), `FactRepository`, `OutboxRepository`, `HealthCacheStore` + 27 test | Agent 03 | ✔ CI |
+| Controlli CI: parità schema locale/cloud (`schema-parity.py`), record generati aggiornati (`--check`) | Agent 13 | ✔ CI |
 
 ## Known bugs
-Nessuno: non c'è ancora codice.
+Nessuno noto. Limiti verificati e accettati:
+- la Data Protection dei file DB (SEC-LS-01) si verifica solo su dispositivo: sul simulatore il test controlla solo l'inclusione/esclusione dal backup;
+- `markConflict` non conserva il codice d'errore nel DB (l'outbox ha solo un codice per le righe ancora in coda): lo registrerà la sync nel log tecnico (M12).
 
 ## Architecture decisions (sintesi, dettaglio in DECISIONS.md)
 Tre livelli con "numeri solo dagli engine" · engine Swift puri in package locale · GRDB · fatti vs derivati (i derivati non si sincronizzano) · Supabase (UE) con RLS · AIProvider lato gateway, modelli configurabili · l'AI scrive segnaposto, non cifre · FoodProvider intercambiabili · unità canoniche e `day_key` locale · XcodeGen + CI macOS · dati fisiologici HealthKit solo sul dispositivo · un'unica `EngineConfig` versionata.
 
 ## Blocchi reali (ambiente)
-1. **Nessun Xcode e nessun toolchain Swift in questo ambiente.** Il download da swift.org e dalle release di GitHub è bloccato dal proxy (403). Non posso dichiarare "compila" o "test passati" senza una CI macOS o una build sul Mac dell'utente.
-2. **Repository remoto.** Il repository è `https://github.com/gimmygalva/Jev-fit` (creato dall'utente il 2026-10-06, vuoto). La prima sessione non poteva scriverci perché non le era stato assegnato; il lavoro prosegue in una nuova sessione con il repository selezionato all'avvio (vedi HANDOFF.md).
-3. **HealthKit con autorizzazioni reali** è verificabile solo su iPhone fisico, a cura dell'utente con una checklist.
+1. **Nessun Xcode in questo ambiente**: build e test Swift solo tramite CI GitHub Actions (ADR-011). Le migrazioni e i test pgTAP invece si eseguono anche qui (Postgres 16 + pgTAP locali, `scripts/ci/db-test.sh`).
+2. **HealthKit con autorizzazioni reali** è verificabile solo su iPhone fisico, a cura dell'utente con una checklist.
 
 ## Open questions (per l'utente)
-1. ~~Verifica build~~ → **solo CI GitHub Actions** (ADR-011). Serve ancora un repository GitHub raggiungibile da questa sessione (oggi `gh` non è autenticato).
-2. ~~Supabase~~ → **nuovo progetto `jev-fit` in regione UE** (ADR-006). Va creato in M2, quando le migrazioni sono pronte.
+1. ~~Verifica build~~ → **solo CI GitHub Actions** (ADR-011). Repository raggiungibile e CI attiva dal 2026-10-06.
+2. ~~Supabase~~ → **nuovo progetto `jev-fit` in regione UE** (ADR-006). Migrazioni pronte e testate: **serve la tua conferma per crearlo** (possibili costi del piano). Non serve prima di M12 (sync); si può rimandare.
 3. ~~Persistenza~~ → **GRDB** (ADR-004).
 4. ~~Lingua~~ → **solo italiano nell'MVP**, con String Catalog (ADR-015).
 5. ID reali dei modelli richiesti ("GPT-5.6 Terra / Sol"): da verificare sulla documentazione OpenAI in Fase 10.
@@ -44,14 +54,18 @@ Tre livelli con "numeri solo dagli engine" · engine Swift puri in package local
 8. Guideline Apple 5.1.3 per l'invio ad AI di informazioni derivate da HealthKit: verifica in Fase 12.
 
 ## Note di integrazione aperte (dalle review di Agent 12 e 13)
-- Dopo la prima CI verde: versionare `Package.resolved` (build riproducibili) e attivare `SWIFT_TREAT_WARNINGS_AS_ERRORS`.
-- M2 (Agent 03): tabella `user_consent` (consensi separati per sync e AI), `health_metric_daily` in un file SQLite separato escluso dal backup, Data Protection `completeUntilFirstUserAuthentication`.
+- ~~Versionare `Package.resolved`~~ (fatto). `SWIFT_TREAT_WARNINGS_AS_ERRORS`: rimandato a M3, dopo aver letto i warning attuali nei log CI (Agent 13).
+- Le action `checkout@v4`, `cache@v4`, `upload-artifact@v4`, `setup-cli@v1` girano su Node 20, deprecato da GitHub: aggiornarle (Agent 13, M3).
+- ~~M2 (Agent 03): `user_consent`, `health_metric_daily` separato, Data Protection~~ (fatto).
+- M3: collegare `DataStore`/`HealthCacheStore` all'`AppContainer` (apertura su disco, schermata d'errore se il DB non si apre) e salvare l'onboarding con `FactRepository`.
+- M12: motore di sync secondo DATA_MODEL §5 (push dall'outbox, pull con finestra di sovrapposizione, adozione dei singleton su 23505, regole di merge anche lato client).
 - M11 (Agent 09): segnaposto `{{label:id}}` per i nomi scritti dall'utente o da terzi (estensione ADR-014). Nel CoachContext il peso entra solo come direzione e fascia, senza valore.
 - Nuova Edge Function `account-delete`: richiede un nuovo Sign in with Apple e revoca i token Apple.
 - AppIcon 1024×1024 originale prima di TestFlight.
 - Incertezze che solo la CI può risolvere: nome dello scheme di JevKit, versione di Xcode sul runner, identificatore di accessibilità della TabView, prodotti `Auth`/`PostgREST`/`Functions` di supabase-swift, `DatabaseWriter` Sendable in GRDB 7.
 
 ## Next tasks
-- **Sbloccare la CI**: nella nuova sessione, push di `main` su `gimmygalva/Jev-fit` → seguire GitHub Actions → correggere fino al verde → chiudere M1 (procedura in HANDOFF.md).
-- **M2 / Fase 3**, Agent 03: `DATA_MODEL.md`, migrazioni GRDB `v001`, migrazioni Supabase + RLS, repository, outbox, test.
-- In parallelo dopo M2: Agent 04 (WorkoutEngine + catalogo), Agent 06 (NutritionEngine + Monte Carlo), Agent 08 (HealthKit).
+- **Decisione utente**: creare ora il progetto Supabase `jev-fit` (UE) e applicare `v001`, oppure rimandare a M12.
+- **M3 / Fase 4**, Agent 02: design system, navigazione 5 tab, onboarding collegato al DB (`FactRepository`), deep link.
+- In parallelo (piano §6): Agent 04 (WorkoutEngine + catalogo ~150 esercizi), Agent 06 (NutritionEngine + Monte Carlo), Agent 08 (HealthKit, scrive in `HealthCacheStore`).
+- Nota di processo: in questa sessione la review di milestone (Agent 11) è stata fatta dal CTO senza un agente separato. È rimasta adversariale: ogni test pgTAP e il controllo di parità sono stati verificati introducendo difetti apposta.

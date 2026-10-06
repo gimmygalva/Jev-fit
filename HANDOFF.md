@@ -1,5 +1,7 @@
 # HANDOFF — ripresa del lavoro in una nuova sessione
 
+> **Stato 2026-10-06, seconda sessione:** procedura completata. Storico importato sul branch `claude/amazing-gauss-oo5oga`, CI verde, M1 e M2 chiuse. Lo stato aggiornato è in `PROJECT_STATE.md`; questo file resta come riferimento storico.
+
 Data: 2026-10-06 · Da: Agent 00 (CTO), prima sessione
 
 ## Perché esiste questo file
