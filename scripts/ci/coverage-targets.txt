@@ -10,3 +10,5 @@ JevCore 90
 JevDomain 90
 WorkoutEngine 90
 ExerciseCatalog 90
+NutritionEngine 90
+RecoveryEngine 90

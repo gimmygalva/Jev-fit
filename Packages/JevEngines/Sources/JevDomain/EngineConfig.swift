@@ -39,7 +39,22 @@ public struct EngineConfig: Sendable, Hashable {
             baselineDays: 28,
             minimumTrainingLoadHistoryDays: 21,
             minimumHRVSamples: 5,
-            consecutiveTrainingDaysPenaltyFrom: 4
+            consecutiveTrainingDaysPenaltyFrom: 4,
+            minimumBaselineSamples: 14,
+            sleepRatioFloor: 0.6,
+            partialSleepQuality: 0.6,
+            zScoreSlope: 25,
+            minimumLogSDNNSD: 0.05,
+            minimumRestingHRSD: 1.5,
+            acuteLoadDays: 7,
+            chronicLoadDays: 28,
+            loadRatioSafeMax: 1.3,
+            loadRatioZeroAt: 2.0,
+            energyBalanceTolerancePoints: 10,
+            energyBalancePenaltyPerPoint: 5,
+            performanceNeutralScore: 70,
+            performanceScorePerUnitResidual: 600,
+            consecutiveDayPenalty: 25
         ),
         recovery: Recovery(
             readyThresholdPercent: 90,
@@ -49,7 +64,19 @@ public struct EngineConfig: Sendable, Hashable {
             ageTauFromYears: 30,
             userTauMultiplierRange: 0.7...1.5,
             adaptationStep: 0.05,
-            adaptationMinimumExposures: 6
+            adaptationMinimumExposures: 6,
+            intensityByRIR: [1.0, 0.9, 0.8, 0.65],
+            intensityRIR4Plus: 0.5,
+            intensityMissingRIR: 0.8,
+            intensityWarmup: 0.1,
+            toleranceReferenceWeeklySets: 10,
+            toleranceMinimumWeeklySets: 5,
+            toleranceExponent: 0.3,
+            toleranceRange: 0.7...1.25,
+            toleranceWindowDays: 28,
+            adaptationResidualThreshold: 0.02,
+            adaptationHighRecoveryPercent: 90,
+            adaptationLowRecoveryPercent: 75
         ),
         nutrition: Nutrition(
             energyDensityKcalPerKg: 7700,
@@ -217,6 +244,29 @@ extension EngineConfig {
         public var minimumTrainingLoadHistoryDays: Int
         public var minimumHRVSamples: Int
         public var consecutiveTrainingDaysPenaltyFrom: Int
+        /// Campioni minimi della baseline (28 giorni) per usare HRV e FC a riposo.
+        public var minimumBaselineSamples: Int
+        /// Sonno: rapporto dormito/fabbisogno sotto cui il punteggio è 0 (1 → 100).
+        public var sleepRatioFloor: Double
+        /// Qualità del componente sonno con una sola notte disponibile.
+        public var partialSleepQuality: Double
+        /// Punti per deviazione standard nei componenti a z-score (50 = baseline).
+        public var zScoreSlope: Double
+        public var minimumLogSDNNSD: Double
+        public var minimumRestingHRSD: Double
+        public var acuteLoadDays: Int
+        public var chronicLoadDays: Int
+        /// Rapporto acuto/cronico fino a cui il carico non penalizza; a `loadRatioZeroAt` vale 0.
+        public var loadRatioSafeMax: Double
+        public var loadRatioZeroAt: Double
+        /// Deficit reale oltre il pianificato tollerato (punti %), poi penalità per punto.
+        public var energyBalanceTolerancePoints: Double
+        public var energyBalancePenaltyPerPoint: Double
+        /// Performance: punteggio a residuo nullo e pendenza per unità di residuo relativo.
+        public var performanceNeutralScore: Double
+        public var performanceScorePerUnitResidual: Double
+        /// Punti persi per ogni giorno consecutivo dal quarto in poi.
+        public var consecutiveDayPenalty: Double
     }
 
     public struct Recovery: Sendable, Hashable {
@@ -229,6 +279,21 @@ extension EngineConfig {
         public var userTauMultiplierRange: ClosedRange<Double>
         public var adaptationStep: Double
         public var adaptationMinimumExposures: Int
+        /// I(RIR) per RIR 0…3; da 4 in su `intensityRIR4Plus`.
+        public var intensityByRIR: [Double]
+        public var intensityRIR4Plus: Double
+        public var intensityMissingRIR: Double
+        public var intensityWarmup: Double
+        /// Tolleranza cronica `k = clamp((ref / max(volume, min))^esponente)` (repeated bout).
+        public var toleranceReferenceWeeklySets: Double
+        public var toleranceMinimumWeeklySets: Double
+        public var toleranceExponent: Double
+        public var toleranceRange: ClosedRange<Double>
+        public var toleranceWindowDays: Int
+        /// Adattamento di u_m: residuo medio minimo e soglie di recupero "alto" / "basso".
+        public var adaptationResidualThreshold: Double
+        public var adaptationHighRecoveryPercent: Double
+        public var adaptationLowRecoveryPercent: Double
     }
 
     public struct Nutrition: Sendable, Hashable {

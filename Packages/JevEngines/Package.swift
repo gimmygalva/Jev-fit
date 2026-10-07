@@ -35,7 +35,7 @@ let package = Package(
         ),
         .target(name: "WorkoutEngine", dependencies: ["JevCore", "JevDomain", "ExerciseCatalog"]),
         .target(name: "NutritionEngine", dependencies: ["JevCore", "JevDomain"]),
-        .target(name: "RecoveryEngine", dependencies: ["JevCore", "JevDomain"]),
+        .target(name: "RecoveryEngine", dependencies: ["JevCore", "JevDomain", "ExerciseCatalog"]),
         .target(
             name: "CheckInEngine",
             dependencies: ["JevCore", "JevDomain", "WorkoutEngine", "NutritionEngine", "RecoveryEngine"]
@@ -46,8 +46,8 @@ let package = Package(
         .testTarget(name: "JevDomainTests", dependencies: ["JevDomain"]),
         .testTarget(name: "ExerciseCatalogTests", dependencies: ["ExerciseCatalog"]),
         .testTarget(name: "WorkoutEngineTests", dependencies: ["WorkoutEngine", "JevDomain", "JevCore", "ExerciseCatalog"]),
-        .testTarget(name: "NutritionEngineTests", dependencies: ["NutritionEngine", "JevDomain"]),
-        .testTarget(name: "RecoveryEngineTests", dependencies: ["RecoveryEngine", "JevDomain"]),
+        .testTarget(name: "NutritionEngineTests", dependencies: ["NutritionEngine", "JevDomain", "JevCore"]),
+        .testTarget(name: "RecoveryEngineTests", dependencies: ["RecoveryEngine", "JevDomain", "JevCore", "ExerciseCatalog"]),
         .testTarget(name: "CheckInEngineTests", dependencies: ["CheckInEngine"]),
         .testTarget(name: "CoachKitTests", dependencies: ["CoachKit"]),
     ]
