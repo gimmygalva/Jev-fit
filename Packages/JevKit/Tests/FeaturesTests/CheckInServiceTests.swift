@@ -97,4 +97,13 @@ struct CheckInServiceTests {
         #expect(!again.result.decisions.contains { $0.type == .increaseCalories })
         #expect(again.result.suppressed == ["increase_calories:"])
     }
+
+    @Test("Cambio di esercizio accettato: esclusione salvata e sincronizzabile")
+    func changeExercise() async throws {
+        try prepareWeek()
+        let report = try #require(try await service.run(on: today))
+        let change = CheckInEvaluator.Decision(type: .changeExercise, exerciseID: "barbell_bench_press", reasonCodes: [])
+        try service.respond(to: change, in: report, accepted: true, day: today)
+        #expect(try service.dashboard.training.profile()?.excludedExercises == ["barbell_bench_press"])
+    }
 }

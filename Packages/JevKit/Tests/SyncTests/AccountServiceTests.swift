@@ -98,6 +98,26 @@ struct AccountServiceTests {
         }
     }
 
+    @Test("Eliminazione dell'account: conferma esplicita al server, poi uscita; errore gestito")
+    func deleteAccount() async throws {
+        StubProtocol.requests = []
+        StubProtocol.handler = { _ in (200, Data(#"{"deleted":true}"#.utf8)) }
+        let store = InMemorySessionStore(AuthSession(accessToken: "tok", refreshToken: "r", expiresAt: now + 3600, userID: "u"))
+        let account = AccountService(config: config, store: store, session: StubProtocol.session(), now: { [now] in now })
+        try await account.deleteAccount()
+        #expect(!account.isSignedIn)
+        let request = try #require(StubProtocol.requests.last)
+        #expect(request.url?.path == "/functions/v1/account-delete")
+        #expect(request.value(forHTTPHeaderField: "Authorization") == "Bearer tok")
+        let failing = AccountService(config: config, store: InMemorySessionStore(store.load() ?? AuthSession(
+            accessToken: "tok", refreshToken: "r", expiresAt: now + 3600, userID: "u")), session: StubProtocol.session(),
+            now: { [now] in now })
+        StubProtocol.handler = { _ in (502, Data()) }
+        await #expect(throws: AccountError.rejected(502)) { try await failing.deleteAccount() }
+        #expect(failing.isSignedIn, "Se il server fallisce l'account resta collegato")
+        await #expect(throws: AccountError.notSignedIn) { try await account.deleteAccount() }
+    }
+
     @Test("Gateway di JEV: senza sessione notAuthorized, risposte mappate")
     func gateway() async throws {
         let request = CoachRequest(tier: .routine, purpose: "today_card", facts: [], reasonCodes: [])

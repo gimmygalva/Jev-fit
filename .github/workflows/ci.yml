@@ -281,6 +281,12 @@ jobs:
           deno check index.ts
           deno test grounding_test.ts
 
+      - name: Eliminazione account · type check e test
+        working-directory: backend/supabase/functions/account-delete
+        run: |
+          deno check index.ts
+          deno test confirm_test.ts
+
   secrets-scan:
     name: Secrets scan
     runs-on: ubuntu-latest

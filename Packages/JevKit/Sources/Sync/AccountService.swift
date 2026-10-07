@@ -160,6 +160,27 @@ public struct AccountService: Sendable {
         store.save(nil)
     }
 
+    /// Elimina l'account e tutti i dati nel cloud (Edge Function `account-delete`), poi esce.
+    /// I dati sull'iPhone restano finché l'utente non elimina l'app.
+    public func deleteAccount() async throws {
+        guard let token = await accessToken() else { throw AccountError.notSignedIn }
+        var request = URLRequest(url: config.projectURL.appendingPathComponent("functions/v1/account-delete"), timeoutInterval: 30)
+        request.httpMethod = "POST"
+        request.setValue(config.publishableKey, forHTTPHeaderField: "apikey")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = Data(#"{"confirm":"DELETE"}"#.utf8)
+        let response: URLResponse
+        do {
+            (_, response) = try await session.data(for: request)
+        } catch {
+            throw AccountError.network
+        }
+        let status = (response as? HTTPURLResponse)?.statusCode ?? 0
+        guard status == 200 else { throw AccountError.rejected(status) }
+        signOut()
+    }
+
     // MARK: Consensi
 
     private func rest(_ path: String, query: [URLQueryItem], method: String, body: Any?) async throws -> Data {

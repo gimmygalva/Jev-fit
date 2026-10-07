@@ -1,3 +1,4 @@
+import CheckInEngine
 import ExerciseCatalog
 import Foundation
 import JevCore
@@ -100,5 +101,44 @@ struct TrainingPlanServiceTests {
         #expect(model.summary != nil)
         #expect(!model.isActive)
         #expect((model.summary?.volumeKg ?? 0) == 1000)
+    }
+
+    private func saveCheckIn(_ decisions: [CheckInEvaluator.Decision], accepted: [String: Bool]) throws {
+        let repository = CheckInRepository(facts: facts)
+        let json = String(decoding: try JSONEncoder().encode(decisions), as: UTF8.self)
+        let record = try repository.save(weekStart: DayKey(date: Date(), timeZone: .current).adding(days: -7),
+                                         metricsJSON: "{}", decisionsJSON: json, engineVersion: 1)
+        for (key, value) in accepted {
+            try repository.respond(checkInID: record.id, decisionKey: key, accepted: value)
+        }
+    }
+
+    @Test("Check-in: volume accettato applicato alle serie, rifiutato ignorato, deload forzato")
+    func checkInAdjustments() throws {
+        try onboard()
+        let base = try #require(try service.nextSession())
+        let increase = CheckInEvaluator.Decision(type: .increaseTrainingLoad, setsChangeFraction: 0.2, reasonCodes: [])
+        try saveCheckIn([increase], accepted: [increase.key: false])
+        #expect(try service.checkInAdjustment().setsFactor == 1)
+        try saveCheckIn([increase], accepted: [increase.key: true])
+        #expect(try service.checkInAdjustment().setsFactor == 1.2)
+        let more = try #require(try service.nextSession())
+        let expected = base.exercises.map { max(1, Int((Double($0.sets.count) * 1.2).rounded())) }
+        #expect(more.exercises.map(\.sets.count) == expected)
+        let deload = CheckInEvaluator.Decision(type: .deload, reasonCodes: [])
+        try saveCheckIn([deload], accepted: [deload.key: true])
+        #expect(try service.checkInAdjustment().deload)
+        #expect(try service.nextSession()?.isDeload == true)
+    }
+
+    @Test("Esercizi esclusi dalle preferenze non entrano nel programma")
+    func exclusions() throws {
+        try onboard()
+        let first = try #require(try service.nextSession()?.exercises.first?.exerciseKey)
+        let now = Date()
+        try facts.save(ExercisePreferenceRecord(id: UUIDv7.make(at: now), exerciseKey: first, kind: .excluded,
+                                                createdAt: now, updatedAt: now))
+        #expect(try service.profile()?.excludedExercises.contains(first) == true)
+        #expect(try service.nextSession()?.exercises.contains { $0.exerciseKey == first } == false)
     }
 }

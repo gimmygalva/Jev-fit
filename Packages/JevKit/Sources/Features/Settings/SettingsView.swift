@@ -16,6 +16,7 @@ public struct SettingsView: View {
     @State private var status: String?
     @State private var nonce = ""
     @State private var busy = false
+    @State private var confirmDelete = false
 
     public init(account: AccountService, sync: CloudSyncService) {
         self.account = account
@@ -33,6 +34,8 @@ public struct SettingsView: View {
                         cloudSync = false
                         aiOnline = false
                     }
+                    Button("Elimina account", role: .destructive) { confirmDelete = true }
+                        .accessibilityIdentifier("settings.delete")
                 } else {
                     SignInWithAppleButton(.signIn) { request in
                         nonce = Self.randomNonce()
@@ -74,6 +77,11 @@ public struct SettingsView: View {
         }
         .navigationTitle("Impostazioni")
         .task { await refresh() }
+        .confirmationDialog("Eliminare l'account?", isPresented: $confirmDelete, titleVisibility: .visible) {
+            Button("Elimina account e dati nel cloud", role: .destructive) { Task { await deleteAccount() } }
+        } message: {
+            Text("L'account e tutti i dati sincronizzati vengono eliminati in modo definitivo. I dati su questo iPhone restano finché non elimini l'app.")
+        }
     }
 
     private func refresh() async {
@@ -115,6 +123,18 @@ public struct SettingsView: View {
         }
         await refresh()
         if consent == .cloudSync && cloudSync { await syncNow() }
+    }
+
+    private func deleteAccount() async {
+        busy = true
+        defer { busy = false }
+        do {
+            try await account.deleteAccount()
+            status = String(localized: "Account eliminato.")
+        } catch {
+            status = String(localized: "Eliminazione non riuscita. Controlla la connessione e riprova.")
+        }
+        await refresh()
     }
 
     private func syncNow() async {

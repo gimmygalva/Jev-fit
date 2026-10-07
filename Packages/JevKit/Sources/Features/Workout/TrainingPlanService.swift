@@ -1,3 +1,4 @@
+import CheckInEngine
 import ExerciseCatalog
 import Foundation
 import JevCore
@@ -49,10 +50,20 @@ public struct TrainingPlanService: Sendable {
         }
         var equipment = Set(preferences.equipment)
         equipment.insert(.bodyweight)
+        var favorites = Set<String>(), excluded = Set<String>(), disliked = Set<String>()
+        for preference in try facts.fetchAll(ExercisePreferenceRecord.self) {
+            guard let key = preference.exerciseKey else { continue }
+            switch preference.kind {
+            case .favorite: favorites.insert(key)
+            case .excluded: excluded.insert(key)
+            case .disliked: disliked.insert(key)
+            }
+        }
         return TrainingProfile(
             goal: goal?.type ?? .generalFitness, experience: user.experience, daysPerWeek: preferences.daysPerWeek,
             sessionMinutes: preferences.sessionMinutes, equipment: equipment, splitPreference: preferences.splitPreference,
-            musclePriority: preferences.musclePriority, limitations: limitations
+            musclePriority: preferences.musclePriority, limitations: limitations, favoriteExercises: favorites,
+            excludedExercises: excluded, dislikedExercises: disliked
         )
     }
 
@@ -63,7 +74,9 @@ public struct TrainingPlanService: Sendable {
         let completed = try workouts.completedSessionCount()
         let sessionsPerWeek = max(profile.daysPerWeek, 1)
         let mesocycle = config.workout.rirByProgramWeek.count + 1
-        let programWeek = (completed / sessionsPerWeek) % mesocycle
+        let adjustment = try checkInAdjustment(config: config)
+        // Un deload accettato nel check-in vale fino al check-in successivo.
+        let programWeek = adjustment.deload ? mesocycle - 1 : (completed / sessionsPerWeek) % mesocycle
         let program = ProgramGenerator.generate(profile: profile, catalog: catalog, programWeek: programWeek, config: config)
         guard !program.sessions.isEmpty else { return nil }
         let plan = program.sessions[completed % program.sessions.count]
@@ -73,10 +86,43 @@ public struct TrainingPlanService: Sendable {
             guard let exercise = catalog[planned.exerciseID] else { continue }
             let decision = try prescription(for: exercise, planned: planned, isDeload: program.isDeload, config: config)
             decisions[exercise.id] = decision
-            inputs.append(input(exercise: exercise, planned: planned, decision: decision, isDeload: program.isDeload, config: config))
+            var adjusted = planned
+            if !program.isDeload, adjustment.setsFactor != 1 {
+                adjusted.sets = max(1, Int((Double(planned.sets) * adjustment.setsFactor).rounded()))
+            }
+            inputs.append(input(exercise: exercise, planned: adjusted, decision: decision, isDeload: program.isDeload, config: config))
         }
         return NextSession(plan: plan, programWeek: programWeek, isDeload: program.isDeload, split: program.split,
                            exercises: inputs, decisions: decisions)
+    }
+
+    /// Decisioni di allenamento accettate nell'ultimo check-in (§5.10, "un solo responsabile"):
+    /// volume ±20% e deload valgono fino al check-in successivo; i cambi di esercizio sono
+    /// salvati come esclusioni permanenti al momento della risposta.
+    public struct CheckInAdjustment: Sendable, Equatable {
+        public var setsFactor: Double = 1
+        public var deload = false
+    }
+
+    public func checkInAdjustment(config: EngineConfig = .current) throws -> CheckInAdjustment {
+        var result = CheckInAdjustment()
+        guard let latest = try CheckInRepository(facts: facts).checkIns(limit: 1).first,
+              let completed = latest.completedAt,
+              facts.time.now().timeIntervalSince(completed) <= 8 * 86_400,
+              let responses = try? JSONDecoder().decode([String: Bool].self, from: Data(latest.responses.utf8)),
+              let decisions = try? JSONDecoder().decode([CheckInEvaluator.Decision].self, from: Data(latest.decisions.utf8))
+        else { return result }
+        for decision in decisions where responses[decision.key] == true {
+            switch decision.type {
+            case .increaseTrainingLoad, .reduceTrainingLoad:
+                result.setsFactor = 1 + (decision.setsChangeFraction ?? 0)
+            case .deload:
+                result.deload = true
+            default:
+                break
+            }
+        }
+        return result
     }
 
     /// Decisione di overload dalle ultime due esposizioni (la penultima serve alla regola 3).

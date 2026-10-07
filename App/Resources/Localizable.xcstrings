@@ -247,6 +247,12 @@
     "Elimina": {
       "extractionState": "manual"
     },
+    "Elimina account": {
+      "extractionState": "manual"
+    },
+    "Elimina account e dati nel cloud": {
+      "extractionState": "manual"
+    },
     "Energia": {
       "extractionState": "manual"
     },
@@ -416,6 +422,9 @@
       "extractionState": "manual"
     },
     "Kettlebell": {
+      "extractionState": "manual"
+    },
+    "L'account e tutti i dati sincronizzati vengono eliminati in modo definitivo. I dati su questo iPhone restano finché non elimini l'app.": {
       "extractionState": "manual"
     },
     "La percentuale di grasso deve essere tra 2 e 70.": {

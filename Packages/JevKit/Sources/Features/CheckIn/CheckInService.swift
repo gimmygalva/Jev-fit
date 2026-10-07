@@ -141,6 +141,13 @@ public struct CheckInService: Sendable {
     /// Risposta a una decisione. Un cambio di calorie accettato diventa il target in vigore da `day`.
     public func respond(to decision: CheckInEvaluator.Decision, in report: Report, accepted: Bool, day: DayKey) throws {
         try repository.respond(checkInID: report.checkInID, decisionKey: decision.key, accepted: accepted)
+        if accepted, decision.type == .changeExercise, let exercise = decision.exerciseID {
+            // L'esercizio esce dal programma; il generatore sceglie un'alternativa.
+            let now = facts.time.now()
+            try facts.save(ExercisePreferenceRecord(id: UUIDv7.make(at: now), exerciseKey: exercise, kind: .excluded,
+                                                    createdAt: now, updatedAt: now))
+            return
+        }
         guard accepted, let delta = decision.deltaKcal,
               decision.type == .increaseCalories || decision.type == .decreaseCalories else { return }
         let kcal = max(report.metrics.currentTargetKcal + delta, report.metrics.floorKcal)
