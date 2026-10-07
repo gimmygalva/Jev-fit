@@ -25,6 +25,9 @@
     "Aggiunta rapida": {
       "extractionState": "manual"
     },
+    "Alcuni dati non sono disponibili: il punteggio usa solo quelli presenti.": {
+      "extractionState": "manual"
+    },
     "Allenamenti": {
       "extractionState": "manual"
     },
@@ -39,6 +42,9 @@
           }
         }
       }
+    },
+    "Allenamento di oggi": {
+      "extractionState": "manual"
     },
     "Allenamento e nutrizione guidati dai tuoi dati.": {
       "extractionState": "manual"
@@ -283,6 +289,9 @@
     "Gomito": {
       "extractionState": "manual"
     },
+    "Grafico": {
+      "extractionState": "manual"
+    },
     "Grammi": {
       "extractionState": "manual"
     },
@@ -356,6 +365,9 @@
       "extractionState": "manual"
     },
     "JEV FIT non è un dispositivo medico e non sostituisce il parere di un medico o di un nutrizionista.": {
+      "extractionState": "manual"
+    },
+    "JEV READINESS": {
       "extractionState": "manual"
     },
     "JEV calcola calorie e macro e li aggiorna ogni settimana": {
@@ -445,6 +457,12 @@
     "Nessun allenamento completato.": {
       "extractionState": "manual"
     },
+    "Nessun dato nel periodo.": {
+      "extractionState": "manual"
+    },
+    "Nessun programma ancora.": {
+      "extractionState": "manual"
+    },
     "Non indicato": {
       "extractionState": "manual"
     },
@@ -503,6 +521,9 @@
       "extractionState": "manual"
     },
     "Perdita a settimana": {
+      "extractionState": "manual"
+    },
+    "Periodo": {
       "extractionState": "manual"
     },
     "Personalizzato": {
@@ -599,6 +620,12 @@
       "extractionState": "manual"
     },
     "Recupero": {
+      "extractionState": "manual"
+    },
+    "Registra il peso per calcolare il target calorico.": {
+      "extractionState": "manual"
+    },
+    "Registra un allenamento o un check per calcolare JEV READINESS.": {
       "extractionState": "manual"
     },
     "Restano sul tuo iPhone finché non attivi la sincronizzazione.": {

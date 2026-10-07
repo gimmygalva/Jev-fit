@@ -111,6 +111,7 @@ let package = Package(
                 .product(name: "JevDomain", package: "JevEngines"),
                 .product(name: "WorkoutEngine", package: "JevEngines"),
                 .product(name: "NutritionEngine", package: "JevEngines"),
+                .product(name: "RecoveryEngine", package: "JevEngines"),
                 .product(name: "ExerciseCatalog", package: "JevEngines"),
             ]
         ),

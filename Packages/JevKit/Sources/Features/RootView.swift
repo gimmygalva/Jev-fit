@@ -15,20 +15,27 @@ public struct RootView: View {
     private let training: TrainingPlanService?
     private let nutrition: NutritionPlanService?
     private let foodSearch: FoodSearch?
+    private let dashboard: DashboardService?
 
     public init(router: AppRouter = AppRouter(), training: TrainingPlanService? = nil,
-                nutrition: NutritionPlanService? = nil, foodSearch: FoodSearch? = nil) {
+                nutrition: NutritionPlanService? = nil, foodSearch: FoodSearch? = nil,
+                dashboard: DashboardService? = nil) {
         self.router = router
         self.training = training
         self.nutrition = nutrition
         self.foodSearch = foodSearch
+        self.dashboard = dashboard
     }
 
     public var body: some View {
         // API `Tab` di iOS 18 (sostituisce `.tabItem`), disponibile dal nostro deployment target.
         TabView(selection: $router.selectedTab) {
             Tab("Oggi", systemImage: "sun.max", value: RootTab.today) {
-                PlaceholderTabView(title: "Oggi", systemImage: "sun.max", identifier: "tab.today")
+                if let dashboard {
+                    TodayTabView(service: dashboard)
+                } else {
+                    PlaceholderTabView(title: "Oggi", systemImage: "sun.max", identifier: "tab.today")
+                }
             }
             Tab("Allenamento", systemImage: "dumbbell", value: RootTab.training) {
                 if let training {
@@ -45,14 +52,22 @@ public struct RootView: View {
                 }
             }
             Tab("Corpo", systemImage: "figure.arms.open", value: RootTab.body) {
-                PlaceholderTabView(title: "Corpo", systemImage: "figure.arms.open", identifier: "tab.body")
+                if let dashboard {
+                    BodyTabView(service: dashboard)
+                } else {
+                    PlaceholderTabView(title: "Corpo", systemImage: "figure.arms.open", identifier: "tab.body")
+                }
             }
             Tab("Progressi", systemImage: "chart.line.uptrend.xyaxis", value: RootTab.progress) {
-                PlaceholderTabView(
-                    title: "Progressi",
-                    systemImage: "chart.line.uptrend.xyaxis",
-                    identifier: "tab.progress"
-                )
+                if let dashboard {
+                    ProgressTabView(service: dashboard)
+                } else {
+                    PlaceholderTabView(
+                        title: "Progressi",
+                        systemImage: "chart.line.uptrend.xyaxis",
+                        identifier: "tab.progress"
+                    )
+                }
             }
         }
         .tint(JevColor.ion)

@@ -14,9 +14,12 @@ public struct AppServices {
     /// Diario alimentare, target e ricerca alimenti (M9).
     public let nutrition: NutritionPlanService?
     public let foodSearch: FoodSearch?
+    /// Oggi, Corpo e Progressi (M10).
+    public let dashboard: DashboardService?
 
     public init(onboarding: OnboardingRepository?, health: HealthImporter? = nil, training: TrainingPlanService? = nil,
-                nutrition: NutritionPlanService? = nil, foodSearch: FoodSearch? = nil) {
+                nutrition: NutritionPlanService? = nil, foodSearch: FoodSearch? = nil, dashboard: DashboardService? = nil) {
+        self.dashboard = dashboard
         self.onboarding = onboarding
         self.health = health
         self.training = training
@@ -49,7 +52,7 @@ public struct AppRootView: View {
                 StartupErrorView()
             } else {
                 RootView(router: router, training: services.training, nutrition: services.nutrition,
-                         foodSearch: services.foodSearch)
+                         foodSearch: services.foodSearch, dashboard: services.dashboard)
                     .fullScreenCover(isPresented: $router.isOnboardingPresented) {
                         if let onboarding {
                             OnboardingView(model: onboarding)

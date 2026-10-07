@@ -280,4 +280,52 @@ public struct WorkoutRepository: Sendable {
             return result.reversed()
         }
     }
+
+    /// Una serie eseguita con il suo contesto (recupero, carico, grafici).
+    public struct CompletedSet: Sendable, Equatable {
+        public var sessionID: UUID
+        public var exerciseKey: String
+        public var date: Date
+        public var dayKey: DayKey
+        public var setType: SetType
+        public var weightKg: Double?
+        public var reps: Int?
+        public var rir: Double?
+    }
+
+    /// Serie eseguite da `since` (sessioni completate o in corso), in ordine di tempo.
+    public func completedSets(since: Date) throws -> [CompletedSet] {
+        try facts.writer.read { db in
+            let rows = try Row.fetchAll(db, sql: """
+                SELECT ss.id AS session_id, e.exercise_key AS exercise_key, w.completed_at AS completed_at,
+                       ss.day_key AS day_key, w.set_type AS set_type, w.weight_kg AS weight_kg, w.reps AS reps, w.rir AS rir
+                FROM workout_set w
+                JOIN workout_exercise e ON e.id = w.workout_exercise_id
+                JOIN workout_session ss ON ss.id = e.session_id
+                WHERE w.deleted_at IS NULL AND e.deleted_at IS NULL AND ss.deleted_at IS NULL
+                  AND ss.status IN ('completed', 'in_progress') AND w.completed_at IS NOT NULL
+                  AND e.exercise_key IS NOT NULL AND w.completed_at >= ?
+                ORDER BY w.completed_at
+                """, arguments: [since])
+            return rows.map { row in
+                CompletedSet(
+                    sessionID: row["session_id"], exerciseKey: row["exercise_key"], date: row["completed_at"],
+                    dayKey: row["day_key"], setType: row["set_type"], weightKg: row["weight_kg"], reps: row["reps"],
+                    rir: row["rir"]
+                )
+            }
+        }
+    }
+
+    /// Giorni (locali) con almeno una sessione completata da `since`.
+    public func trainingDays(since: DayKey) throws -> Set<DayKey> {
+        try facts.writer.read { db in
+            let days = try DayKey.fetchAll(db, sql: """
+                SELECT DISTINCT day_key FROM workout_session
+                WHERE status = 'completed' AND deleted_at IS NULL AND day_key >= ?
+                """, arguments: [since])
+            return Set(days)
+        }
+    }
 }
+

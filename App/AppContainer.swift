@@ -72,9 +72,11 @@ final class AppContainer {
         // Ricerca alimenti: prima il database locale (offline), poi Open Food Facts.
         var providers: [any FoodProvider] = [OpenFoodFactsProvider()]
         if let local = try? LocalFoodProvider.bundled() { providers.insert(local, at: 0) }
+        let nutrition = NutritionPlanService(facts: facts)
+        let dashboard = training.map { DashboardService(training: $0, nutrition: nutrition, healthCache: healthCache) }
         return AppServices(
             onboarding: OnboardingRepository(store: store), health: health, training: training,
-            nutrition: NutritionPlanService(facts: facts), foodSearch: FoodSearch(providers: providers)
+            nutrition: nutrition, foodSearch: FoodSearch(providers: providers), dashboard: dashboard
         )
     }
 }
