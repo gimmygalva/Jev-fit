@@ -148,6 +148,9 @@
     "Check-in settimanale": {
       "extractionState": "manual"
     },
+    "Chiedi a JEV del tuo piano di oggi: allenamento, calorie, recupero.": {
+      "extractionState": "manual"
+    },
     "Chiudi": {
       "extractionState": "manual"
     },
@@ -398,6 +401,9 @@
       "extractionState": "manual"
     },
     "Intermedio": {
+      "extractionState": "manual"
+    },
+    "Invia": {
       "extractionState": "manual"
     },
     "Ipertrofia": {
@@ -728,6 +734,9 @@
       "extractionState": "manual"
     },
     "Scegli un'opzione per continuare.": {
+      "extractionState": "manual"
+    },
+    "Scrivi a JEV": {
       "extractionState": "manual"
     },
     "Se hai dubbi sulla tua salute, consulta un medico.": {

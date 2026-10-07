@@ -61,10 +61,14 @@ public struct TodayTabView: View {
                 } header: {
                     Text("JEV READINESS")
                 }
-                if checkIn != nil {
+                if let checkIn {
                     Section {
                         Button("Avvia il check-in settimanale") { showCheckIn = true }
                             .accessibilityIdentifier("today.checkin")
+                        NavigationLink("Chiedi a JEV") {
+                            JevChatView(coach: checkIn.coach, dashboard: service)
+                        }
+                        .accessibilityIdentifier("today.chat")
                     }
                 }
                 Section {

@@ -136,6 +136,7 @@ public struct TemplateAIProvider: AIProvider {
         "checkin.training.change_pain": "Cambiamo un esercizio che ti ha dato fastidio.",
         "checkin.training.change_plateau": "Cambiamo un esercizio fermo da settimane.",
         "today.readiness": "Ecco come stai oggi secondo i tuoi dati.",
+        "chat.summary": "Ecco i tuoi dati di oggi: partiamo da qui.",
     ]
 
     static let safetyReplies: [SafetyFilter.Alert: String] = [
