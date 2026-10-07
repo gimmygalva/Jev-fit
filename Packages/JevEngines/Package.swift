@@ -33,7 +33,7 @@ let package = Package(
             dependencies: ["JevDomain"],
             resources: [.process("Resources")]
         ),
-        .target(name: "WorkoutEngine", dependencies: ["JevCore", "JevDomain"]),
+        .target(name: "WorkoutEngine", dependencies: ["JevCore", "JevDomain", "ExerciseCatalog"]),
         .target(name: "NutritionEngine", dependencies: ["JevCore", "JevDomain"]),
         .target(name: "RecoveryEngine", dependencies: ["JevCore", "JevDomain"]),
         .target(
@@ -45,7 +45,7 @@ let package = Package(
         .testTarget(name: "JevCoreTests", dependencies: ["JevCore"]),
         .testTarget(name: "JevDomainTests", dependencies: ["JevDomain"]),
         .testTarget(name: "ExerciseCatalogTests", dependencies: ["ExerciseCatalog"]),
-        .testTarget(name: "WorkoutEngineTests", dependencies: ["WorkoutEngine", "JevDomain"]),
+        .testTarget(name: "WorkoutEngineTests", dependencies: ["WorkoutEngine", "JevDomain", "JevCore", "ExerciseCatalog"]),
         .testTarget(name: "NutritionEngineTests", dependencies: ["NutritionEngine", "JevDomain"]),
         .testTarget(name: "RecoveryEngineTests", dependencies: ["RecoveryEngine", "JevDomain"]),
         .testTarget(name: "CheckInEngineTests", dependencies: ["CheckInEngine"]),

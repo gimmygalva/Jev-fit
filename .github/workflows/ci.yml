@@ -282,3 +282,6 @@ jobs:
 
       - name: String Catalog allineato all'interfaccia (ADR-015)
         run: python3 tools/l10n/sync_strings.py --check
+
+      - name: Catalogo esercizi aggiornato rispetto al generatore
+        run: python3 tools/catalog/generate_catalog.py --check

@@ -17,6 +17,8 @@ public struct EngineConfig: Sendable, Hashable {
     public var progression: Progression
     public var checkIn: CheckIn
     public var safety: Safety
+    public var trend: Trend
+    public var workout: Workout
 
     public static let v1 = EngineConfig(
         version: 1,
@@ -116,6 +118,51 @@ public struct EngineConfig: Sendable, Hashable {
             defaultGainPercentPerWeek: 0.25,
             plausibleWeightKg: 20...400,
             plausibleHeightCm: 100...250
+        ),
+        trend: Trend(
+            // Tarati con simulazione (tools/proto, §5.1): una pesata anomala di +1,8 kg sposta il
+            // trend di < 0,2 kg; errore mediano della pendenza ~0,03 kg/settimana su 6 settimane.
+            weightProcessNoise: 1e-5,
+            weightMeasurementSDKg: 0.6,
+            huberThreshold: 2.0,
+            weightInitialSlopeSDPerDay: 0.03,
+            // e1RM in scala logaritmica: rumore relativo ~4% tra sessioni.
+            strengthProcessNoise: 2e-7,
+            strengthMeasurementSDLog: 0.04,
+            strengthInitialSlopeSDPerDay: 0.003
+        ),
+        workout: Workout(
+            weeklyHardSets: [.beginner: 8...10, .intermediate: 10...16, .advanced: 14...20],
+            goalVolumeMultiplier: [
+                .strength: 0.7, .hypertrophy: 1.0, .maintenance: 0.45,
+                .recomposition: 1.0, .fatLoss: 0.85, .generalFitness: 0.6,
+            ],
+            priorityVolumeBoost: 0.30,
+            maxHardSetsPerMuscleSession: 10,
+            setDurationSeconds: 45,
+            warmupSeconds: 360,
+            restSecondsStrengthCompound: 180,
+            restSecondsCompound: 120,
+            restSecondsIsolation: 75,
+            rirByProgramWeek: [3, 2, 2, 1],
+            deloadSetReduction: 0.45,
+            scoreWeights: ScoreWeights(
+                recovery: 0.25, goal: 0.20, preference: 0.15, priority: 0.10,
+                variety: 0.05, performance: 0.10, fatigue: 0.10, pain: 0.05
+            ),
+            scoreFloor: 0.05,
+            fatigueUtilityPenalty: 0.05,
+            recoverySigmoidCenter: 55,
+            recoverySigmoidWidth: 10,
+            painDecayDays: 14,
+            weeklyReusePenalty: 0.85,
+            maxSetsPerExercise: 4,
+            minSetsPerExercise: 2,
+            // Muscoli che ricevono molto lavoro indiretto dai multiarticolari: serie dirette ridotte.
+            muscleVolumeFactor: [
+                .frontDelts: 0.5, .forearms: 0.4, .lowerBack: 0.5, .adductors: 0.6,
+                .obliques: 0.6, .abs: 0.7, .calves: 0.8,
+            ]
         )
     )
 
@@ -227,6 +274,66 @@ extension EngineConfig {
         public var defaultGainPercentPerWeek: Double
         public var plausibleWeightKg: ClosedRange<Double>
         public var plausibleHeightCm: ClosedRange<Double>
+    }
+
+    /// Filtri livello + pendenza (§5.1 peso, §5.7 e1RM stabile).
+    public struct Trend: Sendable, Hashable {
+        public var weightProcessNoise: Double
+        public var weightMeasurementSDKg: Double
+        public var huberThreshold: Double
+        public var weightInitialSlopeSDPerDay: Double
+        public var strengthProcessNoise: Double
+        public var strengthMeasurementSDLog: Double
+        public var strengthInitialSlopeSDPerDay: Double
+    }
+
+    /// Generazione del programma e punteggio degli esercizi (§5.5, §5.6).
+    public struct Workout: Sendable, Hashable {
+        /// Serie "hard" settimanali per muscolo in ipertrofia, per esperienza.
+        public var weeklyHardSets: [ExperienceLevel: ClosedRange<Double>]
+        /// Volume relativo all'ipertrofia per obiettivo.
+        public var goalVolumeMultiplier: [GoalType: Double]
+        /// Aumento del volume per i muscoli prioritari, entro il massimo dell'esperienza.
+        public var priorityVolumeBoost: Double
+        public var maxHardSetsPerMuscleSession: Double
+        public var setDurationSeconds: Double
+        public var warmupSeconds: Double
+        public var restSecondsStrengthCompound: Double
+        public var restSecondsCompound: Double
+        public var restSecondsIsolation: Double
+        /// RIR target per settimana di programma del mesociclo; dopo l'ultima: deload.
+        public var rirByProgramWeek: [Int]
+        public var deloadSetReduction: Double
+        public var scoreWeights: ScoreWeights
+        /// Limite inferiore di ogni fattore dell'ExerciseScore (ε, nessun annullamento).
+        public var scoreFloor: Double
+        /// κ: peso della fatica nell'utilità marginale della selezione.
+        public var fatigueUtilityPenalty: Double
+        public var recoverySigmoidCenter: Double
+        public var recoverySigmoidWidth: Double
+        public var painDecayDays: Double
+        /// Utilità di un esercizio già scelto in un'altra sessione della settimana (varietà A/B).
+        public var weeklyReusePenalty: Double
+        public var maxSetsPerExercise: Int
+        public var minSetsPerExercise: Int
+        /// Fattore sul volume settimanale per muscolo (assente = 1).
+        public var muscleVolumeFactor: [MuscleGroup: Double]
+
+        public var mesocycleWeeks: Int { rirByProgramWeek.count }
+    }
+
+    /// Pesi della media geometrica dell'ExerciseScore (§5.6): sommano a 1.
+    public struct ScoreWeights: Sendable, Hashable {
+        public var recovery: Double
+        public var goal: Double
+        public var preference: Double
+        public var priority: Double
+        public var variety: Double
+        public var performance: Double
+        public var fatigue: Double
+        public var pain: Double
+
+        public var sum: Double { recovery + goal + preference + priority + variety + performance + fatigue + pain }
     }
 
     public struct CheckIn: Sendable, Hashable {

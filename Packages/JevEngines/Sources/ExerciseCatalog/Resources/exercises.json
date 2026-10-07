@@ -1,4 +1,3739 @@
 {
-  "schemaVersion": 1,
-  "exercises": []
+ "schemaVersion": 2,
+ "exercises": [
+  {
+   "id": "arnold_press",
+   "nameKey": "exercise.arnold_press",
+   "name": "Arnold press",
+   "pattern": "vertical_push",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "front_delts"
+   ],
+   "secondaryMuscles": [
+    "side_delts",
+    "triceps"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 0.95,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "assisted_dip",
+   "nameKey": "exercise.assisted_dip",
+   "name": "Dip assistiti alla macchina",
+   "pattern": "horizontal_push",
+   "loadType": "assisted",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "chest",
+    "triceps"
+   ],
+   "secondaryMuscles": [
+    "front_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.9,
+   "stimulusScore": 0.9,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "shoulder"
+   ],
+   "bodyweightFraction": 0.95
+  },
+  {
+   "id": "assisted_pull_up",
+   "nameKey": "exercise.assisted_pull_up",
+   "name": "Trazioni assistite alla macchina",
+   "pattern": "vertical_pull",
+   "loadType": "assisted",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "biceps",
+    "upper_back"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.9,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [],
+   "bodyweightFraction": 1.0
+  },
+  {
+   "id": "back_extension",
+   "nameKey": "exercise.back_extension",
+   "name": "Iperestensioni su panca",
+   "pattern": "hinge",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bench"
+   ],
+   "primaryMuscles": [
+    "lower_back",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "hamstrings"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "lower_back"
+   ],
+   "bodyweightFraction": 0.5
+  },
+  {
+   "id": "back_squat",
+   "nameKey": "exercise.back_squat",
+   "name": "Squat con bilanciere",
+   "pattern": "squat",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "adductors",
+    "lower_back"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.3,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "knee",
+    "lower_back"
+   ]
+  },
+  {
+   "id": "band_assisted_pull_up",
+   "nameKey": "exercise.band_assisted_pull_up",
+   "name": "Trazioni assistite con elastico",
+   "pattern": "vertical_pull",
+   "loadType": "assisted",
+   "equipment": [
+    "pull_up_bar",
+    "resistance_band"
+   ],
+   "primaryMuscles": [
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "biceps",
+    "upper_back"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.95,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [],
+   "bodyweightFraction": 1.0
+  },
+  {
+   "id": "band_chest_press",
+   "nameKey": "exercise.band_chest_press",
+   "name": "Distensioni con elastico",
+   "pattern": "horizontal_push",
+   "loadType": "external",
+   "equipment": [
+    "resistance_band"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "front_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 0.7,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "band_curl",
+   "nameKey": "exercise.band_curl",
+   "name": "Curl con elastico",
+   "pattern": "elbow_flexion",
+   "loadType": "external",
+   "equipment": [
+    "resistance_band"
+   ],
+   "primaryMuscles": [
+    "biceps"
+   ],
+   "secondaryMuscles": [
+    "forearms"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.5,
+   "stimulusScore": 0.7,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "band_hip_abduction",
+   "nameKey": "exercise.band_hip_abduction",
+   "name": "Abduzioni con elastico",
+   "pattern": "hip_abduction",
+   "loadType": "external",
+   "equipment": [
+    "resistance_band"
+   ],
+   "primaryMuscles": [
+    "glutes"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.45,
+   "stimulusScore": 0.7,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "band_lateral_raise",
+   "nameKey": "exercise.band_lateral_raise",
+   "name": "Alzate laterali con elastico",
+   "pattern": "shoulder_isolation",
+   "loadType": "external",
+   "equipment": [
+    "resistance_band"
+   ],
+   "primaryMuscles": [
+    "side_delts"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.5,
+   "stimulusScore": 0.8,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "band_leg_curl",
+   "nameKey": "exercise.band_leg_curl",
+   "name": "Leg curl con elastico",
+   "pattern": "knee_flexion",
+   "loadType": "external",
+   "equipment": [
+    "resistance_band"
+   ],
+   "primaryMuscles": [
+    "hamstrings"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.5,
+   "stimulusScore": 0.7,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "band_pull_apart",
+   "nameKey": "exercise.band_pull_apart",
+   "name": "Aperture con elastico",
+   "pattern": "shoulder_isolation",
+   "loadType": "external",
+   "equipment": [
+    "resistance_band"
+   ],
+   "primaryMuscles": [
+    "rear_delts"
+   ],
+   "secondaryMuscles": [
+    "upper_back"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.5,
+   "stimulusScore": 0.8,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "band_row",
+   "nameKey": "exercise.band_row",
+   "name": "Rematore con elastico",
+   "pattern": "horizontal_pull",
+   "loadType": "external",
+   "equipment": [
+    "resistance_band"
+   ],
+   "primaryMuscles": [
+    "upper_back",
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "biceps"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 0.7,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "band_triceps_extension",
+   "nameKey": "exercise.band_triceps_extension",
+   "name": "Estensioni per tricipiti con elastico",
+   "pattern": "elbow_extension",
+   "loadType": "external",
+   "equipment": [
+    "resistance_band"
+   ],
+   "primaryMuscles": [
+    "triceps"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.5,
+   "stimulusScore": 0.7,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "barbell_bench_press",
+   "nameKey": "exercise.barbell_bench_press",
+   "name": "Panca piana con bilanciere",
+   "pattern": "horizontal_push",
+   "loadType": "external",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "front_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.2,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "barbell_curl",
+   "nameKey": "exercise.barbell_curl",
+   "name": "Curl con bilanciere",
+   "pattern": "elbow_flexion",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "biceps"
+   ],
+   "secondaryMuscles": [
+    "forearms"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "elbow",
+    "wrist"
+   ]
+  },
+  {
+   "id": "barbell_lunge",
+   "nameKey": "exercise.barbell_lunge",
+   "name": "Affondi con bilanciere",
+   "pattern": "lunge",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "adductors",
+    "hamstrings"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.1,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "barbell_row",
+   "nameKey": "exercise.barbell_row",
+   "name": "Rematore con bilanciere",
+   "pattern": "horizontal_pull",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "upper_back",
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "rear_delts",
+    "biceps",
+    "lower_back"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.2,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "barbell_shrug",
+   "nameKey": "exercise.barbell_shrug",
+   "name": "Scrollate con bilanciere",
+   "pattern": "shrug",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "upper_back"
+   ],
+   "secondaryMuscles": [
+    "forearms"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "neck"
+   ]
+  },
+  {
+   "id": "bench_dip",
+   "nameKey": "exercise.bench_dip",
+   "name": "Dip tra due panche",
+   "pattern": "elbow_extension",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bench"
+   ],
+   "primaryMuscles": [
+    "triceps"
+   ],
+   "secondaryMuscles": [
+    "chest",
+    "front_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 0.75,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "shoulder",
+    "wrist"
+   ],
+   "bodyweightFraction": 0.6
+  },
+  {
+   "id": "bird_dog",
+   "nameKey": "exercise.bird_dog",
+   "name": "Bird dog",
+   "pattern": "core_stability",
+   "loadType": "timed",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "lower_back"
+   ],
+   "secondaryMuscles": [
+    "glutes",
+    "abs"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.3,
+   "stimulusScore": 0.6,
+   "loadIncrementKg": 0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "bodyweight_calf_raise",
+   "nameKey": "exercise.bodyweight_calf_raise",
+   "name": "Calf raise a corpo libero",
+   "pattern": "calf_raise",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "calves"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.45,
+   "stimulusScore": 0.7,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "ankle"
+   ],
+   "bodyweightFraction": 1.0
+  },
+  {
+   "id": "bodyweight_lunge",
+   "nameKey": "exercise.bodyweight_lunge",
+   "name": "Affondi a corpo libero",
+   "pattern": "lunge",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "adductors"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 0.65,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "knee"
+   ],
+   "bodyweightFraction": 0.7
+  },
+  {
+   "id": "bodyweight_squat",
+   "nameKey": "exercise.bodyweight_squat",
+   "name": "Squat a corpo libero",
+   "pattern": "squat",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "adductors"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 0.6,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "knee"
+   ],
+   "bodyweightFraction": 0.7
+  },
+  {
+   "id": "bulgarian_split_squat",
+   "nameKey": "exercise.bulgarian_split_squat",
+   "name": "Split squat bulgaro con manubri",
+   "pattern": "lunge",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "adductors"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.1,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "cable_adduction",
+   "nameKey": "exercise.cable_adduction",
+   "name": "Adduzioni al cavo",
+   "pattern": "hip_adduction",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "adductors"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.5,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 1.25,
+   "contraindicatedAreas": [
+    "hip"
+   ]
+  },
+  {
+   "id": "cable_crunch",
+   "nameKey": "exercise.cable_crunch",
+   "name": "Crunch al cavo",
+   "pattern": "core_flexion",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "abs"
+   ],
+   "secondaryMuscles": [
+    "obliques"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.5,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "cable_curl",
+   "nameKey": "exercise.cable_curl",
+   "name": "Curl al cavo",
+   "pattern": "elbow_flexion",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "biceps"
+   ],
+   "secondaryMuscles": [
+    "forearms"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "elbow"
+   ]
+  },
+  {
+   "id": "cable_fly",
+   "nameKey": "exercise.cable_fly",
+   "name": "Croci ai cavi",
+   "pattern": "fly",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "front_delts"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "cable_kickback",
+   "nameKey": "exercise.cable_kickback",
+   "name": "Slanci posteriori al cavo",
+   "pattern": "hip_extension",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "hamstrings"
+   ],
+   "mechanics": "isolation",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.55,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 1.25,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "cable_lateral_raise",
+   "nameKey": "exercise.cable_lateral_raise",
+   "name": "Alzate laterali al cavo",
+   "pattern": "shoulder_isolation",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "side_delts"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 1.25,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "cable_pull_through",
+   "nameKey": "exercise.cable_pull_through",
+   "name": "Pull-through al cavo",
+   "pattern": "hinge",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "glutes",
+    "hamstrings"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "cable_rear_delt_fly",
+   "nameKey": "exercise.cable_rear_delt_fly",
+   "name": "Croci inverse ai cavi",
+   "pattern": "shoulder_isolation",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "rear_delts"
+   ],
+   "secondaryMuscles": [
+    "upper_back"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 1.25,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "cable_woodchop",
+   "nameKey": "exercise.cable_woodchop",
+   "name": "Woodchop al cavo",
+   "pattern": "core_rotation",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "obliques"
+   ],
+   "secondaryMuscles": [
+    "abs"
+   ],
+   "mechanics": "isolation",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.45,
+   "stimulusScore": 0.8,
+   "loadIncrementKg": 1.25,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "chest_supported_row",
+   "nameKey": "exercise.chest_supported_row",
+   "name": "Rematore con petto in appoggio",
+   "pattern": "horizontal_pull",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "upper_back",
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "rear_delts",
+    "biceps"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.85,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "chin_up",
+   "nameKey": "exercise.chin_up",
+   "name": "Trazioni a presa supina",
+   "pattern": "vertical_pull",
+   "loadType": "bodyweight",
+   "equipment": [
+    "pull_up_bar"
+   ],
+   "primaryMuscles": [
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "biceps",
+    "upper_back",
+    "forearms"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.1,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "shoulder",
+    "elbow"
+   ],
+   "bodyweightFraction": 1.0
+  },
+  {
+   "id": "close_grip_bench_press",
+   "nameKey": "exercise.close_grip_bench_press",
+   "name": "Panca a presa stretta",
+   "pattern": "elbow_extension",
+   "loadType": "external",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "triceps",
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "front_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.05,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "elbow",
+    "shoulder",
+    "wrist"
+   ]
+  },
+  {
+   "id": "close_grip_pulldown",
+   "nameKey": "exercise.close_grip_pulldown",
+   "name": "Lat machine a presa stretta",
+   "pattern": "vertical_pull",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "biceps",
+    "upper_back"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.9,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "concentration_curl",
+   "nameKey": "exercise.concentration_curl",
+   "name": "Curl di concentrazione",
+   "pattern": "elbow_flexion",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "biceps"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.55,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": [
+    "elbow"
+   ]
+  },
+  {
+   "id": "conventional_deadlift",
+   "nameKey": "exercise.conventional_deadlift",
+   "name": "Stacco da terra",
+   "pattern": "hinge",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "hamstrings",
+    "glutes",
+    "lower_back"
+   ],
+   "secondaryMuscles": [
+    "quads",
+    "upper_back",
+    "forearms"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 3,
+   "fatigueScore": 1.3,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "copenhagen_plank",
+   "nameKey": "exercise.copenhagen_plank",
+   "name": "Copenhagen plank",
+   "pattern": "hip_adduction",
+   "loadType": "timed",
+   "equipment": [
+    "bench"
+   ],
+   "primaryMuscles": [
+    "adductors"
+   ],
+   "secondaryMuscles": [
+    "obliques"
+   ],
+   "mechanics": "isolation",
+   "laterality": "unilateral",
+   "difficulty": 2,
+   "fatigueScore": 0.6,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 0,
+   "contraindicatedAreas": [
+    "hip"
+   ]
+  },
+  {
+   "id": "crunch",
+   "nameKey": "exercise.crunch",
+   "name": "Crunch a corpo libero",
+   "pattern": "core_flexion",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "abs"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.35,
+   "stimulusScore": 0.6,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "neck"
+   ],
+   "bodyweightFraction": 0.3
+  },
+  {
+   "id": "dead_bug",
+   "nameKey": "exercise.dead_bug",
+   "name": "Dead bug",
+   "pattern": "core_stability",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "abs"
+   ],
+   "secondaryMuscles": [
+    "obliques"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.35,
+   "stimulusScore": 0.7,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [],
+   "bodyweightFraction": 0.15
+  },
+  {
+   "id": "dead_hang",
+   "nameKey": "exercise.dead_hang",
+   "name": "Sospensione alla sbarra",
+   "pattern": "carry",
+   "loadType": "timed",
+   "equipment": [
+    "pull_up_bar"
+   ],
+   "primaryMuscles": [
+    "forearms"
+   ],
+   "secondaryMuscles": [
+    "lats"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.5,
+   "stimulusScore": 0.7,
+   "loadIncrementKg": 0,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "decline_barbell_bench_press",
+   "nameKey": "exercise.decline_barbell_bench_press",
+   "name": "Panca declinata con bilanciere",
+   "pattern": "horizontal_push",
+   "loadType": "external",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "triceps"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.1,
+   "stimulusScore": 0.9,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "deficit_push_up",
+   "nameKey": "exercise.deficit_push_up",
+   "name": "Piegamenti con deficit",
+   "pattern": "horizontal_push",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "front_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 0.8,
+   "stimulusScore": 0.9,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "wrist",
+    "shoulder"
+   ],
+   "bodyweightFraction": 0.66
+  },
+  {
+   "id": "diamond_push_up",
+   "nameKey": "exercise.diamond_push_up",
+   "name": "Piegamenti a presa stretta",
+   "pattern": "elbow_extension",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "triceps"
+   ],
+   "secondaryMuscles": [
+    "chest",
+    "front_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 0.75,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "wrist",
+    "elbow"
+   ],
+   "bodyweightFraction": 0.64
+  },
+  {
+   "id": "dip",
+   "nameKey": "exercise.dip",
+   "name": "Dip alle parallele",
+   "pattern": "horizontal_push",
+   "loadType": "bodyweight",
+   "equipment": [
+    "dip_station"
+   ],
+   "primaryMuscles": [
+    "chest",
+    "triceps"
+   ],
+   "secondaryMuscles": [
+    "front_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.1,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "shoulder",
+    "elbow"
+   ],
+   "bodyweightFraction": 0.95
+  },
+  {
+   "id": "dumbbell_bench_press",
+   "nameKey": "exercise.dumbbell_bench_press",
+   "name": "Distensioni su panca piana con manubri",
+   "pattern": "horizontal_push",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "front_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 1.05,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "dumbbell_curl",
+   "nameKey": "exercise.dumbbell_curl",
+   "name": "Curl con manubri",
+   "pattern": "elbow_flexion",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "biceps"
+   ],
+   "secondaryMuscles": [
+    "forearms"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.65,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "elbow"
+   ]
+  },
+  {
+   "id": "dumbbell_floor_press",
+   "nameKey": "exercise.dumbbell_floor_press",
+   "name": "Floor press con manubri",
+   "pattern": "horizontal_push",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "triceps"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.85,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "dumbbell_fly",
+   "nameKey": "exercise.dumbbell_fly",
+   "name": "Croci su panca con manubri",
+   "pattern": "fly",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "front_delts"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.8,
+   "stimulusScore": 0.9,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "dumbbell_leg_curl",
+   "nameKey": "exercise.dumbbell_leg_curl",
+   "name": "Leg curl con manubrio",
+   "pattern": "knee_flexion",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "hamstrings"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.65,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "dumbbell_overhead_extension",
+   "nameKey": "exercise.dumbbell_overhead_extension",
+   "name": "Estensioni sopra la testa con manubrio",
+   "pattern": "elbow_extension",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "triceps"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.65,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "elbow",
+    "shoulder"
+   ]
+  },
+  {
+   "id": "dumbbell_pullover",
+   "nameKey": "exercise.dumbbell_pullover",
+   "name": "Pullover con manubrio",
+   "pattern": "vertical_pull",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "chest",
+    "triceps"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.75,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "dumbbell_romanian_deadlift",
+   "nameKey": "exercise.dumbbell_romanian_deadlift",
+   "name": "Stacco rumeno con manubri",
+   "pattern": "hinge",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "hamstrings",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "lower_back",
+    "forearms"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 1.05,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "dumbbell_row",
+   "nameKey": "exercise.dumbbell_row",
+   "name": "Rematore con manubrio a un braccio",
+   "pattern": "horizontal_pull",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "lats",
+    "upper_back"
+   ],
+   "secondaryMuscles": [
+    "rear_delts",
+    "biceps"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.9,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "dumbbell_shrug",
+   "nameKey": "exercise.dumbbell_shrug",
+   "name": "Scrollate con manubri",
+   "pattern": "shrug",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "upper_back"
+   ],
+   "secondaryMuscles": [
+    "forearms"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.65,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "neck"
+   ]
+  },
+  {
+   "id": "ez_bar_curl",
+   "nameKey": "exercise.ez_bar_curl",
+   "name": "Curl con bilanciere EZ",
+   "pattern": "elbow_flexion",
+   "loadType": "external",
+   "equipment": [
+    "ez_bar"
+   ],
+   "primaryMuscles": [
+    "biceps"
+   ],
+   "secondaryMuscles": [
+    "forearms"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "elbow"
+   ]
+  },
+  {
+   "id": "face_pull",
+   "nameKey": "exercise.face_pull",
+   "name": "Face pull al cavo",
+   "pattern": "shoulder_isolation",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "rear_delts"
+   ],
+   "secondaryMuscles": [
+    "upper_back"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "farmer_carry",
+   "nameKey": "exercise.farmer_carry",
+   "name": "Camminata del contadino",
+   "pattern": "carry",
+   "loadType": "timed",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "forearms",
+    "upper_back"
+   ],
+   "secondaryMuscles": [
+    "abs",
+    "obliques",
+    "glutes"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.9,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "front_raise",
+   "nameKey": "exercise.front_raise",
+   "name": "Alzate frontali con manubri",
+   "pattern": "shoulder_isolation",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "front_delts"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "front_squat",
+   "nameKey": "exercise.front_squat",
+   "name": "Front squat",
+   "pattern": "squat",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "quads"
+   ],
+   "secondaryMuscles": [
+    "glutes",
+    "upper_back",
+    "abs"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 3,
+   "fatigueScore": 1.25,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "knee",
+    "wrist"
+   ]
+  },
+  {
+   "id": "glute_bridge",
+   "nameKey": "exercise.glute_bridge",
+   "name": "Ponte per glutei",
+   "pattern": "hip_extension",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "hamstrings"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.5,
+   "stimulusScore": 0.65,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [],
+   "bodyweightFraction": 0.4
+  },
+  {
+   "id": "goblet_squat",
+   "nameKey": "exercise.goblet_squat",
+   "name": "Goblet squat con manubrio",
+   "pattern": "squat",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "adductors",
+    "abs"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.9,
+   "stimulusScore": 0.9,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "good_morning",
+   "nameKey": "exercise.good_morning",
+   "name": "Good morning con bilanciere",
+   "pattern": "hinge",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "hamstrings",
+    "lower_back"
+   ],
+   "secondaryMuscles": [
+    "glutes"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.1,
+   "stimulusScore": 0.9,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "hack_squat",
+   "nameKey": "exercise.hack_squat",
+   "name": "Hack squat alla macchina",
+   "pattern": "squat",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "quads"
+   ],
+   "secondaryMuscles": [
+    "glutes",
+    "adductors"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 1.1,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "hammer_curl",
+   "nameKey": "exercise.hammer_curl",
+   "name": "Curl a martello",
+   "pattern": "elbow_flexion",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "biceps"
+   ],
+   "secondaryMuscles": [
+    "forearms"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.65,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "elbow"
+   ]
+  },
+  {
+   "id": "hanging_leg_raise",
+   "nameKey": "exercise.hanging_leg_raise",
+   "name": "Sollevamento gambe alla sbarra",
+   "pattern": "core_flexion",
+   "loadType": "bodyweight",
+   "equipment": [
+    "pull_up_bar"
+   ],
+   "primaryMuscles": [
+    "abs"
+   ],
+   "secondaryMuscles": [
+    "obliques",
+    "forearms"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 0.6,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [],
+   "bodyweightFraction": 0.35
+  },
+  {
+   "id": "hip_abduction",
+   "nameKey": "exercise.hip_abduction",
+   "name": "Abduzioni alla macchina",
+   "pattern": "hip_abduction",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "glutes"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.5,
+   "stimulusScore": 0.9,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "hip_adduction",
+   "nameKey": "exercise.hip_adduction",
+   "name": "Adduzioni alla macchina",
+   "pattern": "hip_adduction",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "adductors"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.55,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "hip"
+   ]
+  },
+  {
+   "id": "hip_thrust",
+   "nameKey": "exercise.hip_thrust",
+   "name": "Hip thrust con bilanciere",
+   "pattern": "hip_extension",
+   "loadType": "external",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "hamstrings"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.9,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "hollow_hold",
+   "nameKey": "exercise.hollow_hold",
+   "name": "Hollow hold",
+   "pattern": "core_stability",
+   "loadType": "timed",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "abs"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 0.45,
+   "stimulusScore": 0.8,
+   "loadIncrementKg": 0,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "incline_barbell_bench_press",
+   "nameKey": "exercise.incline_barbell_bench_press",
+   "name": "Panca inclinata con bilanciere",
+   "pattern": "horizontal_push",
+   "loadType": "external",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "front_delts",
+    "triceps"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.15,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "incline_dumbbell_curl",
+   "nameKey": "exercise.incline_dumbbell_curl",
+   "name": "Curl su panca inclinata",
+   "pattern": "elbow_flexion",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "biceps"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.65,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "elbow",
+    "shoulder"
+   ]
+  },
+  {
+   "id": "incline_dumbbell_press",
+   "nameKey": "exercise.incline_dumbbell_press",
+   "name": "Distensioni su panca inclinata con manubri",
+   "pattern": "horizontal_push",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "front_delts",
+    "triceps"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 1.0,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "incline_machine_press",
+   "nameKey": "exercise.incline_machine_press",
+   "name": "Chest press inclinata alla macchina",
+   "pattern": "horizontal_push",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "front_delts",
+    "triceps"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.85,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "incline_push_up",
+   "nameKey": "exercise.incline_push_up",
+   "name": "Piegamenti con mani rialzate",
+   "pattern": "horizontal_push",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bench"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "front_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 0.75,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "wrist"
+   ],
+   "bodyweightFraction": 0.5
+  },
+  {
+   "id": "inverted_row",
+   "nameKey": "exercise.inverted_row",
+   "name": "Rematore inverso",
+   "pattern": "horizontal_pull",
+   "loadType": "bodyweight",
+   "equipment": [
+    "pull_up_bar"
+   ],
+   "primaryMuscles": [
+    "upper_back",
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "biceps",
+    "rear_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.75,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [],
+   "bodyweightFraction": 0.6
+  },
+  {
+   "id": "kettlebell_deadlift",
+   "nameKey": "exercise.kettlebell_deadlift",
+   "name": "Stacco con kettlebell",
+   "pattern": "hinge",
+   "loadType": "external",
+   "equipment": [
+    "kettlebell"
+   ],
+   "primaryMuscles": [
+    "glutes",
+    "hamstrings"
+   ],
+   "secondaryMuscles": [
+    "quads",
+    "lower_back"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.9,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 4.0,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "kettlebell_goblet_squat",
+   "nameKey": "exercise.kettlebell_goblet_squat",
+   "name": "Goblet squat con kettlebell",
+   "pattern": "squat",
+   "loadType": "external",
+   "equipment": [
+    "kettlebell"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "adductors",
+    "abs"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.9,
+   "stimulusScore": 0.9,
+   "loadIncrementKg": 4.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "kettlebell_press",
+   "nameKey": "exercise.kettlebell_press",
+   "name": "Distensione sopra la testa con kettlebell",
+   "pattern": "vertical_push",
+   "loadType": "external",
+   "equipment": [
+    "kettlebell"
+   ],
+   "primaryMuscles": [
+    "front_delts"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "side_delts",
+    "abs"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 2,
+   "fatigueScore": 0.95,
+   "stimulusScore": 0.9,
+   "loadIncrementKg": 4.0,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "kettlebell_row",
+   "nameKey": "exercise.kettlebell_row",
+   "name": "Rematore con kettlebell",
+   "pattern": "horizontal_pull",
+   "loadType": "external",
+   "equipment": [
+    "kettlebell"
+   ],
+   "primaryMuscles": [
+    "lats",
+    "upper_back"
+   ],
+   "secondaryMuscles": [
+    "biceps"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.85,
+   "stimulusScore": 0.9,
+   "loadIncrementKg": 4.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "kettlebell_swing",
+   "nameKey": "exercise.kettlebell_swing",
+   "name": "Swing con kettlebell",
+   "pattern": "hinge",
+   "loadType": "external",
+   "equipment": [
+    "kettlebell"
+   ],
+   "primaryMuscles": [
+    "glutes",
+    "hamstrings"
+   ],
+   "secondaryMuscles": [
+    "lower_back",
+    "abs"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 0.9,
+   "stimulusScore": 0.8,
+   "loadIncrementKg": 4.0,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "landmine_press",
+   "nameKey": "exercise.landmine_press",
+   "name": "Landmine press",
+   "pattern": "vertical_push",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "front_delts"
+   ],
+   "secondaryMuscles": [
+    "chest",
+    "triceps"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.85,
+   "stimulusScore": 0.9,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "lat_pulldown",
+   "nameKey": "exercise.lat_pulldown",
+   "name": "Lat machine a presa larga",
+   "pattern": "vertical_pull",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "biceps",
+    "rear_delts",
+    "upper_back"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.9,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "lateral_raise",
+   "nameKey": "exercise.lateral_raise",
+   "name": "Alzate laterali con manubri",
+   "pattern": "shoulder_isolation",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "side_delts"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "leg_extension",
+   "nameKey": "exercise.leg_extension",
+   "name": "Leg extension",
+   "pattern": "knee_extension",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "quads"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "leg_press",
+   "nameKey": "exercise.leg_press",
+   "name": "Leg press",
+   "pattern": "squat",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "adductors"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 1.05,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "leg_press_calf_raise",
+   "nameKey": "exercise.leg_press_calf_raise",
+   "name": "Calf raise alla leg press",
+   "pattern": "calf_raise",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "calves"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "ankle"
+   ]
+  },
+  {
+   "id": "low_to_high_cable_fly",
+   "nameKey": "exercise.low_to_high_cable_fly",
+   "name": "Croci ai cavi dal basso",
+   "pattern": "fly",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "front_delts"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "lying_leg_curl",
+   "nameKey": "exercise.lying_leg_curl",
+   "name": "Leg curl sdraiato",
+   "pattern": "knee_flexion",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "hamstrings"
+   ],
+   "secondaryMuscles": [
+    "calves"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.75,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "machine_chest_press",
+   "nameKey": "exercise.machine_chest_press",
+   "name": "Chest press alla macchina",
+   "pattern": "horizontal_push",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "front_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.85,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "machine_crunch",
+   "nameKey": "exercise.machine_crunch",
+   "name": "Crunch alla macchina",
+   "pattern": "core_flexion",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "abs"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.5,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "machine_curl",
+   "nameKey": "exercise.machine_curl",
+   "name": "Curl alla macchina",
+   "pattern": "elbow_flexion",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "biceps"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "elbow"
+   ]
+  },
+  {
+   "id": "machine_hip_thrust",
+   "nameKey": "exercise.machine_hip_thrust",
+   "name": "Hip thrust alla macchina",
+   "pattern": "hip_extension",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "hamstrings"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.85,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "machine_lateral_raise",
+   "nameKey": "exercise.machine_lateral_raise",
+   "name": "Alzate laterali alla macchina",
+   "pattern": "shoulder_isolation",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "side_delts"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "machine_row",
+   "nameKey": "exercise.machine_row",
+   "name": "Rematore alla macchina",
+   "pattern": "horizontal_pull",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "upper_back",
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "biceps",
+    "rear_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.8,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "machine_shoulder_press",
+   "nameKey": "exercise.machine_shoulder_press",
+   "name": "Shoulder press alla macchina",
+   "pattern": "vertical_push",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "front_delts"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "side_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.85,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "machine_triceps_extension",
+   "nameKey": "exercise.machine_triceps_extension",
+   "name": "Estensioni per tricipiti alla macchina",
+   "pattern": "elbow_extension",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "triceps"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "elbow"
+   ]
+  },
+  {
+   "id": "neutral_grip_pull_up",
+   "nameKey": "exercise.neutral_grip_pull_up",
+   "name": "Trazioni a presa neutra",
+   "pattern": "vertical_pull",
+   "loadType": "bodyweight",
+   "equipment": [
+    "pull_up_bar"
+   ],
+   "primaryMuscles": [
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "biceps",
+    "upper_back",
+    "forearms"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.05,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "elbow"
+   ],
+   "bodyweightFraction": 1.0
+  },
+  {
+   "id": "nordic_curl",
+   "nameKey": "exercise.nordic_curl",
+   "name": "Nordic curl",
+   "pattern": "knee_flexion",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "hamstrings"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 3,
+   "fatigueScore": 1.0,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "knee"
+   ],
+   "bodyweightFraction": 0.6
+  },
+  {
+   "id": "overhead_cable_extension",
+   "nameKey": "exercise.overhead_cable_extension",
+   "name": "Estensioni sopra la testa al cavo",
+   "pattern": "elbow_extension",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "triceps"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.65,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "elbow",
+    "shoulder"
+   ]
+  },
+  {
+   "id": "overhead_press",
+   "nameKey": "exercise.overhead_press",
+   "name": "Lento avanti con bilanciere",
+   "pattern": "vertical_push",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "front_delts"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "side_delts",
+    "upper_back",
+    "abs"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.15,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "shoulder",
+    "lower_back"
+   ]
+  },
+  {
+   "id": "pallof_press",
+   "nameKey": "exercise.pallof_press",
+   "name": "Pallof press al cavo",
+   "pattern": "core_rotation",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "obliques"
+   ],
+   "secondaryMuscles": [
+    "abs"
+   ],
+   "mechanics": "isolation",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.4,
+   "stimulusScore": 0.8,
+   "loadIncrementKg": 1.25,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "pec_deck",
+   "nameKey": "exercise.pec_deck",
+   "name": "Pectoral machine",
+   "pattern": "fly",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "pendlay_row",
+   "nameKey": "exercise.pendlay_row",
+   "name": "Rematore Pendlay",
+   "pattern": "horizontal_pull",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "upper_back",
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "rear_delts",
+    "biceps",
+    "lower_back"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 3,
+   "fatigueScore": 1.2,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "pike_push_up",
+   "nameKey": "exercise.pike_push_up",
+   "name": "Piegamenti a V",
+   "pattern": "vertical_push",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "front_delts"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "side_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 0.85,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "shoulder",
+    "wrist"
+   ],
+   "bodyweightFraction": 0.5
+  },
+  {
+   "id": "plank",
+   "nameKey": "exercise.plank",
+   "name": "Plank",
+   "pattern": "core_stability",
+   "loadType": "timed",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "abs"
+   ],
+   "secondaryMuscles": [
+    "obliques"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.4,
+   "stimulusScore": 0.7,
+   "loadIncrementKg": 0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "preacher_curl",
+   "nameKey": "exercise.preacher_curl",
+   "name": "Curl alla panca Scott",
+   "pattern": "elbow_flexion",
+   "loadType": "external",
+   "equipment": [
+    "ez_bar",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "biceps"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "elbow"
+   ]
+  },
+  {
+   "id": "pull_up",
+   "nameKey": "exercise.pull_up",
+   "name": "Trazioni alla sbarra a presa prona",
+   "pattern": "vertical_pull",
+   "loadType": "bodyweight",
+   "equipment": [
+    "pull_up_bar"
+   ],
+   "primaryMuscles": [
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "biceps",
+    "upper_back",
+    "rear_delts",
+    "forearms"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.1,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "shoulder",
+    "elbow"
+   ],
+   "bodyweightFraction": 1.0
+  },
+  {
+   "id": "push_up",
+   "nameKey": "exercise.push_up",
+   "name": "Piegamenti sulle braccia",
+   "pattern": "horizontal_push",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "front_delts",
+    "abs"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.75,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "wrist"
+   ],
+   "bodyweightFraction": 0.64
+  },
+  {
+   "id": "rear_delt_fly",
+   "nameKey": "exercise.rear_delt_fly",
+   "name": "Alzate posteriori a busto flesso",
+   "pattern": "shoulder_isolation",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "rear_delts"
+   ],
+   "secondaryMuscles": [
+    "upper_back"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "reverse_crunch",
+   "nameKey": "exercise.reverse_crunch",
+   "name": "Crunch inverso",
+   "pattern": "core_flexion",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bench"
+   ],
+   "primaryMuscles": [
+    "abs"
+   ],
+   "secondaryMuscles": [
+    "obliques"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.4,
+   "stimulusScore": 0.75,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [],
+   "bodyweightFraction": 0.3
+  },
+  {
+   "id": "reverse_curl",
+   "nameKey": "exercise.reverse_curl",
+   "name": "Curl inverso con bilanciere EZ",
+   "pattern": "wrist",
+   "loadType": "external",
+   "equipment": [
+    "ez_bar"
+   ],
+   "primaryMuscles": [
+    "forearms"
+   ],
+   "secondaryMuscles": [
+    "biceps"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.55,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "wrist",
+    "elbow"
+   ]
+  },
+  {
+   "id": "reverse_lunge",
+   "nameKey": "exercise.reverse_lunge",
+   "name": "Affondi indietro con manubri",
+   "pattern": "lunge",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "adductors"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 1.0,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "reverse_pec_deck",
+   "nameKey": "exercise.reverse_pec_deck",
+   "name": "Reverse fly alla macchina",
+   "pattern": "shoulder_isolation",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "rear_delts"
+   ],
+   "secondaryMuscles": [
+    "upper_back"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "romanian_deadlift",
+   "nameKey": "exercise.romanian_deadlift",
+   "name": "Stacco rumeno con bilanciere",
+   "pattern": "hinge",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "hamstrings",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "lower_back",
+    "forearms"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.2,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "russian_twist",
+   "nameKey": "exercise.russian_twist",
+   "name": "Russian twist con manubrio",
+   "pattern": "core_rotation",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "obliques"
+   ],
+   "secondaryMuscles": [
+    "abs"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.45,
+   "stimulusScore": 0.7,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "seated_cable_row",
+   "nameKey": "exercise.seated_cable_row",
+   "name": "Pulley basso",
+   "pattern": "horizontal_pull",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "upper_back",
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "biceps",
+    "rear_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.9,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "seated_calf_raise",
+   "nameKey": "exercise.seated_calf_raise",
+   "name": "Calf raise da seduto",
+   "pattern": "calf_raise",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "calves"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.55,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "ankle"
+   ]
+  },
+  {
+   "id": "seated_dumbbell_press",
+   "nameKey": "exercise.seated_dumbbell_press",
+   "name": "Distensioni sopra la testa con manubri da seduto",
+   "pattern": "vertical_push",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "front_delts"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "side_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 1.0,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "seated_leg_curl",
+   "nameKey": "exercise.seated_leg_curl",
+   "name": "Leg curl da seduto",
+   "pattern": "knee_flexion",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "hamstrings"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.75,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "side_plank",
+   "nameKey": "exercise.side_plank",
+   "name": "Plank laterale",
+   "pattern": "core_stability",
+   "loadType": "timed",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primaryMuscles": [
+    "obliques"
+   ],
+   "secondaryMuscles": [
+    "abs"
+   ],
+   "mechanics": "isolation",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.4,
+   "stimulusScore": 0.75,
+   "loadIncrementKg": 0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "single_arm_pulldown",
+   "nameKey": "exercise.single_arm_pulldown",
+   "name": "Lat machine a un braccio",
+   "pattern": "vertical_pull",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "biceps"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.8,
+   "stimulusScore": 1.05,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "single_leg_calf_raise",
+   "nameKey": "exercise.single_leg_calf_raise",
+   "name": "Calf raise a una gamba con manubrio",
+   "pattern": "calf_raise",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "calves"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.55,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "ankle"
+   ]
+  },
+  {
+   "id": "single_leg_hip_thrust",
+   "nameKey": "exercise.single_leg_hip_thrust",
+   "name": "Hip thrust a una gamba",
+   "pattern": "hip_extension",
+   "loadType": "bodyweight",
+   "equipment": [
+    "bench"
+   ],
+   "primaryMuscles": [
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "hamstrings"
+   ],
+   "mechanics": "isolation",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 0.8,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [],
+   "bodyweightFraction": 0.5
+  },
+  {
+   "id": "single_leg_press",
+   "nameKey": "exercise.single_leg_press",
+   "name": "Leg press a una gamba",
+   "pattern": "squat",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "adductors"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.9,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "single_leg_romanian_deadlift",
+   "nameKey": "exercise.single_leg_romanian_deadlift",
+   "name": "Stacco rumeno a una gamba con manubrio",
+   "pattern": "hinge",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "hamstrings",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "lower_back"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 2,
+   "fatigueScore": 0.9,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "skull_crusher",
+   "nameKey": "exercise.skull_crusher",
+   "name": "French press con bilanciere EZ",
+   "pattern": "elbow_extension",
+   "loadType": "external",
+   "equipment": [
+    "ez_bar",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "triceps"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.75,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "elbow"
+   ]
+  },
+  {
+   "id": "smith_bench_press",
+   "nameKey": "exercise.smith_bench_press",
+   "name": "Panca piana al multipower",
+   "pattern": "horizontal_push",
+   "loadType": "external",
+   "equipment": [
+    "smith_machine",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "front_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 1.0,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "smith_calf_raise",
+   "nameKey": "exercise.smith_calf_raise",
+   "name": "Calf raise al multipower",
+   "pattern": "calf_raise",
+   "loadType": "external",
+   "equipment": [
+    "smith_machine"
+   ],
+   "primaryMuscles": [
+    "calves"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "ankle"
+   ]
+  },
+  {
+   "id": "smith_incline_press",
+   "nameKey": "exercise.smith_incline_press",
+   "name": "Panca inclinata al multipower",
+   "pattern": "horizontal_push",
+   "loadType": "external",
+   "equipment": [
+    "smith_machine",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "chest"
+   ],
+   "secondaryMuscles": [
+    "front_delts",
+    "triceps"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.95,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "smith_overhead_press",
+   "nameKey": "exercise.smith_overhead_press",
+   "name": "Lento avanti al multipower",
+   "pattern": "vertical_push",
+   "loadType": "external",
+   "equipment": [
+    "smith_machine",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "front_delts"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "side_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.95,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "smith_split_squat",
+   "nameKey": "exercise.smith_split_squat",
+   "name": "Split squat al multipower",
+   "pattern": "lunge",
+   "loadType": "external",
+   "equipment": [
+    "smith_machine"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "adductors"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 1.0,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "smith_squat",
+   "nameKey": "exercise.smith_squat",
+   "name": "Squat al multipower",
+   "pattern": "squat",
+   "loadType": "external",
+   "equipment": [
+    "smith_machine"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "adductors"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 1.1,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "standing_calf_raise",
+   "nameKey": "exercise.standing_calf_raise",
+   "name": "Calf raise in piedi alla macchina",
+   "pattern": "calf_raise",
+   "loadType": "external",
+   "equipment": [
+    "machine"
+   ],
+   "primaryMuscles": [
+    "calves"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "ankle"
+   ]
+  },
+  {
+   "id": "standing_dumbbell_press",
+   "nameKey": "exercise.standing_dumbbell_press",
+   "name": "Distensioni sopra la testa con manubri in piedi",
+   "pattern": "vertical_push",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "front_delts"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "side_delts",
+    "abs"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.05,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "step_up",
+   "nameKey": "exercise.step_up",
+   "name": "Step-up su panca con manubri",
+   "pattern": "lunge",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "hamstrings"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.9,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "straight_arm_pulldown",
+   "nameKey": "exercise.straight_arm_pulldown",
+   "name": "Pullover al cavo a braccia tese",
+   "pattern": "vertical_pull",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "triceps"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "suitcase_carry",
+   "nameKey": "exercise.suitcase_carry",
+   "name": "Camminata con un manubrio",
+   "pattern": "carry",
+   "loadType": "timed",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "obliques",
+    "forearms"
+   ],
+   "secondaryMuscles": [
+    "abs"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 0,
+   "contraindicatedAreas": []
+  },
+  {
+   "id": "sumo_deadlift",
+   "nameKey": "exercise.sumo_deadlift",
+   "name": "Stacco sumo",
+   "pattern": "hinge",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "glutes",
+    "adductors",
+    "hamstrings"
+   ],
+   "secondaryMuscles": [
+    "quads",
+    "lower_back",
+    "forearms"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 3,
+   "fatigueScore": 1.25,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "lower_back",
+    "hip"
+   ]
+  },
+  {
+   "id": "t_bar_row",
+   "nameKey": "exercise.t_bar_row",
+   "name": "Rematore T-bar",
+   "pattern": "horizontal_pull",
+   "loadType": "external",
+   "equipment": [
+    "barbell"
+   ],
+   "primaryMuscles": [
+    "upper_back",
+    "lats"
+   ],
+   "secondaryMuscles": [
+    "biceps",
+    "lower_back"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.1,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "trap_bar_deadlift",
+   "nameKey": "exercise.trap_bar_deadlift",
+   "name": "Stacco con trap bar",
+   "pattern": "hinge",
+   "loadType": "external",
+   "equipment": [
+    "trap_bar"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes",
+    "hamstrings"
+   ],
+   "secondaryMuscles": [
+    "lower_back",
+    "upper_back",
+    "forearms"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.25,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "lower_back"
+   ]
+  },
+  {
+   "id": "trap_bar_shrug",
+   "nameKey": "exercise.trap_bar_shrug",
+   "name": "Scrollate con trap bar",
+   "pattern": "shrug",
+   "loadType": "external",
+   "equipment": [
+    "trap_bar"
+   ],
+   "primaryMuscles": [
+    "upper_back"
+   ],
+   "secondaryMuscles": [
+    "forearms"
+   ],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.7,
+   "stimulusScore": 0.95,
+   "loadIncrementKg": 5.0,
+   "contraindicatedAreas": [
+    "neck"
+   ]
+  },
+  {
+   "id": "triceps_pushdown",
+   "nameKey": "exercise.triceps_pushdown",
+   "name": "Pushdown ai cavi",
+   "pattern": "elbow_extension",
+   "loadType": "external",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "triceps"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.6,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "elbow"
+   ]
+  },
+  {
+   "id": "upright_row",
+   "nameKey": "exercise.upright_row",
+   "name": "Tirate al mento con bilanciere EZ",
+   "pattern": "shoulder_isolation",
+   "loadType": "external",
+   "equipment": [
+    "ez_bar"
+   ],
+   "primaryMuscles": [
+    "side_delts"
+   ],
+   "secondaryMuscles": [
+    "upper_back",
+    "front_delts"
+   ],
+   "mechanics": "compound",
+   "laterality": "bilateral",
+   "difficulty": 2,
+   "fatigueScore": 0.8,
+   "stimulusScore": 0.9,
+   "loadIncrementKg": 2.5,
+   "contraindicatedAreas": [
+    "shoulder"
+   ]
+  },
+  {
+   "id": "walking_lunge",
+   "nameKey": "exercise.walking_lunge",
+   "name": "Affondi in camminata con manubri",
+   "pattern": "lunge",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primaryMuscles": [
+    "quads",
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "adductors",
+    "hamstrings"
+   ],
+   "mechanics": "compound",
+   "laterality": "unilateral",
+   "difficulty": 2,
+   "fatigueScore": 1.05,
+   "stimulusScore": 1.0,
+   "loadIncrementKg": 2.0,
+   "contraindicatedAreas": [
+    "knee"
+   ]
+  },
+  {
+   "id": "wrist_curl",
+   "nameKey": "exercise.wrist_curl",
+   "name": "Curl per i polsi con manubri",
+   "pattern": "wrist",
+   "loadType": "external",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primaryMuscles": [
+    "forearms"
+   ],
+   "secondaryMuscles": [],
+   "mechanics": "isolation",
+   "laterality": "bilateral",
+   "difficulty": 1,
+   "fatigueScore": 0.45,
+   "stimulusScore": 0.85,
+   "loadIncrementKg": 1.0,
+   "contraindicatedAreas": [
+    "wrist"
+   ]
+  }
+ ]
 }

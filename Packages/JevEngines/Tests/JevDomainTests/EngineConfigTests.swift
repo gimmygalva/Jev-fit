@@ -99,4 +99,19 @@ struct EngineConfigTests {
         #expect(EngineConfig.current == EngineConfig.v1)
         #expect(EngineConfig.current.version >= 1)
     }
+
+    @Test("Allenamento e trend: pesi dell'ExerciseScore che sommano a 1, mesociclo, volumi ordinati")
+    func workoutAndTrend() {
+        let w = config.workout
+        #expect(abs(w.scoreWeights.sum - 1) < 1e-9)
+        #expect(w.mesocycleWeeks == 4)
+        #expect(Set(w.weeklyHardSets.keys) == Set(ExperienceLevel.allCases))
+        #expect(Set(w.goalVolumeMultiplier.keys) == Set(GoalType.allCases))
+        #expect(w.weeklyHardSets[.beginner]!.upperBound <= w.weeklyHardSets[.advanced]!.upperBound)
+        #expect(w.minSetsPerExercise <= w.maxSetsPerExercise)
+        #expect(w.muscleVolumeFactor.values.allSatisfy { $0 > 0 && $0 <= 1 })
+        let t = config.trend
+        #expect(t.weightProcessNoise > 0 && t.weightMeasurementSDKg > 0 && t.huberThreshold > 0)
+        #expect(t.strengthMeasurementSDLog > 0 && t.strengthProcessNoise > 0 && t.strengthInitialSlopeSDPerDay > 0)
+    }
 }

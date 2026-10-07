@@ -8,3 +8,5 @@
 # Un modulo elencato senza file misurati fa FALLIRE il gate (evita falsi verdi).
 JevCore 90
 JevDomain 90
+WorkoutEngine 90
+ExerciseCatalog 90
