@@ -13,6 +13,7 @@ Ultimo aggiornamento: 2026-10-07 (seconda sessione) · Agent 00 (CTO)
 - M6: CI verde, run 37560536651. Recupero muscolare e JEV READINESS; readiness valida con soli dati iPhone (test); coverage gate 90%.
 - M7: CI verde, run 37560536651. HealthKit reale + sorgente simulata (permessi concessi/negati/parziali), cache esclusa dal backup, import idempotente delle pesate. **Resta la checklist su iPhone fisico (`docs/HEALTHKIT_CHECKLIST.md`), a cura dell'utente.**
 - M9, M10: CI verde, run 37579988952. Food logger offline (80 alimenti, Open Food Facts, barcode, ricette, copia ieri), target e trend del peso; Oggi (readiness), Corpo (recupero per muscolo), Progressi (15 grafici).
+- Post-RC: CI verde, run 37658740746. Eliminazione account (Edge Function `account-delete` + Impostazioni), decisioni di allenamento del check-in applicate al programma, body map disegnata, chat con JEV, numeri del piano nel riepilogo dell'onboarding, CLI Supabase via npx in CI.
 - M11, M12, M13: CI verde, run 37584457988 (5 job, incluso il gateway Deno). CheckInEngine + CoachKit (grounding, safety, fallback), Edge Function `coach`, check-in end-to-end; motore di sync con fault injection, account (Sign in with Apple), consensi, impostazioni; review di sicurezza; checklist della release.
 - M8: CI verde, run 37560536651. Workout live salvato a ogni serie (sopravvive al kill, test con repository riaperto), riepilogo con record, storico, overload integrato (regola 2 verificata tra due sessioni).
 
@@ -93,5 +94,6 @@ Tre livelli con "numeri solo dagli engine" · engine Swift puri in package local
 
 ## Next tasks
 - **Utente (prima di TestFlight)**: firma e App ID (`docs/SIGNING.md`); in Supabase provider Apple e 2FA; deploy della Edge Function `coach` con i segreti dei modelli (`docs/BACKEND.md`); checklist HealthKit su iPhone (`docs/HEALTHKIT_CHECKLIST.md`); AppIcon originale.
-- Prossimo lavoro di sviluppo (post-RC): Edge Function `account-delete` (richiesta da Apple con il login), applicazione automatica delle decisioni di allenamento accettate nel check-in (oggi salvate, solo le calorie diventano il nuovo target), body map disegnata, chat libera con JEV, aggiornare `actions/cache` e `upload-artifact` a Node 24.
+- Utente: deploy anche della Edge Function `account-delete` (usa la chiave amministrativa fornita da Supabase alle funzioni, nessun segreto da aggiungere).
+- Sviluppo ancora aperto: step SCR-ONB-10 (esercizi preferiti/esclusi nell'onboarding: oggi solo via check-in), revoca del token Apple all'eliminazione dell'account, aggiornare `actions/cache` e `upload-artifact` a Node 24.
 - Nota di processo: le review (Agent 11/12) di M4–M13 le ha fatte il CTO; ogni errore trovato in CI è stato corretto con un test.

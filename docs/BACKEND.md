@@ -59,6 +59,10 @@ Segreti da impostare nella dashboard (**Edge Functions → Secrets**), mai nel r
 
 `SUPABASE_URL` e `SUPABASE_ANON_KEY` sono fornite automaticamente da Supabase alle funzioni. Deploy: `supabase functions deploy coach --project-ref xyseraszquglsfcffwny` (o dalla dashboard).
 
+## Eliminazione dell'account (Edge Function `account-delete`)
+
+Codice in `backend/supabase/functions/account-delete/` (type check e test Deno in CI). Verifica il JWT, richiede `{"confirm":"DELETE"}` ed elimina l'utente Auth con la chiave amministrativa che Supabase fornisce automaticamente alle funzioni: tutte le tabelle hanno `on delete cascade`, quindi i dati nel cloud spariscono con l'utente. Deploy: `supabase functions deploy account-delete --project-ref xyseraszquglsfcffwny`. Da aggiungere prima di un uso commerciale: revoca del token Sign in with Apple.
+
 ## App: configurazione pubblica (M12)
 
 `project.yml` scrive in Info.plist `JEVSupabaseURL` e `JEVSupabasePublishableKey` (chiave `sb_publishable_…`, pubblica per definizione). L'account si attiva solo con Sign in with Apple configurato nel punto 2 qui sopra; senza, il pulsante di accesso restituisce un errore gestito e l'app resta interamente locale.

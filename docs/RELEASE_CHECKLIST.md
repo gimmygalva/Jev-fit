@@ -28,6 +28,6 @@ Ogni punto della Definition of Done del brief con la prova che lo dimostra. "CI"
 ## Prima di TestFlight (a cura dell'utente)
 1. Apple Developer Program: firma (`docs/SIGNING.md`), App ID con HealthKit e Sign in with Apple.
 2. Supabase: provider Apple, 2FA sull'account (`docs/BACKEND.md`).
-3. Edge Function `coach`: deploy e segreti dei modelli (`docs/BACKEND.md`).
+3. Edge Function `coach`: deploy e segreti dei modelli; Edge Function `account-delete`: deploy (`docs/BACKEND.md`).
 4. Checklist HealthKit su iPhone (`docs/HEALTHKIT_CHECKLIST.md`).
 5. AppIcon 1024×1024 originale.
