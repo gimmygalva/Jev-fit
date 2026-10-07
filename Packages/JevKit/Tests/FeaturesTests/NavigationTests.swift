@@ -20,7 +20,8 @@ struct NavigationTests {
         ("jevfit:///nutrition", .nutrition),
     ] as [(String, RootTab)])
     func knownLinks(url: String, tab: RootTab) throws {
-        let link = try #require(DeepLink(url: try #require(URL(string: url))))
+        let parsed = try #require(URL(string: url))
+        let link = try #require(DeepLink(url: parsed))
         #expect(link == .tab(tab))
         #expect(link.targetTab == tab)
     }
@@ -29,22 +30,26 @@ struct NavigationTests {
         "https://jevfit.app/today", "jevfit://", "jevfit://unknown", "otherapp://today",
     ])
     func unknownLinks(url: String) throws {
-        #expect(DeepLink(url: try #require(URL(string: url))) == nil)
+        let parsed = try #require(URL(string: url))
+        #expect(DeepLink(url: parsed) == nil)
     }
 
     @Test("Il router cambia tab con un deep link valido e ignora gli altri")
     func routerApplies() throws {
         let router = AppRouter()
-        #expect(router.handle(try #require(URL(string: "jevfit://nutrition"))))
+        let nutrition = try #require(URL(string: "jevfit://nutrition"))
+        let unknown = try #require(URL(string: "jevfit://boh"))
+        #expect(router.handle(nutrition))
         #expect(router.selectedTab == .nutrition)
-        #expect(!router.handle(try #require(URL(string: "jevfit://boh"))))
+        #expect(!router.handle(unknown))
         #expect(router.selectedTab == .nutrition)
     }
 
     @Test("Durante l'onboarding il link resta in attesa e si applica alla fine")
     func pendingDuringOnboarding() throws {
         let router = AppRouter(isOnboardingActive: true)
-        router.handle(try #require(URL(string: "jevfit://body")))
+        let body = try #require(URL(string: "jevfit://body"))
+        router.handle(body)
         #expect(router.selectedTab == .today)
         #expect(router.pendingLink == .tab(.body))
         router.onboardingFinished()

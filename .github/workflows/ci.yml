@@ -201,6 +201,18 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             test 2>&1 | tee ../../build/logs/jevkit-test.log
 
+      - name: Riepilogo di errori e test falliti (solo in caso di fallimento)
+        # I log di xcodebuild sono lunghi: questo riepilogo finisce in fondo al log del job,
+        # così errori di compilazione e asserzioni fallite si leggono senza scaricare artefatti.
+        if: ${{ failure() }}
+        run: |
+          for f in build/logs/*.log; do
+            [[ -f "${f}" ]] || continue
+            echo "=== ${f}"
+            grep -E " error: |✘|recorded an issue|XCTAssert|Test Case .* failed|failed \(|Failing tests|Testing failed|TEST FAILED" "${f}" \
+              | grep -v "^note:" | sort -u | head -150 || true
+          done
+
       - name: Carica xcresult e log (solo in caso di fallimento)
         if: ${{ failure() }}
         uses: actions/upload-artifact@v4

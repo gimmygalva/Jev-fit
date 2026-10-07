@@ -217,7 +217,7 @@ struct AvailabilityStep: View {
             StepTitle("Quanto tempo hai?")
             Text("Giorni a settimana")
                 .font(JevFont.headline)
-            ChipGrid(items: Array(2...6)) { days in
+            ChipGrid(items: Array(2...6)) { (days: Int) in
                 JevChip("\(days) giorni", isSelected: model.draft.daysPerWeek == days) {
                     model.draft.daysPerWeek = days
                 }
@@ -232,7 +232,7 @@ struct AvailabilityStep: View {
             }
             Text("Minuti per sessione")
                 .font(JevFont.headline)
-            ChipGrid(items: [30, 45, 60, 75, 90]) { minutes in
+            ChipGrid(items: [30, 45, 60, 75, 90]) { (minutes: Int) in
                 JevChip("\(minutes) min", isSelected: model.draft.sessionMinutes == minutes) {
                     model.draft.sessionMinutes = minutes
                 }
