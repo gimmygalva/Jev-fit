@@ -150,6 +150,7 @@ public struct TodayTabView: View {
 public struct BodyTabView: View {
     let service: DashboardService
     @State private var states: [MuscleGroup: MuscleRecovery.MuscleState] = [:]
+    @State private var selected: MuscleGroup?
 
     public init(service: DashboardService) {
         self.service = service
@@ -158,6 +159,18 @@ public struct BodyTabView: View {
     public var body: some View {
         NavigationStack {
             List {
+                Section {
+                    BodyMapView(states: states, selected: $selected)
+                        .frame(maxHeight: 320)
+                        .accessibilityIdentifier("body.map")
+                    if let selected {
+                        MuscleRow(muscle: selected, state: states[selected])
+                    } else {
+                        Text("Tocca un muscolo per i dettagli.")
+                            .font(.caption)
+                            .foregroundStyle(JevColor.textSecondary)
+                    }
+                }
                 ForEach(MuscleSizeClass.allCases, id: \.self) { size in
                     Section {
                         ForEach(MuscleGroup.allCases.filter { $0.sizeClass == size }, id: \.self) { muscle in
@@ -192,7 +205,7 @@ struct MuscleRow: View {
         let recovery = state?.recoveryPercent ?? 100
         VStack(alignment: .leading, spacing: JevSpacing.xs) {
             HStack {
-                Text(verbatim: muscle.rawValue.replacingOccurrences(of: "_", with: " ").capitalized)
+                Text(verbatim: MuscleNames.name(muscle))
                 Spacer()
                 Text(verbatim: "\(Int(recovery.rounded()))%").monospacedDigit()
             }

@@ -258,16 +258,13 @@ jobs:
         run: python3 scripts/ci/schema-parity.py
 
       # 2) Verifica di riferimento: stessa migrazione e stessi test su Supabase locale (immagini ufficiali).
-      - name: Installa la CLI Supabase
-        uses: supabase/setup-cli@v1
-        with:
-          version: latest
-
+      # CLI tramite npx (download dell'asset di release, nessuna chiamata all'API di GitHub:
+      # l'action setup-cli con "latest" falliva per rate limit).
       - name: Avvia il database Supabase (applica le migrazioni)
-        run: supabase db start --workdir backend
+        run: npx --yes supabase@^2 db start --workdir backend
 
       - name: supabase test db
-        run: supabase test db --workdir backend
+        run: npx --yes supabase@^2 test db --workdir backend
 
       # 3) Gateway di JEV (Edge Function): type check e test delle regole di grounding.
       - name: Installa Deno
