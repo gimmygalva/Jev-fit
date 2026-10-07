@@ -6,9 +6,12 @@ import SwiftUI
 /// `nil` per lo store significa che il database non si è aperto: si mostra l'errore.
 public struct AppServices {
     public let onboarding: OnboardingRepository?
+    /// Import da Salute; `nil` se il database non è disponibile.
+    public let health: HealthImporter?
 
-    public init(onboarding: OnboardingRepository?) {
+    public init(onboarding: OnboardingRepository?, health: HealthImporter? = nil) {
         self.onboarding = onboarding
+        self.health = health
     }
 }
 
@@ -46,6 +49,11 @@ public struct AppRootView: View {
         }
         .onOpenURL { url in
             router.handle(url)
+        }
+        // Dopo l'onboarding (SCR-ONB-15): permessi Salute e primo import; poi a ogni avvio.
+        .task(id: router.isOnboardingActive) {
+            guard !router.isOnboardingActive, let health = services.health else { return }
+            await health.refresh()
         }
     }
 }

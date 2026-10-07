@@ -20,4 +20,12 @@ struct AppContainerTests {
         #expect(first.store != nil)
         #expect(first.store?.deviceID != second.store?.deviceID, "Ogni database in memoria è indipendente")
     }
+
+    @Test("Con il database in memoria Salute è simulata e l'import è disponibile")
+    func mockHealth() {
+        let container = AppContainer(storage: .inMemory)
+        #expect(container.healthCache != nil)
+        #expect(container.healthSource.isAvailable)
+        #expect(container.services.health != nil)
+    }
 }

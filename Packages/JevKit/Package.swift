@@ -91,10 +91,18 @@ let package = Package(
         ),
         .testTarget(name: "FoodTests", dependencies: ["Food"]),
         .testTarget(
+            name: "HealthTests",
+            dependencies: [
+                "Health",
+                .product(name: "JevCore", package: "JevEngines"),
+            ]
+        ),
+        .testTarget(
             name: "FeaturesTests",
             dependencies: [
                 "Features",
                 "Persistence",
+                "Health",
                 .product(name: "JevCore", package: "JevEngines"),
                 .product(name: "JevDomain", package: "JevEngines"),
             ]
