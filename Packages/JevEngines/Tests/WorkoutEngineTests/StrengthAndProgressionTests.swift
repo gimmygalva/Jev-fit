@@ -21,7 +21,9 @@ struct StrengthEstimationTests {
     func e1rmRules() throws {
         #expect(StrengthEstimation.e1RM(loadKg: 100, reps: 1, rir: 0) == 100)
         let five = try #require(StrengthEstimation.e1RM(loadKg: 100, reps: 5, rir: 0))
-        let expected = (100 * (1 + 5.0 / 30) + 100 * 36 / (37 - 5.0)) / 2
+        let epley: Double = 100 * (1 + 5.0 / 30)
+        let brzycki: Double = 100.0 * 36.0 / 32.0
+        let expected: Double = (epley + brzycki) / 2
         #expect(abs(five - expected) < 1e-9)
         let eleven = try #require(StrengthEstimation.e1RM(loadKg: 100, reps: 10, rir: 1))
         #expect(abs(eleven - 100 * (1 + 11.0 / 30)) < 1e-9)
@@ -46,7 +48,7 @@ struct StrengthEstimationTests {
         ]
         let best = try #require(StrengthEstimation.bestE1RM(sets, loadType: .external, bodyweightKg: nil, bodyweightFraction: nil))
         #expect(best == StrengthEstimation.e1RM(loadKg: 100, reps: 5, rir: 2))
-        #expect(StrengthEstimation.volumeKg(sets) == 100 * 5 + 105 * 3)
+        #expect(StrengthEstimation.volumeKg(sets) == 815)
         #expect(StrengthEstimation.strengthIndex(loadKg: 50, reps: 15, rir: 2) != nil)
         #expect(StrengthEstimation.strengthIndex(loadKg: 50, reps: 25, rir: 0) == nil)
         #expect(StrengthEstimation.strengthIndex(loadKg: 0, reps: 5, rir: 0) == nil)

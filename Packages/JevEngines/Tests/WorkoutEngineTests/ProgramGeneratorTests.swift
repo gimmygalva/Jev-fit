@@ -148,7 +148,7 @@ struct ProgramGeneratorTests {
                         #expect(plan == ProgramGenerator.generate(profile: p, catalog: catalog), "Non deterministico")
                         #expect(plan.sessions.count == days)
                         for session in plan.sessions {
-                            #expect(session.estimatedSeconds <= 60 * 60 + 1e-6)
+                            #expect(session.estimatedSeconds <= 3_600.000001)
                             let ids = session.exercises.map(\.exerciseID)
                             #expect(Set(ids).count == ids.count, "Esercizio ripetuto nella stessa sessione")
                             var seenIsolation = false
@@ -201,7 +201,7 @@ struct ProgramGeneratorTests {
         let plan = ProgramGenerator.generate(profile: profile(goal: .generalFitness, days: 3, minutes: 15, equipment: [.bodyweight]),
                                              catalog: catalog)
         for session in plan.sessions {
-            #expect(session.estimatedSeconds <= 15 * 60 + 1e-6)
+            #expect(session.estimatedSeconds <= 900.000001)
         }
         let core = ProgramGenerator.generate(profile: profile(days: 2, minutes: 90, equipment: [.bodyweight]), catalog: catalog)
         let timed = core.sessions.flatMap(\.exercises).filter { catalog[$0.exerciseID]?.loadType == .timed }

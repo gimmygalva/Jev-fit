@@ -91,7 +91,8 @@ struct PerformanceAnalysisTests {
         ]
         let summary = PerformanceAnalysis.summarize(session: session, catalog: catalog,
                                                     history: ["barbell_bench_press": past], bodyweightKg: 80)
-        #expect(summary.volumeKg == 100 * 8 + 100 * 7 + 10 * 15 + 10 * 10)
+        let expectedVolume: Double = 800 + 700 + 150 + 100
+        #expect(summary.volumeKg == expectedVolume)
         #expect(summary.workingSets == 4)
         #expect(summary.hardSetsByMuscle[.chest] == 2)
         #expect(summary.hardSetsByMuscle[.triceps] == 1)

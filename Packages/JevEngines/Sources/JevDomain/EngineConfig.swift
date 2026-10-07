@@ -77,7 +77,18 @@ public struct EngineConfig: Sendable, Hashable {
             fatFloorGramsPerKg: 0.6,
             fiberGramsPer1000Kcal: 14,
             referenceWeightBMICap: 30,
-            referenceWeightBMITarget: 27
+            referenceWeightBMITarget: 27,
+            activityFactors: [.sedentary: 1.2, .light: 1.375, .moderate: 1.55, .high: 1.725],
+            // Filtro dell'expenditure (§5.2), tarato con Monte Carlo su 500 seed (tools/proto):
+            // logging completo → errore mediano 84 kcal e 90° percentile 194 kcal a 28 giorni,
+            // 90° percentile 74 kcal a 56; con 20% di giorni mancanti 99 / 246 e 144 kcal.
+            expenditureDriftKcalPerDay: 10,
+            scaleNoiseKg: 0.7,
+            tissueProcessNoiseKg: 0.05,
+            unknownIntakeSDKcal: 600,
+            intakeChangeThresholdKcal: 300,
+            intakeChangeScaleNoiseKg: 1.0,
+            completenessWindowDays: 21
         ),
         progression: Progression(
             plateauMinimumExposures: 6,
@@ -244,6 +255,21 @@ extension EngineConfig {
         public var fiberGramsPer1000Kcal: Double
         public var referenceWeightBMICap: Double
         public var referenceWeightBMITarget: Double
+        /// Fattori di attività per il prior dell'expenditure (BMR × fattore).
+        public var activityFactors: [ActivityLevel: Double]
+        /// Deviazione standard della deriva giornaliera dell'expenditure (kcal).
+        public var expenditureDriftKcalPerDay: Double
+        /// Rumore della bilancia (acqua, glicogeno, contenuto intestinale), kg.
+        public var scaleNoiseKg: Double
+        /// Rumore di processo della massa di tessuto, kg al giorno.
+        public var tissueProcessNoiseKg: Double
+        /// Incertezza dell'intake in un giorno non registrato o incompleto (kcal).
+        public var unknownIntakeSDKcal: Double
+        /// Variazione dell'intake medio settimanale che aumenta il rumore della bilancia per 14 giorni.
+        public var intakeChangeThresholdKcal: Double
+        public var intakeChangeScaleNoiseKg: Double
+        /// Finestra per la completezza del logging nella confidence.
+        public var completenessWindowDays: Int
     }
 
     public struct Progression: Sendable, Hashable {
@@ -332,6 +358,18 @@ extension EngineConfig {
         public var performance: Double
         public var fatigue: Double
         public var pain: Double
+
+        public init(recovery: Double, goal: Double, preference: Double, priority: Double, variety: Double,
+                    performance: Double, fatigue: Double, pain: Double) {
+            self.recovery = recovery
+            self.goal = goal
+            self.preference = preference
+            self.priority = priority
+            self.variety = variety
+            self.performance = performance
+            self.fatigue = fatigue
+            self.pain = pain
+        }
 
         public var sum: Double { recovery + goal + preference + priority + variety + performance + fatigue + pain }
     }
