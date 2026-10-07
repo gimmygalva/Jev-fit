@@ -1,4 +1,5 @@
 import Features
+import Food
 import Foundation
 import Health
 import Persistence
@@ -68,6 +69,12 @@ final class AppContainer {
         let facts = FactRepository(store: store)
         let health = healthCache.map { HealthImporter(source: healthSource, cache: $0, facts: facts) }
         let training = TrainingPlanService.bundled(facts: facts)
-        return AppServices(onboarding: OnboardingRepository(store: store), health: health, training: training)
+        // Ricerca alimenti: prima il database locale (offline), poi Open Food Facts.
+        var providers: [any FoodProvider] = [OpenFoodFactsProvider()]
+        if let local = try? LocalFoodProvider.bundled() { providers.insert(local, at: 0) }
+        return AppServices(
+            onboarding: OnboardingRepository(store: store), health: health, training: training,
+            nutrition: NutritionPlanService(facts: facts), foodSearch: FoodSearch(providers: providers)
+        )
     }
 }

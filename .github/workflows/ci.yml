@@ -285,3 +285,6 @@ jobs:
 
       - name: Catalogo esercizi aggiornato rispetto al generatore
         run: python3 tools/catalog/generate_catalog.py --check
+
+      - name: Database alimenti locale aggiornato rispetto al generatore
+        run: python3 tools/food/generate_foods.py --check

@@ -1,0 +1,725 @@
+{
+ "schemaVersion": 1,
+ "foods": [
+  {
+   "id": "pasta_dry",
+   "name": "Pasta di semola (cruda)",
+   "energyKcal": 353,
+   "proteinGrams": 12.5,
+   "carbohydrateGrams": 71.0,
+   "fatGrams": 1.5,
+   "fiberGrams": 3.0
+  },
+  {
+   "id": "pasta_wholewheat_dry",
+   "name": "Pasta integrale (cruda)",
+   "energyKcal": 340,
+   "proteinGrams": 13.4,
+   "carbohydrateGrams": 64.0,
+   "fatGrams": 2.5,
+   "fiberGrams": 8.0
+  },
+  {
+   "id": "rice_white_raw",
+   "name": "Riso bianco (crudo)",
+   "energyKcal": 358,
+   "proteinGrams": 6.7,
+   "carbohydrateGrams": 79.0,
+   "fatGrams": 0.6,
+   "fiberGrams": 1.0
+  },
+  {
+   "id": "rice_basmati_raw",
+   "name": "Riso basmati (crudo)",
+   "energyKcal": 351,
+   "proteinGrams": 8.0,
+   "carbohydrateGrams": 77.0,
+   "fatGrams": 0.8,
+   "fiberGrams": 1.3
+  },
+  {
+   "id": "rice_brown_raw",
+   "name": "Riso integrale (crudo)",
+   "energyKcal": 362,
+   "proteinGrams": 7.5,
+   "carbohydrateGrams": 76.0,
+   "fatGrams": 2.7,
+   "fiberGrams": 3.4
+  },
+  {
+   "id": "oats_rolled",
+   "name": "Fiocchi d'avena",
+   "energyKcal": 372,
+   "proteinGrams": 13.0,
+   "carbohydrateGrams": 60.0,
+   "fatGrams": 7.0,
+   "fiberGrams": 10.0
+  },
+  {
+   "id": "bread_white",
+   "name": "Pane comune",
+   "energyKcal": 270,
+   "proteinGrams": 8.5,
+   "carbohydrateGrams": 54.0,
+   "fatGrams": 1.5,
+   "fiberGrams": 2.7
+  },
+  {
+   "id": "bread_wholewheat",
+   "name": "Pane integrale",
+   "energyKcal": 245,
+   "proteinGrams": 9.5,
+   "carbohydrateGrams": 44.0,
+   "fatGrams": 2.4,
+   "fiberGrams": 7.0
+  },
+  {
+   "id": "potato_raw",
+   "name": "Patate (crude)",
+   "energyKcal": 77,
+   "proteinGrams": 2.0,
+   "carbohydrateGrams": 17.0,
+   "fatGrams": 0.1,
+   "fiberGrams": 2.2
+  },
+  {
+   "id": "sweet_potato_raw",
+   "name": "Patate dolci (crude)",
+   "energyKcal": 86,
+   "proteinGrams": 1.6,
+   "carbohydrateGrams": 20.0,
+   "fatGrams": 0.1,
+   "fiberGrams": 3.0
+  },
+  {
+   "id": "corn_flakes",
+   "name": "Corn flakes",
+   "energyKcal": 370,
+   "proteinGrams": 7.0,
+   "carbohydrateGrams": 84.0,
+   "fatGrams": 0.9,
+   "fiberGrams": 3.0
+  },
+  {
+   "id": "chicken_breast_raw",
+   "name": "Petto di pollo (crudo)",
+   "energyKcal": 110,
+   "proteinGrams": 23.0,
+   "carbohydrateGrams": 0.0,
+   "fatGrams": 1.5,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "turkey_breast_raw",
+   "name": "Petto di tacchino (crudo)",
+   "energyKcal": 107,
+   "proteinGrams": 24.0,
+   "carbohydrateGrams": 0.0,
+   "fatGrams": 1.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "beef_lean_raw",
+   "name": "Manzo magro (crudo)",
+   "energyKcal": 130,
+   "proteinGrams": 21.5,
+   "carbohydrateGrams": 0.0,
+   "fatGrams": 5.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "beef_minced_raw",
+   "name": "Macinato di manzo 10% grassi (crudo)",
+   "energyKcal": 176,
+   "proteinGrams": 20.0,
+   "carbohydrateGrams": 0.0,
+   "fatGrams": 10.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "pork_loin_raw",
+   "name": "Lonza di maiale (cruda)",
+   "energyKcal": 143,
+   "proteinGrams": 21.0,
+   "carbohydrateGrams": 0.0,
+   "fatGrams": 6.5,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "salmon_raw",
+   "name": "Salmone (crudo)",
+   "energyKcal": 185,
+   "proteinGrams": 20.0,
+   "carbohydrateGrams": 0.0,
+   "fatGrams": 11.5,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "tuna_canned_water",
+   "name": "Tonno al naturale (sgocciolato)",
+   "energyKcal": 108,
+   "proteinGrams": 25.0,
+   "carbohydrateGrams": 0.0,
+   "fatGrams": 1.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "tuna_canned_oil",
+   "name": "Tonno sott'olio (sgocciolato)",
+   "energyKcal": 192,
+   "proteinGrams": 25.0,
+   "carbohydrateGrams": 0.0,
+   "fatGrams": 10.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "cod_raw",
+   "name": "Merluzzo (crudo)",
+   "energyKcal": 82,
+   "proteinGrams": 18.0,
+   "carbohydrateGrams": 0.0,
+   "fatGrams": 0.7,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "shrimp_raw",
+   "name": "Gamberi (crudi)",
+   "energyKcal": 85,
+   "proteinGrams": 20.0,
+   "carbohydrateGrams": 0.2,
+   "fatGrams": 0.5,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "egg_whole",
+   "name": "Uovo intero",
+   "energyKcal": 143,
+   "proteinGrams": 12.6,
+   "carbohydrateGrams": 0.7,
+   "fatGrams": 9.5,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "egg_white",
+   "name": "Albume d'uovo",
+   "energyKcal": 52,
+   "proteinGrams": 11.0,
+   "carbohydrateGrams": 0.7,
+   "fatGrams": 0.2,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "ham_cooked",
+   "name": "Prosciutto cotto",
+   "energyKcal": 140,
+   "proteinGrams": 19.0,
+   "carbohydrateGrams": 1.0,
+   "fatGrams": 6.5,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "bresaola",
+   "name": "Bresaola",
+   "energyKcal": 151,
+   "proteinGrams": 32.0,
+   "carbohydrateGrams": 0.0,
+   "fatGrams": 2.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "prosciutto_crudo",
+   "name": "Prosciutto crudo",
+   "energyKcal": 250,
+   "proteinGrams": 26.0,
+   "carbohydrateGrams": 0.0,
+   "fatGrams": 16.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "milk_skim",
+   "name": "Latte scremato",
+   "energyKcal": 35,
+   "proteinGrams": 3.4,
+   "carbohydrateGrams": 5.0,
+   "fatGrams": 0.1,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "milk_semi",
+   "name": "Latte parzialmente scremato",
+   "energyKcal": 46,
+   "proteinGrams": 3.3,
+   "carbohydrateGrams": 5.0,
+   "fatGrams": 1.5,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "milk_whole",
+   "name": "Latte intero",
+   "energyKcal": 64,
+   "proteinGrams": 3.3,
+   "carbohydrateGrams": 4.8,
+   "fatGrams": 3.6,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "yogurt_greek_0",
+   "name": "Yogurt greco 0%",
+   "energyKcal": 57,
+   "proteinGrams": 10.0,
+   "carbohydrateGrams": 3.6,
+   "fatGrams": 0.2,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "yogurt_greek_full",
+   "name": "Yogurt greco intero",
+   "energyKcal": 115,
+   "proteinGrams": 9.0,
+   "carbohydrateGrams": 3.9,
+   "fatGrams": 7.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "yogurt_plain",
+   "name": "Yogurt bianco intero",
+   "energyKcal": 66,
+   "proteinGrams": 3.8,
+   "carbohydrateGrams": 4.5,
+   "fatGrams": 3.5,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "skyr",
+   "name": "Skyr",
+   "energyKcal": 63,
+   "proteinGrams": 11.0,
+   "carbohydrateGrams": 4.0,
+   "fatGrams": 0.2,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "cottage_cheese",
+   "name": "Fiocchi di latte",
+   "energyKcal": 98,
+   "proteinGrams": 11.5,
+   "carbohydrateGrams": 3.0,
+   "fatGrams": 4.3,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "ricotta",
+   "name": "Ricotta vaccina",
+   "energyKcal": 146,
+   "proteinGrams": 9.0,
+   "carbohydrateGrams": 3.5,
+   "fatGrams": 11.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "mozzarella",
+   "name": "Mozzarella vaccina",
+   "energyKcal": 253,
+   "proteinGrams": 18.7,
+   "carbohydrateGrams": 0.7,
+   "fatGrams": 19.5,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "parmesan",
+   "name": "Parmigiano Reggiano",
+   "energyKcal": 392,
+   "proteinGrams": 33.0,
+   "carbohydrateGrams": 0.0,
+   "fatGrams": 28.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "whey_protein",
+   "name": "Proteine del siero (polvere)",
+   "energyKcal": 380,
+   "proteinGrams": 78.0,
+   "carbohydrateGrams": 7.0,
+   "fatGrams": 5.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "tofu",
+   "name": "Tofu",
+   "energyKcal": 76,
+   "proteinGrams": 8.1,
+   "carbohydrateGrams": 1.9,
+   "fatGrams": 4.8,
+   "fiberGrams": 0.3
+  },
+  {
+   "id": "chickpeas_cooked",
+   "name": "Ceci (cotti)",
+   "energyKcal": 164,
+   "proteinGrams": 8.9,
+   "carbohydrateGrams": 27.0,
+   "fatGrams": 2.6,
+   "fiberGrams": 7.6
+  },
+  {
+   "id": "lentils_cooked",
+   "name": "Lenticchie (cotte)",
+   "energyKcal": 116,
+   "proteinGrams": 9.0,
+   "carbohydrateGrams": 20.0,
+   "fatGrams": 0.4,
+   "fiberGrams": 7.9
+  },
+  {
+   "id": "beans_cooked",
+   "name": "Fagioli borlotti (cotti)",
+   "energyKcal": 127,
+   "proteinGrams": 8.7,
+   "carbohydrateGrams": 22.8,
+   "fatGrams": 0.5,
+   "fiberGrams": 6.4
+  },
+  {
+   "id": "peas_frozen",
+   "name": "Piselli surgelati",
+   "energyKcal": 77,
+   "proteinGrams": 5.4,
+   "carbohydrateGrams": 12.0,
+   "fatGrams": 0.4,
+   "fiberGrams": 5.0
+  },
+  {
+   "id": "olive_oil",
+   "name": "Olio extravergine d'oliva",
+   "energyKcal": 899,
+   "proteinGrams": 0.0,
+   "carbohydrateGrams": 0.0,
+   "fatGrams": 99.9,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "butter",
+   "name": "Burro",
+   "energyKcal": 717,
+   "proteinGrams": 0.9,
+   "carbohydrateGrams": 0.1,
+   "fatGrams": 81.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "almonds",
+   "name": "Mandorle",
+   "energyKcal": 579,
+   "proteinGrams": 21.0,
+   "carbohydrateGrams": 9.5,
+   "fatGrams": 50.0,
+   "fiberGrams": 12.5
+  },
+  {
+   "id": "walnuts",
+   "name": "Noci",
+   "energyKcal": 654,
+   "proteinGrams": 15.0,
+   "carbohydrateGrams": 7.0,
+   "fatGrams": 65.0,
+   "fiberGrams": 6.7
+  },
+  {
+   "id": "peanut_butter",
+   "name": "Burro d'arachidi",
+   "energyKcal": 588,
+   "proteinGrams": 25.0,
+   "carbohydrateGrams": 16.0,
+   "fatGrams": 50.0,
+   "fiberGrams": 6.0
+  },
+  {
+   "id": "dark_chocolate_70",
+   "name": "Cioccolato fondente 70%",
+   "energyKcal": 598,
+   "proteinGrams": 7.8,
+   "carbohydrateGrams": 34.0,
+   "fatGrams": 43.0,
+   "fiberGrams": 11.0
+  },
+  {
+   "id": "apple",
+   "name": "Mela",
+   "energyKcal": 52,
+   "proteinGrams": 0.3,
+   "carbohydrateGrams": 12.0,
+   "fatGrams": 0.2,
+   "fiberGrams": 2.4
+  },
+  {
+   "id": "banana",
+   "name": "Banana",
+   "energyKcal": 89,
+   "proteinGrams": 1.1,
+   "carbohydrateGrams": 20.0,
+   "fatGrams": 0.3,
+   "fiberGrams": 2.6
+  },
+  {
+   "id": "orange",
+   "name": "Arancia",
+   "energyKcal": 47,
+   "proteinGrams": 0.9,
+   "carbohydrateGrams": 9.0,
+   "fatGrams": 0.1,
+   "fiberGrams": 2.4
+  },
+  {
+   "id": "strawberries",
+   "name": "Fragole",
+   "energyKcal": 32,
+   "proteinGrams": 0.7,
+   "carbohydrateGrams": 5.5,
+   "fatGrams": 0.3,
+   "fiberGrams": 2.0
+  },
+  {
+   "id": "blueberries",
+   "name": "Mirtilli",
+   "energyKcal": 57,
+   "proteinGrams": 0.7,
+   "carbohydrateGrams": 12.0,
+   "fatGrams": 0.3,
+   "fiberGrams": 2.4
+  },
+  {
+   "id": "kiwi",
+   "name": "Kiwi",
+   "energyKcal": 61,
+   "proteinGrams": 1.1,
+   "carbohydrateGrams": 12.0,
+   "fatGrams": 0.5,
+   "fiberGrams": 3.0
+  },
+  {
+   "id": "pear",
+   "name": "Pera",
+   "energyKcal": 57,
+   "proteinGrams": 0.4,
+   "carbohydrateGrams": 13.0,
+   "fatGrams": 0.1,
+   "fiberGrams": 3.1
+  },
+  {
+   "id": "grapes",
+   "name": "Uva",
+   "energyKcal": 69,
+   "proteinGrams": 0.7,
+   "carbohydrateGrams": 16.0,
+   "fatGrams": 0.2,
+   "fiberGrams": 0.9
+  },
+  {
+   "id": "dates_dried",
+   "name": "Datteri secchi",
+   "energyKcal": 282,
+   "proteinGrams": 2.5,
+   "carbohydrateGrams": 63.0,
+   "fatGrams": 0.4,
+   "fiberGrams": 8.0
+  },
+  {
+   "id": "tomato",
+   "name": "Pomodoro",
+   "energyKcal": 18,
+   "proteinGrams": 0.9,
+   "carbohydrateGrams": 3.0,
+   "fatGrams": 0.2,
+   "fiberGrams": 1.2
+  },
+  {
+   "id": "tomato_passata",
+   "name": "Passata di pomodoro",
+   "energyKcal": 30,
+   "proteinGrams": 1.4,
+   "carbohydrateGrams": 5.0,
+   "fatGrams": 0.2,
+   "fiberGrams": 1.5
+  },
+  {
+   "id": "lettuce",
+   "name": "Lattuga",
+   "energyKcal": 15,
+   "proteinGrams": 1.4,
+   "carbohydrateGrams": 2.0,
+   "fatGrams": 0.2,
+   "fiberGrams": 1.3
+  },
+  {
+   "id": "spinach",
+   "name": "Spinaci",
+   "energyKcal": 23,
+   "proteinGrams": 2.9,
+   "carbohydrateGrams": 1.4,
+   "fatGrams": 0.4,
+   "fiberGrams": 2.2
+  },
+  {
+   "id": "broccoli",
+   "name": "Broccoli",
+   "energyKcal": 34,
+   "proteinGrams": 2.8,
+   "carbohydrateGrams": 4.5,
+   "fatGrams": 0.4,
+   "fiberGrams": 2.6
+  },
+  {
+   "id": "zucchini",
+   "name": "Zucchine",
+   "energyKcal": 17,
+   "proteinGrams": 1.2,
+   "carbohydrateGrams": 2.1,
+   "fatGrams": 0.3,
+   "fiberGrams": 1.0
+  },
+  {
+   "id": "carrot",
+   "name": "Carote",
+   "energyKcal": 41,
+   "proteinGrams": 0.9,
+   "carbohydrateGrams": 7.6,
+   "fatGrams": 0.2,
+   "fiberGrams": 2.8
+  },
+  {
+   "id": "bell_pepper",
+   "name": "Peperoni",
+   "energyKcal": 26,
+   "proteinGrams": 1.0,
+   "carbohydrateGrams": 4.6,
+   "fatGrams": 0.3,
+   "fiberGrams": 2.1
+  },
+  {
+   "id": "eggplant",
+   "name": "Melanzane",
+   "energyKcal": 25,
+   "proteinGrams": 1.0,
+   "carbohydrateGrams": 3.5,
+   "fatGrams": 0.2,
+   "fiberGrams": 3.0
+  },
+  {
+   "id": "onion",
+   "name": "Cipolla",
+   "energyKcal": 40,
+   "proteinGrams": 1.1,
+   "carbohydrateGrams": 8.0,
+   "fatGrams": 0.1,
+   "fiberGrams": 1.7
+  },
+  {
+   "id": "mushrooms",
+   "name": "Funghi champignon",
+   "energyKcal": 22,
+   "proteinGrams": 3.1,
+   "carbohydrateGrams": 1.0,
+   "fatGrams": 0.3,
+   "fiberGrams": 1.0
+  },
+  {
+   "id": "avocado",
+   "name": "Avocado",
+   "energyKcal": 160,
+   "proteinGrams": 2.0,
+   "carbohydrateGrams": 1.8,
+   "fatGrams": 14.7,
+   "fiberGrams": 6.7
+  },
+  {
+   "id": "pizza_margherita",
+   "name": "Pizza margherita",
+   "energyKcal": 254,
+   "proteinGrams": 11.0,
+   "carbohydrateGrams": 32.0,
+   "fatGrams": 9.0,
+   "fiberGrams": 2.0
+  },
+  {
+   "id": "honey",
+   "name": "Miele",
+   "energyKcal": 304,
+   "proteinGrams": 0.3,
+   "carbohydrateGrams": 82.0,
+   "fatGrams": 0.0,
+   "fiberGrams": 0.2
+  },
+  {
+   "id": "sugar",
+   "name": "Zucchero",
+   "energyKcal": 400,
+   "proteinGrams": 0.0,
+   "carbohydrateGrams": 100.0,
+   "fatGrams": 0.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "jam",
+   "name": "Marmellata",
+   "energyKcal": 250,
+   "proteinGrams": 0.4,
+   "carbohydrateGrams": 61.0,
+   "fatGrams": 0.1,
+   "fiberGrams": 1.0
+  },
+  {
+   "id": "rice_cakes",
+   "name": "Gallette di riso",
+   "energyKcal": 387,
+   "proteinGrams": 8.0,
+   "carbohydrateGrams": 81.0,
+   "fatGrams": 2.8,
+   "fiberGrams": 4.2
+  },
+  {
+   "id": "crackers",
+   "name": "Cracker",
+   "energyKcal": 428,
+   "proteinGrams": 9.4,
+   "carbohydrateGrams": 70.0,
+   "fatGrams": 11.0,
+   "fiberGrams": 3.0
+  },
+  {
+   "id": "granola",
+   "name": "Muesli croccante",
+   "energyKcal": 450,
+   "proteinGrams": 10.0,
+   "carbohydrateGrams": 64.0,
+   "fatGrams": 16.0,
+   "fiberGrams": 7.0
+  },
+  {
+   "id": "orange_juice",
+   "name": "Succo d'arancia",
+   "energyKcal": 45,
+   "proteinGrams": 0.7,
+   "carbohydrateGrams": 10.4,
+   "fatGrams": 0.2,
+   "fiberGrams": 0.2
+  },
+  {
+   "id": "beer",
+   "name": "Birra",
+   "energyKcal": 43,
+   "proteinGrams": 0.5,
+   "carbohydrateGrams": 3.6,
+   "fatGrams": 0.0,
+   "fiberGrams": 0.0
+  },
+  {
+   "id": "wine_red",
+   "name": "Vino rosso",
+   "energyKcal": 85,
+   "proteinGrams": 0.1,
+   "carbohydrateGrams": 2.6,
+   "fatGrams": 0.0,
+   "fiberGrams": 0.0
+  }
+ ]
+}

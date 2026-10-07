@@ -1,4 +1,5 @@
 import DesignSystem
+import Food
 import Persistence
 import SwiftUI
 
@@ -10,11 +11,17 @@ public struct AppServices {
     public let health: HealthImporter?
     /// Programma e sessioni di allenamento (M8).
     public let training: TrainingPlanService?
+    /// Diario alimentare, target e ricerca alimenti (M9).
+    public let nutrition: NutritionPlanService?
+    public let foodSearch: FoodSearch?
 
-    public init(onboarding: OnboardingRepository?, health: HealthImporter? = nil, training: TrainingPlanService? = nil) {
+    public init(onboarding: OnboardingRepository?, health: HealthImporter? = nil, training: TrainingPlanService? = nil,
+                nutrition: NutritionPlanService? = nil, foodSearch: FoodSearch? = nil) {
         self.onboarding = onboarding
         self.health = health
         self.training = training
+        self.nutrition = nutrition
+        self.foodSearch = foodSearch
     }
 }
 
@@ -41,7 +48,8 @@ public struct AppRootView: View {
             if services.onboarding == nil {
                 StartupErrorView()
             } else {
-                RootView(router: router, training: services.training)
+                RootView(router: router, training: services.training, nutrition: services.nutrition,
+                         foodSearch: services.foodSearch)
                     .fullScreenCover(isPresented: $router.isOnboardingPresented) {
                         if let onboarding {
                             OnboardingView(model: onboarding)

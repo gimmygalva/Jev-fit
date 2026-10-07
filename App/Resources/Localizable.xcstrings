@@ -4,13 +4,25 @@
     "%": {
       "extractionState": "manual"
     },
+    "+": {
+      "extractionState": "manual"
+    },
     "Addome": {
       "extractionState": "manual"
     },
     "Adduttori": {
       "extractionState": "manual"
     },
+    "Aggiungi": {
+      "extractionState": "manual"
+    },
+    "Aggiungi alimento": {
+      "extractionState": "manual"
+    },
     "Aggiungi serie": {
+      "extractionState": "manual"
+    },
+    "Aggiunta rapida": {
       "extractionState": "manual"
     },
     "Allenamenti": {
@@ -76,6 +88,9 @@
     "Bilanciere EZ": {
       "extractionState": "manual"
     },
+    "Calorie": {
+      "extractionState": "manual"
+    },
     "Calorie e macro": {
       "extractionState": "manual"
     },
@@ -88,6 +103,9 @@
     "Cambia obiettivo": {
       "extractionState": "manual"
     },
+    "Carboidrati": {
+      "extractionState": "manual"
+    },
     "Carichi in crescita sui fondamentali, calorie di mantenimento": {
       "extractionState": "manual"
     },
@@ -97,6 +115,12 @@
     "Caviglia": {
       "extractionState": "manual"
     },
+    "Cerca": {
+      "extractionState": "manual"
+    },
+    "Cerca un alimento": {
+      "extractionState": "manual"
+    },
     "Che attrezzatura hai?": {
       "extractionState": "manual"
     },
@@ -104,6 +128,9 @@
       "extractionState": "manual"
     },
     "Chiudi e riapri JEV FIT. Se il problema continua, controlla lo spazio libero sull'iPhone.": {
+      "extractionState": "manual"
+    },
+    "Codice a barre": {
       "extractionState": "manual"
     },
     "Collo": {
@@ -131,6 +158,9 @@
       "extractionState": "manual"
     },
     "Controlla le scelte: potrai cambiarle nelle impostazioni.": {
+      "extractionState": "manual"
+    },
+    "Copia il giorno precedente": {
       "extractionState": "manual"
     },
     "Corpo": {
@@ -226,6 +256,9 @@
     "Gio": {
       "extractionState": "manual"
     },
+    "Giornata completa": {
+      "extractionState": "manual"
+    },
     "Giorni a settimana": {
       "extractionState": "manual"
     },
@@ -235,6 +268,12 @@
     "Giorno del check-in": {
       "extractionState": "manual"
     },
+    "Giorno precedente": {
+      "extractionState": "manual"
+    },
+    "Giorno successivo": {
+      "extractionState": "manual"
+    },
     "Giovedì": {
       "extractionState": "manual"
     },
@@ -242,6 +281,12 @@
       "extractionState": "manual"
     },
     "Gomito": {
+      "extractionState": "manual"
+    },
+    "Grammi": {
+      "extractionState": "manual"
+    },
+    "Grassi": {
       "extractionState": "manual"
     },
     "Hai fastidi o limitazioni?": {
@@ -466,6 +511,9 @@
     "Peso": {
       "extractionState": "manual"
     },
+    "Peso di oggi (kg)": {
+      "extractionState": "manual"
+    },
     "Peso obiettivo": {
       "extractionState": "manual"
     },
@@ -487,6 +535,9 @@
     "Principiante": {
       "extractionState": "manual"
     },
+    "Prodotto non trovato: cercalo per nome o usa l'aggiunta rapida.": {
+      "extractionState": "manual"
+    },
     "Progressi": {
       "comment": "Titolo della tab Progressi (Features/RootView).",
       "extractionState": "manual",
@@ -500,6 +551,9 @@
       }
     },
     "Prossima sessione": {
+      "extractionState": "manual"
+    },
+    "Proteine": {
       "extractionState": "manual"
     },
     "Puoi cambiarlo quando vuoi.": {
@@ -550,6 +604,9 @@
     "Restano sul tuo iPhone finché non attivi la sincronizzazione.": {
       "extractionState": "manual"
     },
+    "Ricette": {
+      "extractionState": "manual"
+    },
     "Ricomposizione": {
       "extractionState": "manual"
     },
@@ -568,7 +625,13 @@
     "Salta": {
       "extractionState": "manual"
     },
+    "Salva": {
+      "extractionState": "manual"
+    },
     "Sbarra": {
+      "extractionState": "manual"
+    },
+    "Scansiona": {
       "extractionState": "manual"
     },
     "Scegli tu la ripartizione tra carboidrati e grassi, le proteine restano protette": {
@@ -634,6 +697,9 @@
     "Trap bar": {
       "extractionState": "manual"
     },
+    "Trend": {
+      "extractionState": "manual"
+    },
     "Tricipiti": {
       "extractionState": "manual"
     },
@@ -650,6 +716,9 @@
       "extractionState": "manual"
     },
     "Valore non valido: controlla carico, ripetizioni e RIR.": {
+      "extractionState": "manual"
+    },
+    "Variazione settimanale": {
       "extractionState": "manual"
     },
     "Ven": {
@@ -671,6 +740,12 @@
       "extractionState": "manual"
     },
     "cm": {
+      "extractionState": "manual"
+    },
+    "g": {
+      "extractionState": "manual"
+    },
+    "kcal": {
       "extractionState": "manual"
     },
     "kg": {

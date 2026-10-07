@@ -57,7 +57,8 @@ let package = Package(
             dependencies: [
                 .product(name: "JevCore", package: "JevEngines"),
                 .product(name: "JevDomain", package: "JevEngines"),
-            ]
+            ],
+            resources: [.copy("Resources/foods.json")]
         ),
         .target(
             name: "DesignSystem",
@@ -89,7 +90,10 @@ let package = Package(
                 .product(name: "JevDomain", package: "JevEngines"),
             ]
         ),
-        .testTarget(name: "FoodTests", dependencies: ["Food"]),
+        .testTarget(
+            name: "FoodTests",
+            dependencies: ["Food", .product(name: "JevDomain", package: "JevEngines")]
+        ),
         .testTarget(
             name: "HealthTests",
             dependencies: [
@@ -105,6 +109,9 @@ let package = Package(
                 "Health",
                 .product(name: "JevCore", package: "JevEngines"),
                 .product(name: "JevDomain", package: "JevEngines"),
+                .product(name: "WorkoutEngine", package: "JevEngines"),
+                .product(name: "NutritionEngine", package: "JevEngines"),
+                .product(name: "ExerciseCatalog", package: "JevEngines"),
             ]
         ),
     ]

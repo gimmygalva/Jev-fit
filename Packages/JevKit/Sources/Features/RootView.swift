@@ -1,4 +1,5 @@
 import DesignSystem
+import Food
 import SwiftUI
 
 /// Radice dell'interfaccia: `TabView` con le 5 tab di SCREEN_MAP §1.
@@ -12,10 +13,15 @@ import SwiftUI
 public struct RootView: View {
     @Bindable private var router: AppRouter
     private let training: TrainingPlanService?
+    private let nutrition: NutritionPlanService?
+    private let foodSearch: FoodSearch?
 
-    public init(router: AppRouter = AppRouter(), training: TrainingPlanService? = nil) {
+    public init(router: AppRouter = AppRouter(), training: TrainingPlanService? = nil,
+                nutrition: NutritionPlanService? = nil, foodSearch: FoodSearch? = nil) {
         self.router = router
         self.training = training
+        self.nutrition = nutrition
+        self.foodSearch = foodSearch
     }
 
     public var body: some View {
@@ -32,7 +38,11 @@ public struct RootView: View {
                 }
             }
             Tab("Nutrizione", systemImage: "fork.knife", value: RootTab.nutrition) {
-                PlaceholderTabView(title: "Nutrizione", systemImage: "fork.knife", identifier: "tab.nutrition")
+                if let nutrition, let foodSearch {
+                    NutritionTabView(service: nutrition, search: foodSearch)
+                } else {
+                    PlaceholderTabView(title: "Nutrizione", systemImage: "fork.knife", identifier: "tab.nutrition")
+                }
             }
             Tab("Corpo", systemImage: "figure.arms.open", value: RootTab.body) {
                 PlaceholderTabView(title: "Corpo", systemImage: "figure.arms.open", identifier: "tab.body")
