@@ -152,14 +152,14 @@ public struct TemplateAIProvider: AIProvider {
 
     static func compose(_ request: CoachRequest) -> CoachDraft {
         if let message = request.userMessage, let alert = SafetyFilter.alerts(in: message).first {
-            return CoachDraft(headline: "Prima la salute", body: safetyReplies[alert] ?? "", why: [], dataUsed: [])
+            return CoachDraft(headline: "Prima la salute", body: Self.safetyReplies[alert] ?? "", why: [], dataUsed: [])
         }
-        let sentences = request.reasonCodes.compactMap { sentences[$0] }
-        let headline = sentences.first ?? "Il tuo piano è aggiornato."
+        let lines = request.reasonCodes.compactMap { Self.sentences[$0] }
+        let headline = lines.first ?? "Il tuo piano è aggiornato."
         let factLines = request.facts.prefix(4).map { "\($0.label): {{fact:\($0.id)}}" }
         return CoachDraft(
             headline: headline,
-            body: sentences.dropFirst().joined(separator: " "),
+            body: lines.dropFirst().joined(separator: " "),
             why: factLines,
             dataUsed: request.facts.prefix(4).map(\.id)
         )
