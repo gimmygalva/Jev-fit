@@ -1,13 +1,13 @@
 # PROJECT_STATE — JEV FIT
 
 Memoria condivisa del team. Ogni agente la legge prima di iniziare e il CTO la aggiorna a ogni milestone.
-Ultimo aggiornamento: 2026-10-06 (seconda sessione) · Agent 00 (CTO)
+Ultimo aggiornamento: 2026-10-07 (seconda sessione) · Agent 00 (CTO)
 
 ## Current phase
-**M1 chiusa · M2 chiusa, compreso il progetto Supabase remoto.**
-- M1: CI verde sul branch `claude/amazing-gauss-oo5oga`, run 37502690931 (4 job). Unica correzione necessaria: un'espressione di test che bloccava il type-checker.
-- M2: CI verde, run 37508884578 (5 job, compreso il nuovo `db-tests`). 27 test Swift di Persistence; 486 asserzioni pgTAP eseguite sia su Postgres con shim sia su Supabase locale vero.
-- Progetto Supabase `jev-fit` creato il 2026-10-06 (`eu-central-1`, piano Free, ref `xyseraszquglsfcffwny`) con `v001` applicata. Advisor di sicurezza senza segnalazioni; smoke test RLS sul remoto superato. Dettagli e impostazioni da fare nella dashboard in `docs/BACKEND.md`.
+**M1, M2, M3 chiuse.** Prossima: M4 (WorkoutEngine + catalogo esercizi), in parallelo M5 (NutritionEngine) e M7 (HealthKit).
+- M1: CI verde, run 37502690931.
+- M2: CI verde, run 37508884578; progetto Supabase `jev-fit` (UE) creato e migrato (`docs/BACKEND.md`).
+- M3: CI verde, run 37550632510 (5 job). Onboarding completo che salva profilo, obiettivo, impostazioni, preferenze, limitazioni e prima pesata; deep link `jevfit://` verso le 5 tab; test UI del percorso completo.
 
 ## Completed features / deliverable
 | Deliverable | Autore | Stato |
@@ -30,9 +30,18 @@ Ultimo aggiornamento: 2026-10-06 (seconda sessione) · Agent 00 (CTO)
 | GRDB `v001_initial` (SQL come risorsa): fatti, locali, derivati, outbox con trigger e `revision`, FK differite; cache HealthKit `h001` in file separato escluso dal backup | Agent 03 | ✔ CI |
 | Record Swift **generati** dallo schema (`tools/codegen/generate_records.py`), `FactRepository`, `OutboxRepository`, `HealthCacheStore` + 27 test | Agent 03 | ✔ CI |
 | Controlli CI: parità schema locale/cloud (`schema-parity.py`), record generati aggiornati (`--check`) | Agent 13 | ✔ CI |
+| Progetto Supabase `jev-fit` (eu-central-1, Free) con `v001`; advisor di sicurezza senza segnalazioni; smoke test RLS sul remoto | Agent 03 / 12 | ✔ |
+| **M3** DesignSystem: palette Instrument light/dark, tipografia, pulsante 56 pt, card, selection card, chip, avanzamento, avvisi | Agent 02 | ✔ CI |
+| `GoalSafety` (JevDomain): gate età/gravidanza/BMI, limiti e default del ritmo, settimane all'obiettivo; soglie in `EngineConfig.safety` | Agent 06 / 00 | ✔ CI (coverage gate JevDomain) |
+| `SplitSuggestion` (WorkoutEngine): split dai giorni con motivo | Agent 04 | ✔ CI |
+| Onboarding: bozza salvata a ogni step (`schema_meta`), `OnboardingRepository.complete` transazionale, `OnboardingModel`, 14 step | Agent 02 / 03 | ✔ CI |
+| Navigazione: `AppRouter`, `DeepLink` (in attesa durante l'onboarding), cover non chiudibile, `AppContainer` con DB su disco o in memoria (test UI) | Agent 02 | ✔ CI |
+| String Catalog sincronizzato con le stringhe dei package (`tools/l10n/sync_strings.py`, controllo in CI) | Agent 13 | ✔ CI |
 
 ## Known bugs
 Nessuno noto. Limiti verificati e accettati:
+- onboarding M3, differenze dichiarate dalla spec: mancano SCR-ONB-10 (esercizi preferiti/esclusi, arriva con il catalogo in M4) e SCR-ONB-15/16 (permessi Salute e notifiche, M7); il riepilogo finale (SCR-ONB-17) mostra le scelte ma non ancora calorie, macro e sessioni (arrivano con M4/M5); altezza solo in cm (ft-in con le impostazioni unità); nessuna card JEV (M11);
+- le tab oltre l'onboarding sono ancora segnaposto: si riempiono da M8 in poi;
 - la Data Protection dei file DB (SEC-LS-01) si verifica solo su dispositivo: sul simulatore il test controlla solo l'inclusione/esclusione dal backup;
 - `markConflict` non conserva il codice d'errore nel DB (l'outbox ha solo un codice per le righe ancora in coda): lo registrerà la sync nel log tecnico (M12).
 
@@ -57,7 +66,7 @@ Tre livelli con "numeri solo dagli engine" · engine Swift puri in package local
 - ~~Versionare `Package.resolved`~~ (fatto). `SWIFT_TREAT_WARNINGS_AS_ERRORS`: rimandato a M3, dopo aver letto i warning attuali nei log CI (Agent 13).
 - Le action `checkout@v4`, `cache@v4`, `upload-artifact@v4`, `setup-cli@v1` girano su Node 20, deprecato da GitHub: aggiornarle (Agent 13, M3).
 - ~~M2 (Agent 03): `user_consent`, `health_metric_daily` separato, Data Protection~~ (fatto).
-- M3: collegare `DataStore`/`HealthCacheStore` all'`AppContainer` (apertura su disco, schermata d'errore se il DB non si apre) e salvare l'onboarding con `FactRepository`.
+- ~~M3: `DataStore` nell'`AppContainer` e onboarding salvato~~ (fatto). `HealthCacheStore` si collega in M7 con HealthKit.
 - M12: motore di sync secondo DATA_MODEL §5 (push dall'outbox, pull con finestra di sovrapposizione, adozione dei singleton su 23505, regole di merge anche lato client).
 - M11 (Agent 09): segnaposto `{{label:id}}` per i nomi scritti dall'utente o da terzi (estensione ADR-014). Nel CoachContext il peso entra solo come direzione e fascia, senza valore.
 - Nuova Edge Function `account-delete`: richiede un nuovo Sign in with Apple e revoca i token Apple.
@@ -65,6 +74,9 @@ Tre livelli con "numeri solo dagli engine" · engine Swift puri in package local
 - Incertezze che solo la CI può risolvere: nome dello scheme di JevKit, versione di Xcode sul runner, identificatore di accessibilità della TabView, prodotti `Auth`/`PostgREST`/`Functions` di supabase-swift, `DatabaseWriter` Sendable in GRDB 7.
 
 ## Next tasks
-- **M3 / Fase 4**, Agent 02: design system, navigazione 5 tab, onboarding collegato al DB (`FactRepository`), deep link.
-- In parallelo (piano §6): Agent 04 (WorkoutEngine + catalogo ~150 esercizi), Agent 06 (NutritionEngine + Monte Carlo), Agent 08 (HealthKit, scrive in `HealthCacheStore`).
-- Nota di processo: in questa sessione la review di milestone (Agent 11) è stata fatta dal CTO senza un agente separato. È rimasta adversariale: ogni test pgTAP e il controllo di parità sono stati verificati introducendo difetti apposta.
+- **M4 / Fase 5**, Agent 04: WorkoutEngine (generazione programma per tutti gli split, ExerciseScore, progressive overload, e1RM, plateau) + catalogo di ~150 esercizi originali; coverage ≥ 90% (aggiungere WorkoutEngine ed ExerciseCatalog a `coverage-targets.txt`). Poi lo step SCR-ONB-10 e i numeri del programma in SCR-ONB-17.
+- **M5**, Agent 06: NutritionEngine (BMR/TDEE, target, macro, calorie cycling, test Monte Carlo); poi calorie e macro in SCR-ONB-17.
+- **M7**, Agent 08: HealthKit + `HealthCacheStore`; step SCR-ONB-15.
+- Agent 13: aggiornare le action su Node 20; valutare `SWIFT_TREAT_WARNINGS_AS_ERRORS` (oggi c'è un solo avviso noto, già corretto).
+- Utente: impostazioni manuali di Supabase in `docs/BACKEND.md` (nessuna urgente prima di M12).
+- Nota di processo: anche per M3 la review (Agent 11) l'ha fatta il CTO senza un agente separato.
