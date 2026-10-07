@@ -4,10 +4,15 @@ Memoria condivisa del team. Ogni agente la legge prima di iniziare e il CTO la a
 Ultimo aggiornamento: 2026-10-07 (seconda sessione) · Agent 00 (CTO)
 
 ## Current phase
-**M1, M2, M3 chiuse.** Prossima: M4 (WorkoutEngine + catalogo esercizi), in parallelo M5 (NutritionEngine) e M7 (HealthKit).
+**M1–M8 chiuse con CI verde.** In verifica: M9 (food logger) e M10 (Oggi, Corpo, Progressi). Poi M11 (JEV), M12, M13.
 - M1: CI verde, run 37502690931.
 - M2: CI verde, run 37508884578; progetto Supabase `jev-fit` (UE) creato e migrato (`docs/BACKEND.md`).
 - M3: CI verde, run 37550632510 (5 job). Onboarding completo che salva profilo, obiettivo, impostazioni, preferenze, limitazioni e prima pesata; deep link `jevfit://` verso le 5 tab; test UI del percorso completo.
+- M4: CI verde, run 37559158163 (5 job). WorkoutEngine + catalogo di 149 esercizi; coverage gate 90% su WorkoutEngine ed ExerciseCatalog; generazione deterministica per tutti gli split (test di proprietà su molti profili).
+- M5: CI verde, run 37560536651. NutritionEngine; Monte Carlo su 500 seed nei test (mediana e 90° percentile dell'errore TDEE entro le soglie del §5.2, anche con il 20% di giorni mancanti); coverage gate 90%.
+- M6: CI verde, run 37560536651. Recupero muscolare e JEV READINESS; readiness valida con soli dati iPhone (test); coverage gate 90%.
+- M7: CI verde, run 37560536651. HealthKit reale + sorgente simulata (permessi concessi/negati/parziali), cache esclusa dal backup, import idempotente delle pesate. **Resta la checklist su iPhone fisico (`docs/HEALTHKIT_CHECKLIST.md`), a cura dell'utente.**
+- M8: CI verde, run 37560536651. Workout live salvato a ogni serie (sopravvive al kill, test con repository riaperto), riepilogo con record, storico, overload integrato (regola 2 verificata tra due sessioni).
 
 ## Completed features / deliverable
 | Deliverable | Autore | Stato |
@@ -37,11 +42,17 @@ Ultimo aggiornamento: 2026-10-07 (seconda sessione) · Agent 00 (CTO)
 | Onboarding: bozza salvata a ogni step (`schema_meta`), `OnboardingRepository.complete` transazionale, `OnboardingModel`, 14 step | Agent 02 / 03 | ✔ CI |
 | Navigazione: `AppRouter`, `DeepLink` (in attesa durante l'onboarding), cover non chiudibile, `AppContainer` con DB su disco o in memoria (test UI) | Agent 02 | ✔ CI |
 | String Catalog sincronizzato con le stringhe dei package (`tools/l10n/sync_strings.py`, controllo in CI) | Agent 13 | ✔ CI |
+| **M4** catalogo (149 esercizi, generatore + controllo CI), filtro di Kalman livello+pendenza, e1RM, overload (regole 0–9), ExerciseScore, generatore di programma, plateau e record | Agent 04 | ✔ CI |
+| **M5** BMR/prior, trend del peso, TDEE adattiva [M, E], target con floor e gate, calorie cycling, aggiustamento settimanale, macro AUTO/ASSISTED/MANUAL | Agent 06 | ✔ CI |
+| **M6** fatica muscolare con tolleranza cronica e τ per taglia/età, tempo al pronto, adattamento di u_m; readiness con pesi rinormalizzati | Agent 05 | ✔ CI |
+| **M7** `HealthKitDataSource`, `MockHealthDataSource`, `HealthAggregator`, `HealthImporter`, permessi dopo l'onboarding | Agent 08 | ✔ CI (device: checklist utente) |
+| **M8** `WorkoutRepository`, `TrainingPlanService`, `WorkoutLiveModel`, tab Allenamento | Agent 02 / 04 | ✔ CI |
 
 ## Known bugs
 Nessuno noto. Limiti verificati e accettati:
 - onboarding M3, differenze dichiarate dalla spec: mancano SCR-ONB-10 (esercizi preferiti/esclusi, arriva con il catalogo in M4) e SCR-ONB-15/16 (permessi Salute e notifiche, M7); il riepilogo finale (SCR-ONB-17) mostra le scelte ma non ancora calorie, macro e sessioni (arrivano con M4/M5); altezza solo in cm (ft-in con le impostazioni unità); nessuna card JEV (M11);
-- le tab oltre l'onboarding sono ancora segnaposto: si riempiono da M8 in poi;
+- body map: per ora elenco per muscolo con barre di recupero (nessuna silhouette disegnata);
+- camera per il barcode verificabile solo su iPhone fisico; in CI si testa il parsing di Open Food Facts con JSON di esempio;
 - la Data Protection dei file DB (SEC-LS-01) si verifica solo su dispositivo: sul simulatore il test controlla solo l'inclusione/esclusione dal backup;
 - `markConflict` non conserva il codice d'errore nel DB (l'outbox ha solo un codice per le righe ancora in coda): lo registrerà la sync nel log tecnico (M12).
 
@@ -74,9 +85,7 @@ Tre livelli con "numeri solo dagli engine" · engine Swift puri in package local
 - Incertezze che solo la CI può risolvere: nome dello scheme di JevKit, versione di Xcode sul runner, identificatore di accessibilità della TabView, prodotti `Auth`/`PostgREST`/`Functions` di supabase-swift, `DatabaseWriter` Sendable in GRDB 7.
 
 ## Next tasks
-- **M4 / Fase 5**, Agent 04: WorkoutEngine (generazione programma per tutti gli split, ExerciseScore, progressive overload, e1RM, plateau) + catalogo di ~150 esercizi originali; coverage ≥ 90% (aggiungere WorkoutEngine ed ExerciseCatalog a `coverage-targets.txt`). Poi lo step SCR-ONB-10 e i numeri del programma in SCR-ONB-17.
-- **M5**, Agent 06: NutritionEngine (BMR/TDEE, target, macro, calorie cycling, test Monte Carlo); poi calorie e macro in SCR-ONB-17.
-- **M7**, Agent 08: HealthKit + `HealthCacheStore`; step SCR-ONB-15.
-- Agent 13: aggiornare le action su Node 20; valutare `SWIFT_TREAT_WARNINGS_AS_ERRORS` (oggi c'è un solo avviso noto, già corretto).
-- Utente: impostazioni manuali di Supabase in `docs/BACKEND.md` (nessuna urgente prima di M12).
-- Nota di processo: anche per M3 la review (Agent 11) l'ha fatta il CTO senza un agente separato.
+- Verifica CI di M9 e M10, poi **M11** (JEV: CoachKit, gateway Edge Function, check-in settimanale), **M12** (QA distruttivo, security, sync), **M13** (release candidate).
+- Utente: checklist HealthKit su iPhone fisico (`docs/HEALTHKIT_CHECKLIST.md`); impostazioni manuali di Supabase in `docs/BACKEND.md`.
+- Agent 13: aggiornare le action su Node 20; valutare `SWIFT_TREAT_WARNINGS_AS_ERRORS`.
+- Nota di processo: la review (Agent 11) di M4–M10 l'ha fatta il CTO senza un agente separato; i bug trovati in CI (timeout del type-checker, reps fuori range, pavimento dello score, record di ripetizioni) sono stati corretti con test.
