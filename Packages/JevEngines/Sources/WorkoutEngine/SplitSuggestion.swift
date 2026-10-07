@@ -26,7 +26,7 @@ public enum SplitSuggestion {
         case .fullBody: 1...4
         case .upperLower: 2...4
         case .torsoLimbs: 2...4
-        case .pushPullLegs: 3...6
+        case .pushPullLegs: 3...7
         case .hybrid: 5...6
         case .custom: 1...7
         }
