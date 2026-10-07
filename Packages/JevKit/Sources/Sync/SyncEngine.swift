@@ -127,21 +127,22 @@ public struct SyncEngine: Sendable {
         let server: R = try Self.decode(serverRow, table: R.databaseTableName)
         let table = try Self.quoted(R.databaseTableName)
         try await facts.writer.write { db in
+            // Prima il tombstone locale (solo locale, mai inviato): l'indice "una riga per utente"
+            // ammette una sola riga viva.
+            let now = facts.time.now()
+            try db.execute(sql: "UPDATE \(table) SET deleted_at = ?, sync_state = 'synced' WHERE id = ?",
+                           arguments: [now, local.id])
+            try db.execute(sql: "DELETE FROM outbox WHERE seq = ?", arguments: [entry.seq])
+            try server.save(db)
             if local.updatedAt > server.updatedAt {
                 // I campi locali sono più recenti: vanno sulla riga del server (stesso id) e si inviano.
                 var merged = try Self.jsonObject(local)
                 merged["id"] = server.id.uuidString
                 merged["created_at"] = try Self.jsonObject(server)["created_at"]
+                merged["deleted_at"] = nil
                 let adopted: R = try Self.decode(merged, table: R.databaseTableName, fromRemote: false)
-                try server.save(db)
                 try facts.save(adopted, in: db)
-            } else {
-                try server.save(db)
             }
-            let now = facts.time.now()
-            try db.execute(sql: "UPDATE \(table) SET deleted_at = ?, sync_state = 'synced' WHERE id = ?",
-                           arguments: [now, local.id])
-            try db.execute(sql: "DELETE FROM outbox WHERE seq = ?", arguments: [entry.seq])
         }
         return .adopted
     }
