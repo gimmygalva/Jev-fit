@@ -34,7 +34,7 @@ struct AccountServiceTests {
     let tokenJSON = Data(#"{"access_token":"new-access","refresh_token":"new-refresh","expires_in":3600,"user":{"id":"u1"}}"#.utf8)
 
     @Test("Configurazione: solo chiavi pubblicabili; senza Info.plist nessun backend")
-    func config() {
+    func missingConfig() {
         #expect(BackendConfig.fromBundle(Bundle(for: StubProtocol.self)) == nil)
     }
 
