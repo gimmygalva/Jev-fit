@@ -14,7 +14,11 @@ public struct NutritionPlanService: Sendable {
     }
 
     public struct Targets: Sendable, Equatable {
+        /// Target in vigore: l'ultimo accettato (check-in o manuale) oppure quello dell'engine.
         public var kcal: Double
+        /// Target calcolato oggi dall'engine (proposta per il prossimo check-in).
+        public var engineKcal: Double
+        public var floorKcal: Double
         public var macros: MacroPlanner.Macros
         public var expenditureKcal: Double
         public var expenditureConfidence: Double
@@ -68,10 +72,12 @@ public struct NutritionPlanService: Sendable {
         )
         let reference = MacroPlanner.referenceWeightKg(trendWeightKg: weight, heightCm: profile.heightCm,
                                                        bodyFatKnown: false, config: config)
-        let macros = MacroPlanner.auto(kcal: target.kcal, goal: goalType, referenceWeightKg: reference, config: config)
+        let accepted = try CheckInRepository(facts: facts).activeTarget(on: day)?.weeklyAvgKcal
+        let kcal = accepted.map { max($0, target.floorKcal) } ?? target.kcal
+        let macros = MacroPlanner.auto(kcal: kcal, goal: goalType, referenceWeightKg: reference, config: config)
         let confidence = estimate?.confidence ?? 0
         return Targets(
-            kcal: target.kcal, macros: macros, expenditureKcal: expenditure, expenditureConfidence: confidence,
+            kcal: kcal, engineKcal: target.kcal, floorKcal: target.floorKcal, macros: macros, expenditureKcal: expenditure, expenditureConfidence: confidence,
             confidenceLabel: estimate?.label ?? config.confidence.label(for: confidence), bmrKcal: bmr,
             ratePercentPerWeek: target.ratePercentPerWeek, floorApplied: target.floorApplied, trend: trend,
             currentWeightKg: weight

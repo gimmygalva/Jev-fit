@@ -39,6 +39,7 @@ let package = Package(
             name: "Sync",
             dependencies: [
                 "Persistence",
+                .product(name: "CoachKit", package: "JevEngines"),
                 // Solo i moduli necessari (SECURITY.md §16): niente Realtime/Storage.
                 .product(name: "Auth", package: "supabase-swift"),
                 .product(name: "PostgREST", package: "supabase-swift"),
@@ -112,6 +113,8 @@ let package = Package(
                 .product(name: "WorkoutEngine", package: "JevEngines"),
                 .product(name: "NutritionEngine", package: "JevEngines"),
                 .product(name: "RecoveryEngine", package: "JevEngines"),
+                .product(name: "CheckInEngine", package: "JevEngines"),
+                .product(name: "CoachKit", package: "JevEngines"),
                 .product(name: "ExerciseCatalog", package: "JevEngines"),
             ]
         ),

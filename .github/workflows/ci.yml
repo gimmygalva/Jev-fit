@@ -269,6 +269,18 @@ jobs:
       - name: supabase test db
         run: supabase test db --workdir backend
 
+      # 3) Gateway di JEV (Edge Function): type check e test delle regole di grounding.
+      - name: Installa Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Gateway JEV · type check e test
+        working-directory: backend/supabase/functions/coach
+        run: |
+          deno check index.ts
+          deno test grounding_test.ts
+
   secrets-scan:
     name: Secrets scan
     runs-on: ubuntu-latest

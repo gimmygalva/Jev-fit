@@ -16,10 +16,14 @@ public struct AppServices {
     public let foodSearch: FoodSearch?
     /// Oggi, Corpo e Progressi (M10).
     public let dashboard: DashboardService?
+    /// Weekly check-in e JEV (M11).
+    public let checkIn: CheckInService?
 
     public init(onboarding: OnboardingRepository?, health: HealthImporter? = nil, training: TrainingPlanService? = nil,
-                nutrition: NutritionPlanService? = nil, foodSearch: FoodSearch? = nil, dashboard: DashboardService? = nil) {
+                nutrition: NutritionPlanService? = nil, foodSearch: FoodSearch? = nil, dashboard: DashboardService? = nil,
+                checkIn: CheckInService? = nil) {
         self.dashboard = dashboard
+        self.checkIn = checkIn
         self.onboarding = onboarding
         self.health = health
         self.training = training
@@ -52,7 +56,8 @@ public struct AppRootView: View {
                 StartupErrorView()
             } else {
                 RootView(router: router, training: services.training, nutrition: services.nutrition,
-                         foodSearch: services.foodSearch, dashboard: services.dashboard)
+                         foodSearch: services.foodSearch, dashboard: services.dashboard,
+                         checkIn: services.checkIn)
                     .fullScreenCover(isPresented: $router.isOnboardingPresented) {
                         if let onboarding {
                             OnboardingView(model: onboarding)

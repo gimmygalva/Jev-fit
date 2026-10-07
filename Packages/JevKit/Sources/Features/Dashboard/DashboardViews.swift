@@ -9,13 +9,16 @@ import SwiftUI
 /// Tab "Oggi" (SCR-HM-01): JEV READINESS con confidence, prossimo allenamento, nutrizione del giorno.
 public struct TodayTabView: View {
     let service: DashboardService
+    let checkIn: CheckInService?
+    @State private var showCheckIn = false
     @State private var readiness: Readiness.Result?
     @State private var next: TrainingPlanService.NextSession?
     @State private var targets: NutritionPlanService.Targets?
     @State private var eaten: Double = 0
 
-    public init(service: DashboardService) {
+    public init(service: DashboardService, checkIn: CheckInService? = nil) {
         self.service = service
+        self.checkIn = checkIn
     }
 
     public var body: some View {
@@ -46,8 +49,17 @@ public struct TodayTabView: View {
                         Text("Registra un allenamento o un check per calcolare JEV READINESS.")
                             .foregroundStyle(JevColor.textSecondary)
                     }
+                    if let checkIn {
+                        JevTodayCard(coach: checkIn.coach, readiness: readiness?.score)
+                    }
                 } header: {
                     Text("JEV READINESS")
+                }
+                if checkIn != nil {
+                    Section {
+                        Button("Avvia il check-in settimanale") { showCheckIn = true }
+                            .accessibilityIdentifier("today.checkin")
+                    }
                 }
                 Section {
                     if let next {
@@ -80,6 +92,11 @@ public struct TodayTabView: View {
             .accessibilityIdentifier("tab.today")
             .task { reload() }
             .refreshable { reload() }
+            .sheet(isPresented: $showCheckIn, onDismiss: reload) {
+                if let checkIn {
+                    CheckInView(service: checkIn) { showCheckIn = false }
+                }
+            }
         }
     }
 

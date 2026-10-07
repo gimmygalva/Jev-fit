@@ -48,7 +48,7 @@ let package = Package(
         .testTarget(name: "WorkoutEngineTests", dependencies: ["WorkoutEngine", "JevDomain", "JevCore", "ExerciseCatalog"]),
         .testTarget(name: "NutritionEngineTests", dependencies: ["NutritionEngine", "JevDomain", "JevCore"]),
         .testTarget(name: "RecoveryEngineTests", dependencies: ["RecoveryEngine", "JevDomain", "JevCore", "ExerciseCatalog"]),
-        .testTarget(name: "CheckInEngineTests", dependencies: ["CheckInEngine"]),
-        .testTarget(name: "CoachKitTests", dependencies: ["CoachKit"]),
+        .testTarget(name: "CheckInEngineTests", dependencies: ["CheckInEngine", "JevDomain"]),
+        .testTarget(name: "CoachKitTests", dependencies: ["CoachKit", "CheckInEngine", "JevDomain"]),
     ]
 )

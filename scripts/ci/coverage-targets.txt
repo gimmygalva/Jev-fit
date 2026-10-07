@@ -12,3 +12,5 @@ WorkoutEngine 90
 ExerciseCatalog 90
 NutritionEngine 90
 RecoveryEngine 90
+CheckInEngine 90
+CoachKit 90

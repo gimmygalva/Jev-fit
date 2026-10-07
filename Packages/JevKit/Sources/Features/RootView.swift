@@ -16,10 +16,12 @@ public struct RootView: View {
     private let nutrition: NutritionPlanService?
     private let foodSearch: FoodSearch?
     private let dashboard: DashboardService?
+    private let checkIn: CheckInService?
 
     public init(router: AppRouter = AppRouter(), training: TrainingPlanService? = nil,
                 nutrition: NutritionPlanService? = nil, foodSearch: FoodSearch? = nil,
-                dashboard: DashboardService? = nil) {
+                dashboard: DashboardService? = nil, checkIn: CheckInService? = nil) {
+        self.checkIn = checkIn
         self.router = router
         self.training = training
         self.nutrition = nutrition
@@ -32,7 +34,7 @@ public struct RootView: View {
         TabView(selection: $router.selectedTab) {
             Tab("Oggi", systemImage: "sun.max", value: RootTab.today) {
                 if let dashboard {
-                    TodayTabView(service: dashboard)
+                    TodayTabView(service: dashboard, checkIn: checkIn)
                 } else {
                     PlaceholderTabView(title: "Oggi", systemImage: "sun.max", identifier: "tab.today")
                 }

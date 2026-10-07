@@ -7,7 +7,7 @@ import WorkoutEngine
 /// CheckInEngine — decisioni settimanali con priorità e isteresi (piano §5.10). Owner: Agent 00 + 09.
 /// Unico responsabile della progressione del volume tra le settimane di programma (QA-11).
 public enum CheckInEngineInfo {
-    public static let algorithmVersion = 0
+    public static let algorithmVersion = 1
 
     /// Versioni degli engine da cui dipendono le metriche del check-in: salvate nello snapshot
     /// `weekly_check_in.engine_version` per rendere ogni decisione riproducibile.

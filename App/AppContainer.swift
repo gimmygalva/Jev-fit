@@ -1,3 +1,4 @@
+import CoachKit
 import Features
 import Food
 import Foundation
@@ -55,6 +56,10 @@ final class AppContainer {
         )
     }
 
+    /// JEV online passa dal gateway solo con account e consenso `ai_online` (M12): fino ad allora
+    /// i testi di JEV vengono dai template offline, con gli stessi fatti e le stesse decisioni.
+    var coachProvider: (any AIProvider)? { nil }
+
     static func makeHealthSource(mock: Bool) -> any HealthDataSource {
         if mock {
             let data = MockHealthDataSource.demoData(now: Date(), days: 42, timeZone: .current)
@@ -76,7 +81,8 @@ final class AppContainer {
         let dashboard = training.map { DashboardService(training: $0, nutrition: nutrition, healthCache: healthCache) }
         return AppServices(
             onboarding: OnboardingRepository(store: store), health: health, training: training,
-            nutrition: nutrition, foodSearch: FoodSearch(providers: providers), dashboard: dashboard
+            nutrition: nutrition, foodSearch: FoodSearch(providers: providers), dashboard: dashboard,
+            checkIn: dashboard.map { CheckInService(dashboard: $0, coach: CoachService(provider: coachProvider)) }
         )
     }
 }

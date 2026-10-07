@@ -291,6 +291,7 @@ public struct WorkoutRepository: Sendable {
         public var weightKg: Double?
         public var reps: Int?
         public var rir: Double?
+        public var painLevel: PainLevel = .none
     }
 
     /// Serie eseguite da `since` (sessioni completate o in corso), in ordine di tempo.
@@ -298,7 +299,8 @@ public struct WorkoutRepository: Sendable {
         try facts.writer.read { db in
             let rows = try Row.fetchAll(db, sql: """
                 SELECT ss.id AS session_id, e.exercise_key AS exercise_key, w.completed_at AS completed_at,
-                       ss.day_key AS day_key, w.set_type AS set_type, w.weight_kg AS weight_kg, w.reps AS reps, w.rir AS rir
+                       ss.day_key AS day_key, w.set_type AS set_type, w.weight_kg AS weight_kg, w.reps AS reps, w.rir AS rir,
+                       w.pain_level AS pain_level
                 FROM workout_set w
                 JOIN workout_exercise e ON e.id = w.workout_exercise_id
                 JOIN workout_session ss ON ss.id = e.session_id
@@ -311,7 +313,7 @@ public struct WorkoutRepository: Sendable {
                 CompletedSet(
                     sessionID: row["session_id"], exerciseKey: row["exercise_key"], date: row["completed_at"],
                     dayKey: row["day_key"], setType: row["set_type"], weightKg: row["weight_kg"], reps: row["reps"],
-                    rir: row["rir"]
+                    rir: row["rir"], painLevel: row["pain_level"]
                 )
             }
         }

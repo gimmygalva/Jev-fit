@@ -88,6 +88,8 @@ targets:
         product: JevCore
       - package: JevEngines
         product: JevDomain
+      - package: JevEngines
+        product: CoachKit
     info:
       path: App/Info.plist
       properties:

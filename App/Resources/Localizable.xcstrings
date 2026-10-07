@@ -7,6 +7,12 @@
     "+": {
       "extractionState": "manual"
     },
+    "Abbiamo rilevato un segnale di sicurezza: il piano è stato reso più prudente. Se qualcosa non ti torna, parlane con un professionista.": {
+      "extractionState": "manual"
+    },
+    "Accetta": {
+      "extractionState": "manual"
+    },
     "Addome": {
       "extractionState": "manual"
     },
@@ -85,6 +91,9 @@
     "Avanzato": {
       "extractionState": "manual"
     },
+    "Avvia il check-in settimanale": {
+      "extractionState": "manual"
+    },
     "Bicipiti": {
       "extractionState": "manual"
     },
@@ -128,6 +137,9 @@
       "extractionState": "manual"
     },
     "Che attrezzatura hai?": {
+      "extractionState": "manual"
+    },
+    "Check-in settimanale": {
       "extractionState": "manual"
     },
     "Chiudi": {
@@ -191,6 +203,9 @@
       "extractionState": "manual"
     },
     "Da quanto ti alleni?": {
+      "extractionState": "manual"
+    },
+    "Decisioni": {
       "extractionState": "manual"
     },
     "Deficit moderato, proteine alte, volume mantenuto": {
@@ -361,6 +376,9 @@
     "Ipertrofia": {
       "extractionState": "manual"
     },
+    "JEV": {
+      "extractionState": "manual"
+    },
     "JEV FIT non è pensata per chi ha meno di 16 anni.": {
       "extractionState": "manual"
     },
@@ -517,6 +535,9 @@
     "Parallele": {
       "extractionState": "manual"
     },
+    "Perché": {
+      "extractionState": "manual"
+    },
     "Perché serve?": {
       "extractionState": "manual"
     },
@@ -637,6 +658,9 @@
     "Ricomposizione": {
       "extractionState": "manual"
     },
+    "Rifiuta": {
+      "extractionState": "manual"
+    },
     "Riprendi l'allenamento in corso": {
       "extractionState": "manual"
     },
@@ -670,6 +694,9 @@
     "Scegli un'opzione per continuare.": {
       "extractionState": "manual"
     },
+    "Se hai dubbi sulla tua salute, consulta un medico.": {
+      "extractionState": "manual"
+    },
     "Sedentario": {
       "extractionState": "manual"
     },
@@ -686,6 +713,9 @@
       "extractionState": "manual"
     },
     "Serve solo per stimare il metabolismo basale iniziale. Se preferisci non indicarlo usiamo una formula neutra e la stima si corregge con i tuoi dati in 2–3 settimane.": {
+      "extractionState": "manual"
+    },
+    "Servono il profilo e almeno una pesata per il check-in.": {
       "extractionState": "manual"
     },
     "Sesso biologico": {

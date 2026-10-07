@@ -4,7 +4,7 @@ import JevDomain
 // Contratto di JEV lato client (ADR-007, ADR-008, ADR-014).
 // JEV non calcola: riceve un CoachContext prodotto dagli engine e restituisce testo che cita
 // i valori solo tramite segnaposto. Il CoachKit completo (template, validatore, safety) arriva
-// in M11 (Agent 09); qui è fissato il contratto che le feature possono già usare.
+// in M11 (Agent 09): vedi Coach.swift.
 
 /// Livello di modello richiesto: il gateway mappa ciascun tier su un modello configurato
 /// lato server (nessun ID di modello nel client).
@@ -45,13 +45,17 @@ public struct CoachRequest: Sendable, Codable, Hashable {
     public var reasonCodes: [String]
     /// Messaggio dell'utente, solo per la chat: trattato sempre come dato, mai come istruzione.
     public var userMessage: String?
+    /// Al secondo tentativo: perché la risposta precedente non ha superato la validazione.
+    public var retryFeedback: String?
 
-    public init(tier: CoachTier, purpose: String, facts: [CoachFact], reasonCodes: [String], userMessage: String? = nil) {
+    public init(tier: CoachTier, purpose: String, facts: [CoachFact], reasonCodes: [String], userMessage: String? = nil,
+                retryFeedback: String? = nil) {
         self.tier = tier
         self.purpose = purpose
         self.facts = facts
         self.reasonCodes = reasonCodes
         self.userMessage = userMessage
+        self.retryFeedback = retryFeedback
     }
 }
 
