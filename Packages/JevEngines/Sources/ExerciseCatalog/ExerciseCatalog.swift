@@ -166,10 +166,11 @@ public struct ExerciseCatalog: Sendable {
 
     /// Somiglianza 0…1: stesso schema (0,5) + sovrapposizione dei muscoli primari (Jaccard, 0,5).
     public static func similarity(_ a: CatalogExercise, _ b: CatalogExercise) -> Double {
-        let samePattern = a.pattern == b.pattern ? 0.5 : 0
+        let samePattern: Double = a.pattern == b.pattern ? 0.5 : 0
         let pa = Set(a.primaryMuscles), pb = Set(b.primaryMuscles)
         let union = pa.union(pb).count
-        let jaccard = union == 0 ? 0 : Double(pa.intersection(pb).count) / Double(union)
+        let shared = Double(pa.intersection(pb).count)
+        let jaccard: Double = union == 0 ? 0 : shared / Double(union)
         return samePattern + 0.5 * jaccard
     }
 
@@ -180,10 +181,13 @@ public struct ExerciseCatalog: Sendable {
         let candidates = exercises.filter {
             $0.id != id && !Set($0.primaryMuscles).isDisjoint(with: base.primaryMuscles)
         }
-        return candidates
-            .map { ($0, Self.similarity(base, $0)) }
-            .sorted { $0.1 == $1.1 ? $0.0.id < $1.0.id : $0.1 > $1.1 }
-            .prefix(limit)
-            .map(\.0)
+        let scored: [(exercise: CatalogExercise, score: Double)] = candidates.map { candidate in
+            (exercise: candidate, score: Self.similarity(base, candidate))
+        }
+        let ranked = scored.sorted { (lhs: (exercise: CatalogExercise, score: Double), rhs: (exercise: CatalogExercise, score: Double)) -> Bool in
+            if lhs.score != rhs.score { return lhs.score > rhs.score }
+            return lhs.exercise.id < rhs.exercise.id
+        }
+        return Array(ranked.prefix(limit)).map { $0.exercise }
     }
 }
