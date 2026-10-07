@@ -232,7 +232,7 @@ public enum CheckInEvaluator {
         if let readiness, let recovery, readiness < c.reduceLoadReadinessBelow, recovery < c.reduceLoadRecoveryBelow {
             result.append(Decision(type: .reduceTrainingLoad, setsChangeFraction: -c.trainingLoadSetChangeFraction,
                                    reasonCodes: ["checkin.training.reduce"], factsUsed: ["readiness_7d", "recovery_avg"]))
-        } else if let readiness, let recovery, let adherence, readiness >= c.increaseLoadReadinessFrom,
+        } else if let readiness, let recovery, let adherence = m.adherence, readiness >= c.increaseLoadReadinessFrom,
                   adherence >= c.increaseLoadAdherenceFrom, recovery >= c.increaseLoadRecoveryFrom, m.progressionPositive {
             result.append(Decision(type: .increaseTrainingLoad, setsChangeFraction: c.trainingLoadSetChangeFraction,
                                    reasonCodes: ["checkin.training.increase"],
