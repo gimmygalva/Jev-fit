@@ -72,7 +72,8 @@ public struct PostgRESTSyncRemote: SyncRemote {
         if let since { items.append(URLQueryItem(name: "server_updated_at", value: "gt.\(SyncDate.format(since))")) }
         components?.queryItems = items
         // "+" del fuso orario va codificato, altrimenti diventa uno spazio.
-        components?.percentEncodedQuery = components?.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
+        let encoded = components?.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
+        components?.percentEncodedQuery = encoded
         guard let url = components?.url else { throw SyncRemoteError.permanent("url") }
         let data = try await send(try await request(url, method: "GET"))
         return ((try? JSONSerialization.jsonObject(with: data)) as? [[String: Any]]) ?? []

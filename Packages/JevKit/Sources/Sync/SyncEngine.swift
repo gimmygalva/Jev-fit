@@ -92,7 +92,7 @@ public struct SyncEngine: Sendable {
     enum PushOutcome { case pushed, failed, conflict, adopted }
 
     func push<R: SyncedRecord>(_ entry: OutboxEntry, type: R.Type, now: Date) async throws -> PushOutcome {
-        guard let record = try facts.writer.read({ db in try R.fetchOne(db, key: entry.recordId) }) else {
+        guard let record = try await facts.writer.read({ db in try R.fetchOne(db, key: entry.recordId) }) else {
             try outbox.markConflict(entry)
             return .conflict
         }
@@ -126,7 +126,7 @@ public struct SyncEngine: Sendable {
         }
         let server: R = try Self.decode(serverRow, table: R.databaseTableName)
         let table = try Self.quoted(R.databaseTableName)
-        try facts.writer.write { db in
+        try await facts.writer.write { db in
             if local.updatedAt > server.updatedAt {
                 // I campi locali sono più recenti: vanno sulla riga del server (stesso id) e si inviano.
                 var merged = try Self.jsonObject(local)
@@ -169,7 +169,7 @@ public struct SyncEngine: Sendable {
             let records: [R] = try rows.map { try Self.decode($0, table: table) }
             let pageMax = records.compactMap(\.serverUpdatedAt).max()
             let previous = cursor
-            applied += try facts.writer.write { db -> Int in
+            applied += try await facts.writer.write { db -> Int in
                 var count = 0
                 for remoteRecord in records {
                     if try Self.apply(remoteRecord, db: db) { count += 1 }

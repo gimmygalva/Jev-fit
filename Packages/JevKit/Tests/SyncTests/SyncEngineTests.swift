@@ -254,7 +254,7 @@ struct SyncEngineTests {
         let live = Set(states[0].filter { !$0.value.hasSuffix("true") }.keys.map(\.uuidString))
         #expect(server.liveIDs("weight_entry") == live)
         for repo in facts {
-            let conflicts = try repo.writer.read { db in
+            let conflicts = try await repo.writer.read { db in
                 try WeightEntryRecord.filter(Column("sync_state") == "conflict").fetchCount(db)
             }
             #expect(conflicts == 0)
