@@ -105,6 +105,7 @@ let package = Package(
                 .product(name: "GRDB", package: "GRDB.swift"),
                 .product(name: "JevCore", package: "JevEngines"),
                 .product(name: "JevDomain", package: "JevEngines"),
+                .product(name: "CoachKit", package: "JevEngines"),
             ]
         ),
         .testTarget(

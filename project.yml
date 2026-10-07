@@ -94,6 +94,9 @@ targets:
       path: App/Info.plist
       properties:
         CFBundleDisplayName: JEV FIT
+        # Backend pubblico (SECURITY §3): URL del progetto e chiave pubblicabile, mai segreti.
+        JEVSupabaseURL: https://xyseraszquglsfcffwny.supabase.co
+        JEVSupabasePublishableKey: sb_publishable_IwKGcfZOInJZlAkqFRePWA_hIQzWoIp
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         LSRequiresIPhoneOS: true

@@ -1,6 +1,7 @@
 import DesignSystem
 import Food
 import SwiftUI
+import Sync
 
 /// Radice dell'interfaccia: `TabView` con le 5 tab di SCREEN_MAP §1.
 ///
@@ -17,11 +18,16 @@ public struct RootView: View {
     private let foodSearch: FoodSearch?
     private let dashboard: DashboardService?
     private let checkIn: CheckInService?
+    private let account: AccountService?
+    private let cloudSync: CloudSyncService?
 
     public init(router: AppRouter = AppRouter(), training: TrainingPlanService? = nil,
                 nutrition: NutritionPlanService? = nil, foodSearch: FoodSearch? = nil,
-                dashboard: DashboardService? = nil, checkIn: CheckInService? = nil) {
+                dashboard: DashboardService? = nil, checkIn: CheckInService? = nil,
+                account: AccountService? = nil, cloudSync: CloudSyncService? = nil) {
         self.checkIn = checkIn
+        self.account = account
+        self.cloudSync = cloudSync
         self.router = router
         self.training = training
         self.nutrition = nutrition
@@ -34,7 +40,7 @@ public struct RootView: View {
         TabView(selection: $router.selectedTab) {
             Tab("Oggi", systemImage: "sun.max", value: RootTab.today) {
                 if let dashboard {
-                    TodayTabView(service: dashboard, checkIn: checkIn)
+                    TodayTabView(service: dashboard, checkIn: checkIn, account: account, cloudSync: cloudSync)
                 } else {
                     PlaceholderTabView(title: "Oggi", systemImage: "sun.max", identifier: "tab.today")
                 }

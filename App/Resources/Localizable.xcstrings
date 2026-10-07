@@ -13,6 +13,12 @@
     "Accetta": {
       "extractionState": "manual"
     },
+    "Account": {
+      "extractionState": "manual"
+    },
+    "Account collegato": {
+      "extractionState": "manual"
+    },
     "Addome": {
       "extractionState": "manual"
     },
@@ -169,6 +175,9 @@
     "Con i dati inseriti il dimagrimento non è indicato. Scegli un altro obiettivo.": {
       "extractionState": "manual"
     },
+    "Consensi": {
+      "extractionState": "manual"
+    },
     "Continua": {
       "extractionState": "manual"
     },
@@ -239,6 +248,9 @@
       "extractionState": "manual"
     },
     "Energia": {
+      "extractionState": "manual"
+    },
+    "Esci": {
       "extractionState": "manual"
     },
     "Esperienza": {
@@ -319,6 +331,9 @@
     "Home gym": {
       "extractionState": "manual"
     },
+    "I dati di Salute (sonno, frequenza cardiaca, HRV) non lasciano mai l'iPhone. JEV online riceve solo valori già calcolati, mai dati identificativi.": {
+      "extractionState": "manual"
+    },
     "I tuoi dati": {
       "extractionState": "manual"
     },
@@ -335,6 +350,9 @@
       "extractionState": "manual"
     },
     "Impossibile aprire i dati": {
+      "extractionState": "manual"
+    },
+    "Impostazioni": {
       "extractionState": "manual"
     },
     "Imposti tu tutti i valori; JEV ti avvisa se scendi sotto i minimi": {
@@ -389,6 +407,9 @@
       "extractionState": "manual"
     },
     "JEV calcola calorie e macro e li aggiorna ogni settimana": {
+      "extractionState": "manual"
+    },
+    "JEV online": {
       "extractionState": "manual"
     },
     "JEV, il tuo coach, ti spiega ogni decisione": {
@@ -700,6 +721,9 @@
     "Sedentario": {
       "extractionState": "manual"
     },
+    "Senza account i dati restano solo su questo iPhone.": {
+      "extractionState": "manual"
+    },
     "Senza attrezzatura useremo esercizi a corpo libero.": {
       "extractionState": "manual"
     },
@@ -725,6 +749,12 @@
       "extractionState": "manual"
     },
     "Settimana di scarico: volume e carichi ridotti.": {
+      "extractionState": "manual"
+    },
+    "Sincronizza ora": {
+      "extractionState": "manual"
+    },
+    "Sincronizzazione nel cloud": {
       "extractionState": "manual"
     },
     "Solo manubri": {

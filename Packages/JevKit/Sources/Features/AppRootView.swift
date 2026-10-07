@@ -1,6 +1,7 @@
 import DesignSystem
 import Food
 import Persistence
+import Sync
 import SwiftUI
 
 /// Servizi che le feature ricevono dal composition root (`AppContainer`, ADR-002).
@@ -18,12 +19,17 @@ public struct AppServices {
     public let dashboard: DashboardService?
     /// Weekly check-in e JEV (M11).
     public let checkIn: CheckInService?
+    /// Account, consensi e sync nel cloud (M12); nil se il backend non è configurato.
+    public let account: AccountService?
+    public let cloudSync: CloudSyncService?
 
     public init(onboarding: OnboardingRepository?, health: HealthImporter? = nil, training: TrainingPlanService? = nil,
                 nutrition: NutritionPlanService? = nil, foodSearch: FoodSearch? = nil, dashboard: DashboardService? = nil,
-                checkIn: CheckInService? = nil) {
+                checkIn: CheckInService? = nil, account: AccountService? = nil, cloudSync: CloudSyncService? = nil) {
         self.dashboard = dashboard
         self.checkIn = checkIn
+        self.account = account
+        self.cloudSync = cloudSync
         self.onboarding = onboarding
         self.health = health
         self.training = training
@@ -57,7 +63,7 @@ public struct AppRootView: View {
             } else {
                 RootView(router: router, training: services.training, nutrition: services.nutrition,
                          foodSearch: services.foodSearch, dashboard: services.dashboard,
-                         checkIn: services.checkIn)
+                         checkIn: services.checkIn, account: services.account, cloudSync: services.cloudSync)
                     .fullScreenCover(isPresented: $router.isOnboardingPresented) {
                         if let onboarding {
                             OnboardingView(model: onboarding)
@@ -73,6 +79,8 @@ public struct AppRootView: View {
         .task(id: router.isOnboardingActive) {
             guard !router.isOnboardingActive, let health = services.health else { return }
             await health.refresh()
+            // Sync solo con account e consenso (altrimenti non fa nulla).
+            try? await services.cloudSync?.syncNow()
         }
     }
 }

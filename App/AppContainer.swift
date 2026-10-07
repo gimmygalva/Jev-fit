@@ -4,6 +4,7 @@ import Food
 import Foundation
 import Health
 import Persistence
+import Sync
 
 /// Composition root di JEV FIT (ARCHITECTURE_PLAN §1.3, "DI").
 ///
@@ -46,6 +47,7 @@ final class AppContainer {
             healthCache = try? HealthCacheStore.inMemory()
         }
         healthSource = Self.makeHealthSource(mock: mockHealth || storage == .inMemory)
+        account = storage == .onDisk ? BackendConfig.fromBundle().map { AccountService(config: $0) } : nil
     }
 
     /// Sceglie storage e sorgente Salute dagli argomenti di avvio.
@@ -56,9 +58,17 @@ final class AppContainer {
         )
     }
 
-    /// JEV online passa dal gateway solo con account e consenso `ai_online` (M12): fino ad allora
-    /// i testi di JEV vengono dai template offline, con gli stessi fatti e le stesse decisioni.
-    var coachProvider: (any AIProvider)? { nil }
+    /// JEV online passa dal gateway solo con account e consenso `ai_online` (verificato dal server);
+    /// in ogni altro caso i testi vengono dai template offline, con gli stessi fatti e decisioni.
+    var coachProvider: (any AIProvider)? {
+        guard let account else { return nil }
+        return GatewayAIProvider(projectURL: account.config.projectURL, publishableKey: account.config.publishableKey,
+                                 accessToken: { await account.accessToken() })
+    }
+
+    /// Account e sync: solo se Info.plist contiene URL e chiave pubblicabile del progetto e non
+    /// siamo nei test (database in memoria).
+    let account: AccountService?
 
     static func makeHealthSource(mock: Bool) -> any HealthDataSource {
         if mock {
@@ -82,7 +92,8 @@ final class AppContainer {
         return AppServices(
             onboarding: OnboardingRepository(store: store), health: health, training: training,
             nutrition: nutrition, foodSearch: FoodSearch(providers: providers), dashboard: dashboard,
-            checkIn: dashboard.map { CheckInService(dashboard: $0, coach: CoachService(provider: coachProvider)) }
+            checkIn: dashboard.map { CheckInService(dashboard: $0, coach: CoachService(provider: coachProvider)) },
+            account: account, cloudSync: account.map { CloudSyncService(account: $0, store: store) }
         )
     }
 }

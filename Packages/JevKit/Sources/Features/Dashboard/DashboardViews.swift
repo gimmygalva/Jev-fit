@@ -5,20 +5,26 @@ import JevCore
 import JevDomain
 import RecoveryEngine
 import SwiftUI
+import Sync
 
 /// Tab "Oggi" (SCR-HM-01): JEV READINESS con confidence, prossimo allenamento, nutrizione del giorno.
 public struct TodayTabView: View {
     let service: DashboardService
     let checkIn: CheckInService?
+    let account: AccountService?
+    let cloudSync: CloudSyncService?
     @State private var showCheckIn = false
     @State private var readiness: Readiness.Result?
     @State private var next: TrainingPlanService.NextSession?
     @State private var targets: NutritionPlanService.Targets?
     @State private var eaten: Double = 0
 
-    public init(service: DashboardService, checkIn: CheckInService? = nil) {
+    public init(service: DashboardService, checkIn: CheckInService? = nil, account: AccountService? = nil,
+                cloudSync: CloudSyncService? = nil) {
         self.service = service
         self.checkIn = checkIn
+        self.account = account
+        self.cloudSync = cloudSync
     }
 
     public var body: some View {
@@ -90,6 +96,19 @@ public struct TodayTabView: View {
             }
             .navigationTitle("Oggi")
             .accessibilityIdentifier("tab.today")
+            .toolbar {
+                if let account, let cloudSync {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        NavigationLink {
+                            SettingsView(account: account, sync: cloudSync)
+                        } label: {
+                            Image(systemName: "gearshape")
+                        }
+                        .accessibilityLabel("Impostazioni")
+                        .accessibilityIdentifier("today.settings")
+                    }
+                }
+            }
             .task { reload() }
             .refreshable { reload() }
             .sheet(isPresented: $showCheckIn, onDismiss: reload) {

@@ -43,3 +43,22 @@ Questi punti non si possono configurare dagli strumenti a disposizione di Claude
    - attivare **Apple** quando sarà disponibile l'Apple Developer Program (Services ID, Team ID, Key ID e chiave `.p8`). Serve in M12, prima di TestFlight.
 3. **Piano Free**: un progetto inattivo per circa una settimana viene messo in pausa e si riattiva dalla dashboard; i backup del piano Free sono limitati. Va bene per lo sviluppo. Prima di un uso con dati reali va valutato il piano Pro (backup, nessuna pausa) e vanno riportati nell'informativa i tempi di conservazione reali dei backup (SECURITY §12.6).
 4. **Prima di un uso commerciale**: DPA con Supabase e restrizioni di rete sul database (SEC-DB-11).
+
+## Gateway di JEV (Edge Function `coach`, M11)
+
+Codice in `backend/supabase/functions/coach/` (type check e test Deno in CI). Verifica il JWT dell'utente, richiede il consenso `ai_online` attivo, sceglie il modello per tier e valida la risposta con le stesse regole di grounding del client. Senza configurazione risponde `503` e l'app usa i testi template offline: JEV funziona comunque, solo senza AI online.
+
+Segreti da impostare nella dashboard (**Edge Functions → Secrets**), mai nel repository né nell'app:
+
+| Variabile | Valore |
+|---|---|
+| `COACH_PROVIDER` | `anthropic` (default) oppure `openai` |
+| `COACH_MODEL_ROUTINE` | ID del modello rapido (JEV TODAY) |
+| `COACH_MODEL_ANALYSIS` | ID del modello di reasoning (check-in settimanale) |
+| `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` | chiave del provider scelto |
+
+`SUPABASE_URL` e `SUPABASE_ANON_KEY` sono fornite automaticamente da Supabase alle funzioni. Deploy: `supabase functions deploy coach --project-ref xyseraszquglsfcffwny` (o dalla dashboard).
+
+## App: configurazione pubblica (M12)
+
+`project.yml` scrive in Info.plist `JEVSupabaseURL` e `JEVSupabasePublishableKey` (chiave `sb_publishable_…`, pubblica per definizione). L'account si attiva solo con Sign in with Apple configurato nel punto 2 qui sopra; senza, il pulsante di accesso restituisce un errore gestito e l'app resta interamente locale.

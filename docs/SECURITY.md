@@ -954,3 +954,18 @@ La label deve corrispondere al manifest, all'informativa e al comportamento real
 | R-05 | ARCHITECTURE_PLAN §5.11 / ADR-014 | Il segnaposto copre i numeri ma non i nomi scritti dall'utente o da terzi (vettore di prompt injection) | Estendere con `{{label:<id>}}` (SEC-AI-05) | Agent 09 + CTO |
 | R-06 | ARCHITECTURE_PLAN §3.2 | Mancano `user_consent` e `private.ai_usage`, e l'Edge Function `account-delete` | Aggiungerli al modello dati (§6.6, §7.3, §7.4) | Agent 03 / 09 |
 | R-07 | ARCHITECTURE_PLAN §3.2 | `health_metric_daily` nello stesso file del DB principale finirebbe nel backup iCloud | File separato escluso dal backup (SEC-LS-04) | Agent 03 / 08 |
+
+## Review di sicurezza M12 (2026-10-07, Agent 12 svolto dal CTO)
+
+| Area | Verifica | Esito |
+|---|---|---|
+| Segreti nel client | `scripts/ci/check-secrets.sh` in CI su ogni push (chiavi `sk-`, `sb_secret_`, JWT, service role, PEM). Nel client solo URL e chiave `sb_publishable_`. Le chiavi dei provider AI esistono solo come segreti della Edge Function. | ✔ |
+| Autenticazione | Sign in with Apple con nonce SHA-256; sessione nel Portachiavi `AfterFirstUnlockThisDeviceOnly`, mai in iCloud; refresh automatico; logout cancella la sessione. | ✔ (verifica su device con il provider Apple attivo) |
+| Consensi | `cloud_sync` e `ai_online` solo con gesto esplicito in Impostazioni, revocabili; il server li verifica (RLS per la sync, query nel gateway per JEV). | ✔ |
+| Sync | Solo fatti; push idempotente; errori permanenti → `conflict` mai ritentato; tombstone che vince; nessun DELETE. Test di fault injection su 5 seed: nessun duplicato, convergenza. | ✔ CI |
+| Dati fisiologici | Sonno, FC, HRV solo nella cache locale esclusa dal backup; mai sincronizzati; a JEV arrivano solo punteggi 0–100. | ✔ |
+| JEV | Il gateway non registra i contenuti; richiesta validata (lunghezze, formati); il prompt contiene ID ed etichette dei fatti ma non i valori; risposta validata due volte (server e client); fallback template. | ✔ CI (test Deno + Swift) |
+| Input dell'utente | Messaggi con segnali di allarme → risposte di sicurezza senza AI; contenuti vietati in uscita → fallback. | ✔ |
+| Rete | Open Food Facts riceve solo barcode o testo cercato; nessun identificativo. | ✔ |
+
+Restano aperti (non bloccanti per l'MVP, da chiudere prima di TestFlight): provider Apple nella dashboard Supabase, Edge Function `account-delete` per l'eliminazione dell'account, verifica legale dell'età minima.
