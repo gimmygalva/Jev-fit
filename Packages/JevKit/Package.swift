@@ -39,6 +39,8 @@ let package = Package(
             name: "Sync",
             dependencies: [
                 "Persistence",
+                .product(name: "GRDB", package: "GRDB.swift"),
+                .product(name: "JevCore", package: "JevEngines"),
                 .product(name: "CoachKit", package: "JevEngines"),
                 // Solo i moduli necessari (SECURITY.md §16): niente Realtime/Storage.
                 .product(name: "Auth", package: "supabase-swift"),
@@ -94,6 +96,16 @@ let package = Package(
         .testTarget(
             name: "FoodTests",
             dependencies: ["Food", .product(name: "JevDomain", package: "JevEngines")]
+        ),
+        .testTarget(
+            name: "SyncTests",
+            dependencies: [
+                "Sync",
+                "Persistence",
+                .product(name: "GRDB", package: "GRDB.swift"),
+                .product(name: "JevCore", package: "JevEngines"),
+                .product(name: "JevDomain", package: "JevEngines"),
+            ]
         ),
         .testTarget(
             name: "HealthTests",
