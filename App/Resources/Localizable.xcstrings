@@ -358,6 +358,9 @@
     "Il peso obiettivo è facoltativo: il ritmo guida le calorie.": {
       "extractionState": "manual"
     },
+    "Il target iniziale è una stima: con le pesate e i pasti registrati JEV FIT lo calibra sul tuo dispendio reale.": {
+      "extractionState": "manual"
+    },
     "Il tuo punto di partenza": {
       "extractionState": "manual"
     },
@@ -637,6 +640,9 @@
     "Proteine": {
       "extractionState": "manual"
     },
+    "Proteine · carboidrati · grassi": {
+      "extractionState": "manual"
+    },
     "Puoi cambiarlo quando vuoi.": {
       "extractionState": "manual"
     },
@@ -797,6 +803,9 @@
       "extractionState": "manual"
     },
     "Storico": {
+      "extractionState": "manual"
+    },
+    "Target iniziale": {
       "extractionState": "manual"
     },
     "Termina": {

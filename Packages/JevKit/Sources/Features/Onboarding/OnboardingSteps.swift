@@ -429,9 +429,14 @@ struct SummaryStep: View {
                         SummaryRow(label: "Split", value: Text(suggestion.split.title))
                     }
                     SummaryRow(label: "Calorie e macro", value: Text(draft.macroMode.title))
+                    if let numbers = OnboardingPlanPreview.numbers(draft) {
+                        SummaryRow(label: "Target iniziale", value: Text(verbatim: "\(Int(numbers.kcal.rounded())) kcal"))
+                        SummaryRow(label: "Proteine · carboidrati · grassi",
+                                   value: Text(verbatim: "\(Int(numbers.proteinG)) · \(Int(numbers.carbsG)) · \(Int(numbers.fatG)) g"))
+                    }
                 }
             }
-            Text("Calorie, macro e sessioni del programma vengono calcolati dai motori di JEV FIT a partire da queste scelte.")
+            Text("Il target iniziale è una stima: con le pesate e i pasti registrati JEV FIT lo calibra sul tuo dispendio reale.")
                 .font(JevFont.secondary)
                 .foregroundStyle(JevColor.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)

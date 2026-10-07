@@ -198,3 +198,24 @@ struct OnboardingModelTests {
         #expect(OnboardingModel.format(80.25) == "80,3")
     }
 }
+
+@Suite("Riepilogo dell'onboarding: numeri dal NutritionEngine")
+struct OnboardingPlanPreviewTests {
+    @Test("Target e macro dalle risposte; senza dati nessun numero; deficit vietato ai minorenni")
+    func numbers() throws {
+        var draft = OnboardingDraft()
+        #expect(OnboardingPlanPreview.numbers(draft) == nil)
+        draft.goal = .fatLoss
+        draft.weightKg = 80
+        draft.heightCm = 180
+        draft.ageYears = 30
+        draft.sex = .male
+        draft.targetRatePercentPerWeek = -0.5
+        let adult = try #require(OnboardingPlanPreview.numbers(draft))
+        #expect(adult.kcal == 2320)
+        #expect(adult.proteinG == 176)
+        draft.ageYears = 17
+        let minor = try #require(OnboardingPlanPreview.numbers(draft))
+        #expect(minor.kcal > adult.kcal, "Sotto i diciotto anni niente deficit")
+    }
+}
