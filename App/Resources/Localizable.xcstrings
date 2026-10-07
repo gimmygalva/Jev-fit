@@ -10,6 +10,9 @@
     "Adduttori": {
       "extractionState": "manual"
     },
+    "Aggiungi serie": {
+      "extractionState": "manual"
+    },
     "Allenamenti": {
       "extractionState": "manual"
     },
@@ -97,6 +100,9 @@
     "Che attrezzatura hai?": {
       "extractionState": "manual"
     },
+    "Chiudi": {
+      "extractionState": "manual"
+    },
     "Chiudi e riapri JEV FIT. Se il problema continua, controlla lo spazio libero sull'iPhone.": {
       "extractionState": "manual"
     },
@@ -107,6 +113,12 @@
       "extractionState": "manual"
     },
     "Come vuoi gestire calorie e macro?": {
+      "extractionState": "manual"
+    },
+    "Completa l'onboarding per generare il programma.": {
+      "extractionState": "manual"
+    },
+    "Completa serie": {
       "extractionState": "manual"
     },
     "Con i dati inseriti il dimagrimento non è indicato. Scegli un altro obiettivo.": {
@@ -172,6 +184,9 @@
     "Elastici": {
       "extractionState": "manual"
     },
+    "Elimina": {
+      "extractionState": "manual"
+    },
     "Energia": {
       "extractionState": "manual"
     },
@@ -185,6 +200,9 @@
       "extractionState": "manual"
     },
     "Femorali": {
+      "extractionState": "manual"
+    },
+    "Fine": {
       "extractionState": "manual"
     },
     "Fino a 3 gruppi riceveranno più volume.": {
@@ -269,6 +287,9 @@
       "extractionState": "manual"
     },
     "Inizia ad allenarti": {
+      "extractionState": "manual"
+    },
+    "Inizia allenamento": {
       "extractionState": "manual"
     },
     "Inserisci un peso valido.": {
@@ -376,6 +397,9 @@
     "Muscoli da privilegiare": {
       "extractionState": "manual"
     },
+    "Nessun allenamento completato.": {
+      "extractionState": "manual"
+    },
     "Non indicato": {
       "extractionState": "manual"
     },
@@ -475,6 +499,9 @@
         }
       }
     },
+    "Prossima sessione": {
+      "extractionState": "manual"
+    },
     "Puoi cambiarlo quando vuoi.": {
       "extractionState": "manual"
     },
@@ -511,10 +538,22 @@
     "Questo split non si adatta ai giorni che hai scelto: JEV userà quello consigliato.": {
       "extractionState": "manual"
     },
+    "RIR": {
+      "extractionState": "manual"
+    },
+    "Record personali": {
+      "extractionState": "manual"
+    },
+    "Recupero": {
+      "extractionState": "manual"
+    },
     "Restano sul tuo iPhone finché non attivi la sincronizzazione.": {
       "extractionState": "manual"
     },
     "Ricomposizione": {
+      "extractionState": "manual"
+    },
+    "Riprendi l'allenamento in corso": {
       "extractionState": "manual"
     },
     "Ritmo aggressivo: più difficile preservare massa muscolare.": {
@@ -547,6 +586,12 @@
     "Senza attrezzatura useremo esercizi a corpo libero.": {
       "extractionState": "manual"
     },
+    "Serie di lavoro": {
+      "extractionState": "manual"
+    },
+    "Serie per muscolo": {
+      "extractionState": "manual"
+    },
     "Serve a scegliere ripetizioni e ritmo di progressione.": {
       "extractionState": "manual"
     },
@@ -557,6 +602,9 @@
       "extractionState": "manual"
     },
     "Sesso biologico (facoltativo)": {
+      "extractionState": "manual"
+    },
+    "Settimana di scarico: volume e carichi ridotti.": {
       "extractionState": "manual"
     },
     "Solo manubri": {
@@ -572,6 +620,12 @@
       "extractionState": "manual"
     },
     "Split": {
+      "extractionState": "manual"
+    },
+    "Storico": {
+      "extractionState": "manual"
+    },
+    "Termina": {
       "extractionState": "manual"
     },
     "Torso/Arti": {
@@ -595,10 +649,16 @@
     "Upper/Lower": {
       "extractionState": "manual"
     },
+    "Valore non valido: controlla carico, ripetizioni e RIR.": {
+      "extractionState": "manual"
+    },
     "Ven": {
       "extractionState": "manual"
     },
     "Venerdì": {
+      "extractionState": "manual"
+    },
+    "Volume": {
       "extractionState": "manual"
     },
     "Volume alto e leggero surplus calorico": {
@@ -617,6 +677,12 @@
       "extractionState": "manual"
     },
     "lb": {
+      "extractionState": "manual"
+    },
+    "rip": {
+      "extractionState": "manual"
+    },
+    "sec": {
       "extractionState": "manual"
     }
   },

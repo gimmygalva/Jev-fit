@@ -65,9 +65,9 @@ final class AppContainer {
 
     var services: AppServices {
         guard let store else { return AppServices(onboarding: nil) }
-        let health = healthCache.map {
-            HealthImporter(source: healthSource, cache: $0, facts: FactRepository(store: store))
-        }
-        return AppServices(onboarding: OnboardingRepository(store: store), health: health)
+        let facts = FactRepository(store: store)
+        let health = healthCache.map { HealthImporter(source: healthSource, cache: $0, facts: facts) }
+        let training = TrainingPlanService.bundled(facts: facts)
+        return AppServices(onboarding: OnboardingRepository(store: store), health: health, training: training)
     }
 }

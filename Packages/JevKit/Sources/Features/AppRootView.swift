@@ -8,10 +8,13 @@ public struct AppServices {
     public let onboarding: OnboardingRepository?
     /// Import da Salute; `nil` se il database non è disponibile.
     public let health: HealthImporter?
+    /// Programma e sessioni di allenamento (M8).
+    public let training: TrainingPlanService?
 
-    public init(onboarding: OnboardingRepository?, health: HealthImporter? = nil) {
+    public init(onboarding: OnboardingRepository?, health: HealthImporter? = nil, training: TrainingPlanService? = nil) {
         self.onboarding = onboarding
         self.health = health
+        self.training = training
     }
 }
 
@@ -38,7 +41,7 @@ public struct AppRootView: View {
             if services.onboarding == nil {
                 StartupErrorView()
             } else {
-                RootView(router: router)
+                RootView(router: router, training: services.training)
                     .fullScreenCover(isPresented: $router.isOnboardingPresented) {
                         if let onboarding {
                             OnboardingView(model: onboarding)

@@ -11,9 +11,11 @@ import SwiftUI
 /// I test UI usano gli identificatori di accessibilità, mai i testi.
 public struct RootView: View {
     @Bindable private var router: AppRouter
+    private let training: TrainingPlanService?
 
-    public init(router: AppRouter = AppRouter()) {
+    public init(router: AppRouter = AppRouter(), training: TrainingPlanService? = nil) {
         self.router = router
+        self.training = training
     }
 
     public var body: some View {
@@ -23,7 +25,11 @@ public struct RootView: View {
                 PlaceholderTabView(title: "Oggi", systemImage: "sun.max", identifier: "tab.today")
             }
             Tab("Allenamento", systemImage: "dumbbell", value: RootTab.training) {
-                PlaceholderTabView(title: "Allenamento", systemImage: "dumbbell", identifier: "tab.training")
+                if let training {
+                    TrainingTabView(service: training)
+                } else {
+                    PlaceholderTabView(title: "Allenamento", systemImage: "dumbbell", identifier: "tab.training")
+                }
             }
             Tab("Nutrizione", systemImage: "fork.knife", value: RootTab.nutrition) {
                 PlaceholderTabView(title: "Nutrizione", systemImage: "fork.knife", identifier: "tab.nutrition")
