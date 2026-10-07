@@ -4,7 +4,7 @@ Memoria condivisa del team. Ogni agente la legge prima di iniziare e il CTO la a
 Ultimo aggiornamento: 2026-10-07 (seconda sessione) · Agent 00 (CTO)
 
 ## Current phase
-**M1–M8 chiuse con CI verde.** In verifica: M9 (food logger) e M10 (Oggi, Corpo, Progressi). Poi M11 (JEV), M12, M13.
+**M1–M13 chiuse con CI verde.** Release candidate: la Definition of Done è verificata punto per punto in `docs/RELEASE_CHECKLIST.md`. Restano le verifiche su iPhone fisico e la configurazione della dashboard (vedi Next tasks).
 - M1: CI verde, run 37502690931.
 - M2: CI verde, run 37508884578; progetto Supabase `jev-fit` (UE) creato e migrato (`docs/BACKEND.md`).
 - M3: CI verde, run 37550632510 (5 job). Onboarding completo che salva profilo, obiettivo, impostazioni, preferenze, limitazioni e prima pesata; deep link `jevfit://` verso le 5 tab; test UI del percorso completo.
@@ -12,6 +12,8 @@ Ultimo aggiornamento: 2026-10-07 (seconda sessione) · Agent 00 (CTO)
 - M5: CI verde, run 37560536651. NutritionEngine; Monte Carlo su 500 seed nei test (mediana e 90° percentile dell'errore TDEE entro le soglie del §5.2, anche con il 20% di giorni mancanti); coverage gate 90%.
 - M6: CI verde, run 37560536651. Recupero muscolare e JEV READINESS; readiness valida con soli dati iPhone (test); coverage gate 90%.
 - M7: CI verde, run 37560536651. HealthKit reale + sorgente simulata (permessi concessi/negati/parziali), cache esclusa dal backup, import idempotente delle pesate. **Resta la checklist su iPhone fisico (`docs/HEALTHKIT_CHECKLIST.md`), a cura dell'utente.**
+- M9, M10: CI verde, run 37579988952. Food logger offline (80 alimenti, Open Food Facts, barcode, ricette, copia ieri), target e trend del peso; Oggi (readiness), Corpo (recupero per muscolo), Progressi (15 grafici).
+- M11, M12, M13: CI verde, run 37584457988 (5 job, incluso il gateway Deno). CheckInEngine + CoachKit (grounding, safety, fallback), Edge Function `coach`, check-in end-to-end; motore di sync con fault injection, account (Sign in with Apple), consensi, impostazioni; review di sicurezza; checklist della release.
 - M8: CI verde, run 37560536651. Workout live salvato a ogni serie (sopravvive al kill, test con repository riaperto), riepilogo con record, storico, overload integrato (regola 2 verificata tra due sessioni).
 
 ## Completed features / deliverable
@@ -47,6 +49,11 @@ Ultimo aggiornamento: 2026-10-07 (seconda sessione) · Agent 00 (CTO)
 | **M6** fatica muscolare con tolleranza cronica e τ per taglia/età, tempo al pronto, adattamento di u_m; readiness con pesi rinormalizzati | Agent 05 | ✔ CI |
 | **M7** `HealthKitDataSource`, `MockHealthDataSource`, `HealthAggregator`, `HealthImporter`, permessi dopo l'onboarding | Agent 08 | ✔ CI (device: checklist utente) |
 | **M8** `WorkoutRepository`, `TrainingPlanService`, `WorkoutLiveModel`, tab Allenamento | Agent 02 / 04 | ✔ CI |
+| **M9** `LocalFoodProvider`, `OpenFoodFactsProvider`, `FoodSearch`, `NutritionLogRepository`, `NutritionPlanService`, tab Nutrizione | Agent 07 | ✔ CI |
+| **M10** `DashboardService`, tab Oggi, Corpo, Progressi | Agent 10 / 05 | ✔ CI |
+| **M11** `CheckInEvaluator`, `GroundingValidator`, `SafetyFilter`, `TemplateAIProvider`, `CoachService`, Edge Function `coach`, `CheckInService`, `GatewayAIProvider` | Agent 09 | ✔ CI |
+| **M12** `SyncEngine`, `PostgRESTSyncRemote`, `AccountService`, `CloudSyncService`, Impostazioni, review di sicurezza | Agent 03 / 12 | ✔ CI |
+| **M13** `docs/RELEASE_CHECKLIST.md` (DoD), `actions/checkout@v5` | Agent 13 | ✔ |
 
 ## Known bugs
 Nessuno noto. Limiti verificati e accettati:
@@ -85,7 +92,6 @@ Tre livelli con "numeri solo dagli engine" · engine Swift puri in package local
 - Incertezze che solo la CI può risolvere: nome dello scheme di JevKit, versione di Xcode sul runner, identificatore di accessibilità della TabView, prodotti `Auth`/`PostgREST`/`Functions` di supabase-swift, `DatabaseWriter` Sendable in GRDB 7.
 
 ## Next tasks
-- Verifica CI di M9 e M10, poi **M11** (JEV: CoachKit, gateway Edge Function, check-in settimanale), **M12** (QA distruttivo, security, sync), **M13** (release candidate).
-- Utente: checklist HealthKit su iPhone fisico (`docs/HEALTHKIT_CHECKLIST.md`); impostazioni manuali di Supabase in `docs/BACKEND.md`.
-- Agent 13: aggiornare le action su Node 20; valutare `SWIFT_TREAT_WARNINGS_AS_ERRORS`.
-- Nota di processo: la review (Agent 11) di M4–M10 l'ha fatta il CTO senza un agente separato; i bug trovati in CI (timeout del type-checker, reps fuori range, pavimento dello score, record di ripetizioni) sono stati corretti con test.
+- **Utente (prima di TestFlight)**: firma e App ID (`docs/SIGNING.md`); in Supabase provider Apple e 2FA; deploy della Edge Function `coach` con i segreti dei modelli (`docs/BACKEND.md`); checklist HealthKit su iPhone (`docs/HEALTHKIT_CHECKLIST.md`); AppIcon originale.
+- Prossimo lavoro di sviluppo (post-RC): Edge Function `account-delete` (richiesta da Apple con il login), applicazione automatica delle decisioni di allenamento accettate nel check-in (oggi salvate, solo le calorie diventano il nuovo target), body map disegnata, chat libera con JEV, aggiornare `actions/cache` e `upload-artifact` a Node 24.
+- Nota di processo: le review (Agent 11/12) di M4–M13 le ha fatte il CTO; ogni errore trovato in CI è stato corretto con un test.
