@@ -198,7 +198,9 @@ public enum ExerciseScoring {
             let value = pair.1.isFinite ? pair.1 : eps
             return sum + pair.0 / total * log(RobustStatistics.clamp(value, eps...1))
         }
-        return RobustStatistics.clamp(exp(logSum), eps...1)
+        let value = exp(logSum)
+        // exp(log(ε)) può superare ε di un ulp: al pavimento si restituisce ε esatto.
+        return value - eps < 1e-12 ? eps : min(value, 1)
     }
 
     public static func score(_ e: CatalogExercise, profile: TrainingProfile, context: ScoringContext = .init(),

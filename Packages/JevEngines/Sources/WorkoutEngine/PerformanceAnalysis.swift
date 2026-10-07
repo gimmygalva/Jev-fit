@@ -80,8 +80,10 @@ public enum PerformanceAnalysis {
         let previous = history.dropLast().flatMap { $0.sets.filter(\.isWorking) }
         for set in last.sets.filter(\.isWorking) {
             guard let reps = set.reps, let load = set.loadKg else { continue }
-            let best = previous.filter { ($0.loadKg ?? -1) >= load }.compactMap(\.reps).max() ?? 0
-            if !previous.isEmpty && reps > best { return true }
+            // Serve un confronto a parità (o più) di carico: un carico mai usato è progresso di
+            // carico, già misurato dalla pendenza, non un record di ripetizioni.
+            guard let best = previous.filter({ ($0.loadKg ?? -1) >= load }).compactMap(\.reps).max() else { continue }
+            if reps > best { return true }
         }
         return false
     }

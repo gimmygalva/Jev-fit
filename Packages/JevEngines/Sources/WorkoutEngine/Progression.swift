@@ -79,8 +79,10 @@ public enum Progression {
         let underperformed = underperformingSets >= 2
 
         func decision(_ action: Action, _ rule: Int, load nextLoad: Double?, reps nextReps: Int, _ code: String) -> Decision {
-            Decision(action: action, rule: rule, nextLoadKg: nextLoad, nextReps: nextReps, nextDurationSeconds: nil,
-                     underperformed: underperformed, reasonCode: "overload.\(code)")
+            // Il target di ripetizioni resta sempre dentro il range prescritto.
+            let reps = min(max(nextReps, lo), hi)
+            return Decision(action: action, rule: rule, nextLoadKg: nextLoad, nextReps: reps, nextDurationSeconds: nil,
+                            underperformed: underperformed, reasonCode: "overload.\(code)")
         }
 
         // 0 — dolore non letto o deload: niente aumenti.
