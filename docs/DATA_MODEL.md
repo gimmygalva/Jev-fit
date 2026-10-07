@@ -65,7 +65,7 @@ Rispetto alla sintesi del piano (§3.2) cambiano solo i nomi: `exercise` (custom
 - `food_cache`: prodotti Open Food Facts / USDA già visti, unici per `(source, source_id)`. È contenuto di terzi non fidato (nomi solo come `{{label:id}}` verso l'AI).
 - `ai_conversation`, `ai_message`: chat con JEV, solo sul dispositivo nell'MVP.
 - Derivati (`weight_trend_daily`, `performance_record`, `exercise_trend`, `personal_record`, `muscle_recovery`, `readiness_entry`, `daily_nutrition`, `energy_expenditure`): ogni riga ha `engine_version` e `computed_at`. Quando cambia `EngineConfig.version` le tabelle si svuotano e si ricalcolano (ADR-005, ADR-013). Gli esercizi sono identificati da `exercise_ref`, che vale la chiave del catalogo oppure `custom:<uuid>`.
-- `outbox` (§5.2), `sync_cursor` (ultimo `server_updated_at` letto per tabella), `schema_meta` (`device_id`, `engine_version`, `local_owner_user_id`).
+- `outbox` (§5.2), `sync_cursor` (ultimo `server_updated_at` letto per tabella), `schema_meta` (`device_id`, `engine_version`, `local_owner_user_id`, `onboarding_draft` (bozza JSON salvata a ogni step, cancellata al completamento), `onboarding_completed_at`).
 - `health_metric_daily`: in `HealthCache/health-cache.sqlite`, cartella esclusa dal backup (SEC-LS-04).
 
 ## 3. Convenzioni

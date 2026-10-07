@@ -267,3 +267,6 @@ jobs:
 
       - name: Cerca segreti nei file tracciati
         run: bash scripts/ci/check-secrets.sh
+
+      - name: String Catalog allineato all'interfaccia (ADR-015)
+        run: python3 tools/l10n/sync_strings.py --check

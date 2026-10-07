@@ -1,78 +1,624 @@
 {
-  "sourceLanguage" : "it",
-  "strings" : {
-    "Allenamento" : {
-      "comment" : "Titolo della tab Allenamento (Features/RootView).",
-      "extractionState" : "manual",
-      "localizations" : {
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Allenamento"
+  "sourceLanguage": "it",
+  "strings": {
+    "%": {
+      "extractionState": "manual"
+    },
+    "Addome": {
+      "extractionState": "manual"
+    },
+    "Adduttori": {
+      "extractionState": "manual"
+    },
+    "Allenamenti": {
+      "extractionState": "manual"
+    },
+    "Allenamento": {
+      "comment": "Titolo della tab Allenamento (Features/RootView).",
+      "extractionState": "manual",
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allenamento"
           }
         }
       }
     },
-    "Corpo" : {
-      "comment" : "Titolo della tab Corpo (Features/RootView).",
-      "extractionState" : "manual",
-      "localizations" : {
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Corpo"
+    "Allenamento e nutrizione guidati dai tuoi dati.": {
+      "extractionState": "manual"
+    },
+    "Allenamento equilibrato e sostenibile": {
+      "extractionState": "manual"
+    },
+    "Alta schiena": {
+      "extractionState": "manual"
+    },
+    "Altezza": {
+      "extractionState": "manual"
+    },
+    "Alto": {
+      "extractionState": "manual"
+    },
+    "Altro": {
+      "extractionState": "manual"
+    },
+    "Anca": {
+      "extractionState": "manual"
+    },
+    "Assistita": {
+      "extractionState": "manual"
+    },
+    "Aumento a settimana": {
+      "extractionState": "manual"
+    },
+    "Automatica": {
+      "extractionState": "manual"
+    },
+    "Avambracci": {
+      "extractionState": "manual"
+    },
+    "Avanzamento": {
+      "extractionState": "manual"
+    },
+    "Avanzato": {
+      "extractionState": "manual"
+    },
+    "Bicipiti": {
+      "extractionState": "manual"
+    },
+    "Bilanciere": {
+      "extractionState": "manual"
+    },
+    "Bilanciere EZ": {
+      "extractionState": "manual"
+    },
+    "Calorie e macro": {
+      "extractionState": "manual"
+    },
+    "Calorie vicine al mantenimento, proteine alte": {
+      "extractionState": "manual"
+    },
+    "Calorie, macro e sessioni del programma vengono calcolati dai motori di JEV FIT a partire da queste scelte.": {
+      "extractionState": "manual"
+    },
+    "Cambia obiettivo": {
+      "extractionState": "manual"
+    },
+    "Carichi in crescita sui fondamentali, calorie di mantenimento": {
+      "extractionState": "manual"
+    },
+    "Cavi": {
+      "extractionState": "manual"
+    },
+    "Caviglia": {
+      "extractionState": "manual"
+    },
+    "Che attrezzatura hai?": {
+      "extractionState": "manual"
+    },
+    "Chiudi e riapri JEV FIT. Se il problema continua, controlla lo spazio libero sull'iPhone.": {
+      "extractionState": "manual"
+    },
+    "Collo": {
+      "extractionState": "manual"
+    },
+    "Come vuoi dividere gli allenamenti?": {
+      "extractionState": "manual"
+    },
+    "Come vuoi gestire calorie e macro?": {
+      "extractionState": "manual"
+    },
+    "Con i dati inseriti il dimagrimento non è indicato. Scegli un altro obiettivo.": {
+      "extractionState": "manual"
+    },
+    "Continua": {
+      "extractionState": "manual"
+    },
+    "Controlla l'età inserita.": {
+      "extractionState": "manual"
+    },
+    "Controlla le scelte: potrai cambiarle nelle impostazioni.": {
+      "extractionState": "manual"
+    },
+    "Corpo": {
+      "comment": "Titolo della tab Corpo (Features/RootView).",
+      "extractionState": "manual",
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corpo"
           }
         }
       }
     },
-    "Nutrizione" : {
-      "comment" : "Titolo della tab Nutrizione (Features/RootView).",
-      "extractionState" : "manual",
-      "localizations" : {
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nutrizione"
+    "Corpo libero": {
+      "extractionState": "manual"
+    },
+    "Da 1 a 4 anni": {
+      "extractionState": "manual"
+    },
+    "Da principiante conviene partire con meno giorni o sessioni più brevi. Puoi comunque continuare.": {
+      "extractionState": "manual"
+    },
+    "Da quanto ti alleni?": {
+      "extractionState": "manual"
+    },
+    "Deficit moderato, proteine alte, volume mantenuto": {
+      "extractionState": "manual"
+    },
+    "Deltoidi anteriori": {
+      "extractionState": "manual"
+    },
+    "Deltoidi laterali": {
+      "extractionState": "manual"
+    },
+    "Deltoidi posteriori": {
+      "extractionState": "manual"
+    },
+    "Dimagrimento": {
+      "extractionState": "manual"
+    },
+    "Dom": {
+      "extractionState": "manual"
+    },
+    "Domenica": {
+      "extractionState": "manual"
+    },
+    "Dorsali": {
+      "extractionState": "manual"
+    },
+    "Elastici": {
+      "extractionState": "manual"
+    },
+    "Energia": {
+      "extractionState": "manual"
+    },
+    "Esperienza": {
+      "extractionState": "manual"
+    },
+    "Età": {
+      "extractionState": "manual"
+    },
+    "Femminile": {
+      "extractionState": "manual"
+    },
+    "Femorali": {
+      "extractionState": "manual"
+    },
+    "Fino a 3 gruppi riceveranno più volume.": {
+      "extractionState": "manual"
+    },
+    "Fitness generale": {
+      "extractionState": "manual"
+    },
+    "Forza": {
+      "extractionState": "manual"
+    },
+    "Full Body": {
+      "extractionState": "manual"
+    },
+    "Funziona anche senza connessione": {
+      "extractionState": "manual"
+    },
+    "Ginocchio": {
+      "extractionState": "manual"
+    },
+    "Gio": {
+      "extractionState": "manual"
+    },
+    "Giorni a settimana": {
+      "extractionState": "manual"
+    },
+    "Giorni preferiti (facoltativo)": {
+      "extractionState": "manual"
+    },
+    "Giorno del check-in": {
+      "extractionState": "manual"
+    },
+    "Giovedì": {
+      "extractionState": "manual"
+    },
+    "Glutei": {
+      "extractionState": "manual"
+    },
+    "Gomito": {
+      "extractionState": "manual"
+    },
+    "Hai fastidi o limitazioni?": {
+      "extractionState": "manual"
+    },
+    "Home gym": {
+      "extractionState": "manual"
+    },
+    "I tuoi dati": {
+      "extractionState": "manual"
+    },
+    "Ibrido": {
+      "extractionState": "manual"
+    },
+    "Il peso obiettivo non va nella direzione dell'obiettivo scelto.": {
+      "extractionState": "manual"
+    },
+    "Il peso obiettivo è facoltativo: il ritmo guida le calorie.": {
+      "extractionState": "manual"
+    },
+    "Il tuo punto di partenza": {
+      "extractionState": "manual"
+    },
+    "Impossibile aprire i dati": {
+      "extractionState": "manual"
+    },
+    "Imposti tu tutti i valori; JEV ti avvisa se scendi sotto i minimi": {
+      "extractionState": "manual"
+    },
+    "In gravidanza o allattamento": {
+      "extractionState": "manual"
+    },
+    "In gravidanza o allattamento non proponiamo un deficit calorico. Scegli un altro obiettivo.": {
+      "extractionState": "manual"
+    },
+    "In piedi a tratti, 5.000–7.500 passi": {
+      "extractionState": "manual"
+    },
+    "Indietro": {
+      "extractionState": "manual"
+    },
+    "Inizia": {
+      "extractionState": "manual"
+    },
+    "Inizia ad allenarti": {
+      "extractionState": "manual"
+    },
+    "Inserisci un peso valido.": {
+      "extractionState": "manual"
+    },
+    "Inserisci un'altezza valida, in centimetri.": {
+      "extractionState": "manual"
+    },
+    "Intensità": {
+      "extractionState": "manual"
+    },
+    "Intermedio": {
+      "extractionState": "manual"
+    },
+    "Ipertrofia": {
+      "extractionState": "manual"
+    },
+    "JEV FIT non è pensata per chi ha meno di 16 anni.": {
+      "extractionState": "manual"
+    },
+    "JEV FIT non è un dispositivo medico e non sostituisce il parere di un medico o di un nutrizionista.": {
+      "extractionState": "manual"
+    },
+    "JEV calcola calorie e macro e li aggiorna ogni settimana": {
+      "extractionState": "manual"
+    },
+    "JEV, il tuo coach, ti spiega ogni decisione": {
+      "extractionState": "manual"
+    },
+    "Kettlebell": {
+      "extractionState": "manual"
+    },
+    "La percentuale di grasso deve essere tra 2 e 70.": {
+      "extractionState": "manual"
+    },
+    "Lascia decidere a JEV": {
+      "extractionState": "manual"
+    },
+    "Lavoro alla scrivania, meno di 5.000 passi al giorno": {
+      "extractionState": "manual"
+    },
+    "Lavoro fisico o più di 10.000 passi": {
+      "extractionState": "manual"
+    },
+    "Leggero": {
+      "extractionState": "manual"
+    },
+    "Lieve": {
+      "extractionState": "manual"
+    },
+    "Lombari": {
+      "extractionState": "manual"
+    },
+    "Lun": {
+      "extractionState": "manual"
+    },
+    "Lunedì": {
+      "extractionState": "manual"
+    },
+    "Macchine": {
+      "extractionState": "manual"
+    },
+    "Mantenimento": {
+      "extractionState": "manual"
+    },
+    "Mantieni peso e prestazioni con meno volume": {
+      "extractionState": "manual"
+    },
+    "Manuale": {
+      "extractionState": "manual"
+    },
+    "Manubri": {
+      "extractionState": "manual"
+    },
+    "Mar": {
+      "extractionState": "manual"
+    },
+    "Martedì": {
+      "extractionState": "manual"
+    },
+    "Maschile": {
+      "extractionState": "manual"
+    },
+    "Massa grassa (facoltativa)": {
+      "extractionState": "manual"
+    },
+    "Meno di 1 anno di allenamento costante": {
+      "extractionState": "manual"
+    },
+    "Mer": {
+      "extractionState": "manual"
+    },
+    "Mercoledì": {
+      "extractionState": "manual"
+    },
+    "Minuti per sessione": {
+      "extractionState": "manual"
+    },
+    "Moderato": {
+      "extractionState": "manual"
+    },
+    "Multipower": {
+      "extractionState": "manual"
+    },
+    "Muscoli da privilegiare": {
+      "extractionState": "manual"
+    },
+    "Non indicato": {
+      "extractionState": "manual"
+    },
+    "Non è stato possibile salvare. Riprova.": {
+      "extractionState": "manual"
+    },
+    "Non è una diagnosi: ci serve per evitare esercizi che potrebbero darti fastidio.": {
+      "extractionState": "manual"
+    },
+    "Nota (facoltativa)": {
+      "extractionState": "manual"
+    },
+    "Numeri calcolati dai tuoi dati reali, non stimati a caso": {
+      "extractionState": "manual"
+    },
+    "Nutrizione": {
+      "comment": "Titolo della tab Nutrizione (Features/RootView).",
+      "extractionState": "manual",
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nutrizione"
           }
         }
       }
     },
-    "Oggi" : {
-      "comment" : "Titolo della tab Oggi (Features/RootView).",
-      "extractionState" : "manual",
-      "localizations" : {
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oggi"
+    "Obiettivo": {
+      "extractionState": "manual"
+    },
+    "Obliqui": {
+      "extractionState": "manual"
+    },
+    "Oggi": {
+      "comment": "Titolo della tab Oggi (Features/RootView).",
+      "extractionState": "manual",
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oggi"
           }
         }
       }
     },
-    "Progressi" : {
-      "comment" : "Titolo della tab Progressi (Features/RootView).",
-      "extractionState" : "manual",
-      "localizations" : {
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Progressi"
+    "Palestra completa": {
+      "extractionState": "manual"
+    },
+    "Panca": {
+      "extractionState": "manual"
+    },
+    "Parallele": {
+      "extractionState": "manual"
+    },
+    "Perché serve?": {
+      "extractionState": "manual"
+    },
+    "Perdita a settimana": {
+      "extractionState": "manual"
+    },
+    "Personalizzato": {
+      "extractionState": "manual"
+    },
+    "Peso": {
+      "extractionState": "manual"
+    },
+    "Peso obiettivo": {
+      "extractionState": "manual"
+    },
+    "Peso obiettivo e ritmo": {
+      "extractionState": "manual"
+    },
+    "Petto": {
+      "extractionState": "manual"
+    },
+    "Più di 4 anni": {
+      "extractionState": "manual"
+    },
+    "Polpacci": {
+      "extractionState": "manual"
+    },
+    "Polso": {
+      "extractionState": "manual"
+    },
+    "Principiante": {
+      "extractionState": "manual"
+    },
+    "Progressi": {
+      "comment": "Titolo della tab Progressi (Features/RootView).",
+      "extractionState": "manual",
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progressi"
           }
         }
       }
     },
-    "Questa sezione è in costruzione." : {
-      "comment" : "Descrizione del segnaposto delle tab in M1 (Features/RootView).",
-      "extractionState" : "manual",
-      "localizations" : {
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Questa sezione è in costruzione."
+    "Puoi cambiarlo quando vuoi.": {
+      "extractionState": "manual"
+    },
+    "Push Pull Legs": {
+      "extractionState": "manual"
+    },
+    "Quadricipiti": {
+      "extractionState": "manual"
+    },
+    "Qual è il tuo obiettivo?": {
+      "extractionState": "manual"
+    },
+    "Quanto tempo hai?": {
+      "extractionState": "manual"
+    },
+    "Quanto ti muovi fuori dall'allenamento?": {
+      "extractionState": "manual"
+    },
+    "Questa sezione è in costruzione.": {
+      "comment": "Descrizione del segnaposto delle tab in M1 (Features/RootView).",
+      "extractionState": "manual",
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa sezione è in costruzione."
           }
         }
       }
+    },
+    "Questo peso obiettivo è sotto la soglia di peso sano per la tua altezza.": {
+      "extractionState": "manual"
+    },
+    "Questo split non si adatta ai giorni che hai scelto: JEV userà quello consigliato.": {
+      "extractionState": "manual"
+    },
+    "Restano sul tuo iPhone finché non attivi la sincronizzazione.": {
+      "extractionState": "manual"
+    },
+    "Ricomposizione": {
+      "extractionState": "manual"
+    },
+    "Ritmo aggressivo: più difficile preservare massa muscolare.": {
+      "extractionState": "manual"
+    },
+    "Sab": {
+      "extractionState": "manual"
+    },
+    "Sabato": {
+      "extractionState": "manual"
+    },
+    "Salta": {
+      "extractionState": "manual"
+    },
+    "Sbarra": {
+      "extractionState": "manual"
+    },
+    "Scegli tu la ripartizione tra carboidrati e grassi, le proteine restano protette": {
+      "extractionState": "manual"
+    },
+    "Scegli un punto di partenza e modifica la lista.": {
+      "extractionState": "manual"
+    },
+    "Scegli un'opzione per continuare.": {
+      "extractionState": "manual"
+    },
+    "Sedentario": {
+      "extractionState": "manual"
+    },
+    "Senza attrezzatura useremo esercizi a corpo libero.": {
+      "extractionState": "manual"
+    },
+    "Serve a scegliere ripetizioni e ritmo di progressione.": {
+      "extractionState": "manual"
+    },
+    "Serve solo per stimare il metabolismo basale iniziale. Se preferisci non indicarlo usiamo una formula neutra e la stima si corregge con i tuoi dati in 2–3 settimane.": {
+      "extractionState": "manual"
+    },
+    "Sesso biologico": {
+      "extractionState": "manual"
+    },
+    "Sesso biologico (facoltativo)": {
+      "extractionState": "manual"
+    },
+    "Solo manubri": {
+      "extractionState": "manual"
+    },
+    "Sotto i 18 anni non proponiamo obiettivi di dimagrimento. Scegli un altro obiettivo.": {
+      "extractionState": "manual"
+    },
+    "Spalla": {
+      "extractionState": "manual"
+    },
+    "Spesso in movimento, 7.500–10.000 passi": {
+      "extractionState": "manual"
+    },
+    "Split": {
+      "extractionState": "manual"
+    },
+    "Torso/Arti": {
+      "extractionState": "manual"
+    },
+    "Trap bar": {
+      "extractionState": "manual"
+    },
+    "Tricipiti": {
+      "extractionState": "manual"
+    },
+    "Una volta a settimana JEV rivede allenamento e nutrizione con te.": {
+      "extractionState": "manual"
+    },
+    "Unità di peso": {
+      "extractionState": "manual"
+    },
+    "Unità e check-in settimanale": {
+      "extractionState": "manual"
+    },
+    "Upper/Lower": {
+      "extractionState": "manual"
+    },
+    "Ven": {
+      "extractionState": "manual"
+    },
+    "Venerdì": {
+      "extractionState": "manual"
+    },
+    "Volume alto e leggero surplus calorico": {
+      "extractionState": "manual"
+    },
+    "Zona lombare": {
+      "extractionState": "manual"
+    },
+    "anni": {
+      "extractionState": "manual"
+    },
+    "cm": {
+      "extractionState": "manual"
+    },
+    "kg": {
+      "extractionState": "manual"
+    },
+    "lb": {
+      "extractionState": "manual"
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

@@ -191,6 +191,7 @@ Colonne "CoachContext":
 | `ai_conversation` / `ai_message` | L | SAN (testo libero) | solo device | ultimi ≤ 10 messaggi della conversazione corrente, solo per la chat, delimitati (SEC-AI-05) |
 | `outbox` | L | TEC | solo device | no. `last_error` contiene un codice, mai payload o messaggi del server |
 | `sync_cursor`, `schema_meta` | L | TEC | solo device | no |
+| `schema_meta.onboarding_draft` (bozza dell'onboarding, JSON) | L | SAN (peso, altezza, età, gravidanza, limitazioni) | solo device, nel DB principale (mai in `UserDefaults`, SEC-LS-07); cancellata al completamento | no |
 | **Solo server** `user_consent` *(proposta, §6.6)* | cloud | PERS (prova del consenso) | cloud | no |
 | **Solo server** `private.ai_usage` *(proposta, §7.3)* | cloud | TEC (pseudonimo + contatori) | cloud, schema non esposto | no |
 | `auth.users` (Supabase) | cloud | PERS (Apple `sub`, eventuale email relay) | cloud | no. **Nessun identificativo** nel CoachContext |

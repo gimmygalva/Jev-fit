@@ -70,6 +70,8 @@ let package = Package(
             name: "Features",
             dependencies: [
                 "Persistence", "Sync", "Health", "Food", "DesignSystem",
+                .product(name: "JevCore", package: "JevEngines"),
+                .product(name: "JevDomain", package: "JevEngines"),
                 .product(name: "WorkoutEngine", package: "JevEngines"),
                 .product(name: "NutritionEngine", package: "JevEngines"),
                 .product(name: "RecoveryEngine", package: "JevEngines"),
@@ -88,6 +90,14 @@ let package = Package(
             ]
         ),
         .testTarget(name: "FoodTests", dependencies: ["Food"]),
-        .testTarget(name: "FeaturesTests", dependencies: ["Features"]),
+        .testTarget(
+            name: "FeaturesTests",
+            dependencies: [
+                "Features",
+                "Persistence",
+                .product(name: "JevCore", package: "JevEngines"),
+                .product(name: "JevDomain", package: "JevEngines"),
+            ]
+        ),
     ]
 )

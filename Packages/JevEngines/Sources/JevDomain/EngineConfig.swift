@@ -16,6 +16,7 @@ public struct EngineConfig: Sendable, Hashable {
     public var nutrition: Nutrition
     public var progression: Progression
     public var checkIn: CheckIn
+    public var safety: Safety
 
     public static let v1 = EngineConfig(
         version: 1,
@@ -105,6 +106,16 @@ public struct EngineConfig: Sendable, Hashable {
             deloadReadinessBelow: 40,
             deloadPlateauShare: 0.50,
             trainingLoadSetChangeFraction: 0.20
+        ),
+        safety: Safety(
+            minimumAppAgeYears: 16,
+            minimumDeficitAgeYears: 18,
+            maximumAgeYears: 100,
+            aggressiveLossPercentPerWeek: 0.75,
+            defaultLossPercentPerWeek: 0.5,
+            defaultGainPercentPerWeek: 0.25,
+            plausibleWeightKg: 20...400,
+            plausibleHeightCm: 100...250
         )
     )
 
@@ -200,6 +211,22 @@ extension EngineConfig {
         public var deloadSetReduction: Double
         public var deloadLoadReduction: Double
         public var painLookbackDays: Int
+    }
+
+    /// Gate di sicurezza sull'obiettivo e limiti dei dati di onboarding (ARCHITECTURE_PLAN §5.3,
+    /// PS-ON-03, PS-ON-05, QA-14). I range dei dati coincidono con i CHECK del database.
+    public struct Safety: Sendable, Hashable {
+        /// Sotto questa età l'onboarding non procede (UF-01).
+        public var minimumAppAgeYears: Int
+        /// Sotto questa età nessun obiettivo in deficit.
+        public var minimumDeficitAgeYears: Int
+        public var maximumAgeYears: Int
+        /// Oltre questo ritmo di perdita compare la nota "Ritmo aggressivo" (PS-ON-05).
+        public var aggressiveLossPercentPerWeek: Double
+        public var defaultLossPercentPerWeek: Double
+        public var defaultGainPercentPerWeek: Double
+        public var plausibleWeightKg: ClosedRange<Double>
+        public var plausibleHeightCm: ClosedRange<Double>
     }
 
     public struct CheckIn: Sendable, Hashable {

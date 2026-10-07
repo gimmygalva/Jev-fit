@@ -1,23 +1,24 @@
+import DesignSystem
 import SwiftUI
 
-/// Radice dell'interfaccia: `TabView` con le 5 tab di SCREEN_MAP §2.
+/// Radice dell'interfaccia: `TabView` con le 5 tab di SCREEN_MAP §1.
 ///
-/// M1: ogni tab mostra un segnaposto. Le schermate reali arrivano nelle milestone successive.
+/// Le schermate reali delle tab arrivano nelle milestone successive; per ora ogni tab mostra
+/// un segnaposto dentro il suo `NavigationStack`.
 ///
-/// Stringhe (ADR-015): le chiavi sono il testo italiano. Finché il modulo `Features` non ha
-/// risorse proprie, `LocalizedStringKey` viene risolta nel bundle principale, cioè nello
-/// String Catalog dell'app (`App/Resources/Localizable.xcstrings`), dove queste chiavi sono
-/// registrate. Quando `Features` avrà un suo catalogo, passare `bundle: .module`.
-///
-/// I test UI si appoggiano agli identificatori di accessibilità, mai ai testi.
+/// Stringhe (ADR-015): le chiavi sono il testo italiano e stanno nello String Catalog dell'app
+/// (`App/Resources/Localizable.xcstrings`), dove `LocalizedStringKey` le cerca per default.
+/// I test UI usano gli identificatori di accessibilità, mai i testi.
 public struct RootView: View {
-    @State private var selection: RootTab = .today
+    @Bindable private var router: AppRouter
 
-    public init() {}
+    public init(router: AppRouter = AppRouter()) {
+        self.router = router
+    }
 
     public var body: some View {
         // API `Tab` di iOS 18 (sostituisce `.tabItem`), disponibile dal nostro deployment target.
-        TabView(selection: $selection) {
+        TabView(selection: $router.selectedTab) {
             Tab("Oggi", systemImage: "sun.max", value: RootTab.today) {
                 PlaceholderTabView(title: "Oggi", systemImage: "sun.max", identifier: "tab.today")
             }
@@ -38,17 +39,9 @@ public struct RootView: View {
                 )
             }
         }
+        .tint(JevColor.ion)
         .accessibilityIdentifier("root.tabview")
     }
-}
-
-/// Le 5 tab principali. Interno al modulo: il deep link `jevfit://` (AppRouter) lo userà più avanti.
-enum RootTab: Hashable {
-    case today
-    case training
-    case nutrition
-    case body
-    case progress
 }
 
 /// Contenuto provvisorio di una tab, sostituito dalle feature reali nelle prossime milestone.
