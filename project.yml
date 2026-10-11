@@ -1,6 +1,6 @@
 # JEV FIT — specifica XcodeGen (ADR-011).
-# Questo file è la fonte di verità del progetto Xcode: `JevFit.xcodeproj`, `App/Info.plist`
-# e `App/JevFit.entitlements` sono GENERATI da `xcodegen generate` e non vanno versionati.
+# Questo file è la fonte di verità del progetto Xcode: `JevFit.xcodeproj` (con `App/Info.plist`)
+# è GENERATO da `xcodegen generate` e non va versionato; gli entitlement stanno in Config/Entitlements.
 # Guida completa: docs/SIGNING.md.
 
 name: JevFit
@@ -95,6 +95,8 @@ targets:
       properties:
         CFBundleDisplayName: JEV FIT
         # Backend pubblico (SECURITY §3): URL del progetto e chiave pubblicabile, mai segreti.
+        # Account, sync e JEV online solo con Sign in with Apple (programma a pagamento).
+        JEVAccountEnabled: $(JEV_ACCOUNT_ENABLED)
         JEVSupabaseURL: https://xyseraszquglsfcffwny.supabase.co
         JEVSupabasePublishableKey: sb_publishable_IwKGcfZOInJZlAkqFRePWA_hIQzWoIp
         CFBundleShortVersionString: $(MARKETING_VERSION)
@@ -126,13 +128,6 @@ targets:
             CFBundleTypeRole: Viewer
             CFBundleURLSchemes:
               - jevfit
-    entitlements:
-      path: App/JevFit.entitlements
-      properties:
-        com.apple.developer.healthkit: true
-        com.apple.developer.healthkit.access: []
-        com.apple.developer.applesignin:
-          - Default
     settings:
       groups:
         - jevTargetDefaults
@@ -140,6 +135,9 @@ targets:
         # PRODUCT_BUNDLE_IDENTIFIER e DEVELOPMENT_TEAM volutamente assenti qui:
         # un valore a livello di target sovrascriverebbe Config/Signing*.xcconfig.
         CODE_SIGN_STYLE: Automatic
+        # Entitlement scelti da Config/Signing.xcconfig: Personal (Apple ID gratuito, default) o
+        # Developer (programma a pagamento, con Sign in with Apple).
+        CODE_SIGN_ENTITLEMENTS: $(JEV_ENTITLEMENTS)
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         ENABLE_PREVIEWS: "YES"

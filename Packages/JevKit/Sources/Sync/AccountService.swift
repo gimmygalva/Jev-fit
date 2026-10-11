@@ -12,9 +12,12 @@ public struct BackendConfig: Sendable, Equatable {
         self.publishableKey = publishableKey
     }
 
-    /// Da Info.plist (`JEVSupabaseURL`, `JEVSupabasePublishableKey`); nil se mancano.
+    /// Da Info.plist (`JEVSupabaseURL`, `JEVSupabasePublishableKey`); nil se mancano o se
+    /// l'account è disattivato (`JEVAccountEnabled` = NO: build con Apple ID gratuito, senza
+    /// Sign in with Apple).
     public static func fromBundle(_ bundle: Bundle = .main) -> BackendConfig? {
-        guard let text = bundle.object(forInfoDictionaryKey: "JEVSupabaseURL") as? String, let url = URL(string: text),
+        guard (bundle.object(forInfoDictionaryKey: "JEVAccountEnabled") as? String)?.uppercased() == "YES",
+              let text = bundle.object(forInfoDictionaryKey: "JEVSupabaseURL") as? String, let url = URL(string: text),
               let key = bundle.object(forInfoDictionaryKey: "JEVSupabasePublishableKey") as? String,
               key.hasPrefix("sb_publishable_") else { return nil }
         return BackendConfig(projectURL: url, publishableKey: key)

@@ -22,7 +22,8 @@ Autore: Agent 13 (Release) · Milestone M1 · Riferimenti: ADR-011, ARCHITECTURE
 ## 2. Generare il progetto
 
 Il file `JevFit.xcodeproj` **non è versionato**: lo genera XcodeGen da `project.yml`, insieme a
-`App/Info.plist` e `App/JevFit.entitlements` (anche questi generati e ignorati da git).
+`App/Info.plist` (anche questo generato e ignorato da git). Gli entitlement sono file versionati in
+`Config/Entitlements/`.
 
 ```bash
 cd jev-fit
@@ -71,13 +72,26 @@ generato e la modifica sparirebbe alla prossima `xcodegen generate`.
 
 ## 4. Capability: HealthKit e Sign in with Apple
 
-Gli entitlement sono dichiarati in `project.yml` (sezione `entitlements`):
+Gli entitlement stanno in due file, scelti dalla variabile `JEV_ENTITLEMENTS` di
+`Config/Signing.xcconfig` (target JevFit: `CODE_SIGN_ENTITLEMENTS = $(JEV_ENTITLEMENTS)`):
+
+- `Config/Entitlements/Personal.entitlements` — **default**, per l'Apple ID gratuito: solo HealthKit.
+- `Config/Entitlements/Developer.entitlements` — Apple Developer Program: HealthKit + Sign in with Apple.
+
+La variabile `JEV_ACCOUNT_ENABLED` (Info.plist `JEVAccountEnabled`) accende account, sync nel cloud e
+JEV online: con `NO` (default) l'app è solo locale e `BackendConfig.fromBundle()` restituisce nil.
+Con l'Apple Developer Program, in `Config/Signing.local.xcconfig`:
+
+```
+JEV_ENTITLEMENTS = Config/Entitlements/Developer.entitlements
+JEV_ACCOUNT_ENABLED = YES
+```
 
 | Entitlement | Valore | Usato da |
 |---|---|---|
 | `com.apple.developer.healthkit` | `true` | modulo `Health` (letture/scritture Salute) |
 | `com.apple.developer.healthkit.access` | `[]` | nessun accesso a cartelle cliniche |
-| `com.apple.developer.applesignin` | `[Default]` | account opzionale (ADR-006) |
+| `com.apple.developer.applesignin` | `[Default]` | account opzionale (ADR-006), solo in `Developer.entitlements` |
 
 Con la firma automatica, alla prima build su dispositivo Xcode registra l'App ID sul tuo team e
 abilita le capability corrispondenti agli entitlement.
@@ -96,11 +110,8 @@ Fonte da consultare: developer.apple.com → Help → "Supported capabilities (i
 capability disponibili per tipo di account. Se la tabella dice cose diverse da questa guida,
 vale la tabella di Apple: aggiorna questo documento.
 
-**Se usi un account gratuito** e la build fallisce per Sign in with Apple: in M1 l'app non usa
-ancora l'accesso con Apple, quindi puoi rimuovere *in locale* le due righe
-`com.apple.developer.applesignin` da `project.yml`, eseguire `xcodegen generate` e **non committare**
-quella modifica (`git checkout project.yml` prima del commit). Dalla milestone che introduce
-l'account servirà l'Apple Developer Program.
+**Con un account gratuito** non serve toccare nulla: il default è già `Personal.entitlements` senza
+Sign in with Apple. Guida passo passo all'installazione senza pagare: `docs/INSTALL.md`.
 
 ## 5. Installare JEV FIT sul tuo iPhone
 

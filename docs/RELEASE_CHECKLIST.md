@@ -25,6 +25,9 @@ Ogni punto della Definition of Done del brief con la prova che lo dimostra. "CI"
 | 19 | Non ci sono API key nel client | `scripts/ci/check-secrets.sh` a ogni push; nel client solo la chiave `sb_publishable_` | ✔ CI |
 | 20 | Nessun crash noto nei flussi principali | Nessun crash noto; test UI dell'onboarding; flussi principali coperti dai test di integrazione sopra | ✔ (nessun bug aperto) |
 
+## Uso personale con Apple ID gratuito
+Nessun abbonamento: `docs/INSTALL.md` (Xcode, oppure IPA dalla CI + Sideloadly). Funziona tutto tranne account, sync nel cloud e JEV online (punti 15 e 17 restano solo locali/template).
+
 ## Prima di TestFlight (a cura dell'utente)
 1. Apple Developer Program: firma (`docs/SIGNING.md`), App ID con HealthKit e Sign in with Apple.
 2. Supabase: provider Apple, 2FA sull'account (`docs/BACKEND.md`).

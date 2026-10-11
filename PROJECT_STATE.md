@@ -93,6 +93,7 @@ Tre livelli con "numeri solo dagli engine" · engine Swift puri in package local
 - Incertezze che solo la CI può risolvere: nome dello scheme di JevKit, versione di Xcode sul runner, identificatore di accessibilità della TabView, prodotti `Auth`/`PostgREST`/`Functions` di supabase-swift, `DatabaseWriter` Sendable in GRDB 7.
 
 ## Next tasks
+- **Installazione senza Apple Developer Program (default)**: Apple ID gratuito, solo HealthKit, account/sync/JEV online disattivati (`JEV_ACCOUNT_ENABLED = NO`). IPA non firmato prodotto dal workflow `IPA` (artifact `JevFit-ipa`), da firmare con Sideloadly/AltStore o build diretta con Xcode: `docs/INSTALL.md`. Rifirma ogni ~7 giorni.
 - **Utente (prima di TestFlight)**: firma e App ID (`docs/SIGNING.md`); in Supabase provider Apple e 2FA; deploy della Edge Function `coach` con i segreti dei modelli (`docs/BACKEND.md`); checklist HealthKit su iPhone (`docs/HEALTHKIT_CHECKLIST.md`); AppIcon originale.
 - Utente: deploy anche della Edge Function `account-delete` (usa la chiave amministrativa fornita da Supabase alle funzioni, nessun segreto da aggiungere).
 - Sviluppo ancora aperto: step SCR-ONB-10 (esercizi preferiti/esclusi nell'onboarding: oggi solo via check-in), revoca del token Apple all'eliminazione dell'account, aggiornare `actions/cache` e `upload-artifact` a Node 24.

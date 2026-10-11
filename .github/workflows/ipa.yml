@@ -1,0 +1,89 @@
+# IPA per l'installazione con Apple ID gratuito (docs/INSTALL.md).
+# Compila l'app per iPhone senza firma, aggiunge una firma ad-hoc con gli entitlement del
+# Personal Team (HealthKit) e pubblica JevFit.ipa come artifact: la firma vera la fa Sideloadly
+# (o AltStore) sul computer dell'utente con il suo Apple ID gratuito.
+name: IPA
+
+on:
+  push:
+    branches: [main, "claude/**"]
+    paths-ignore: ["docs/**", "**.md"]
+  workflow_dispatch:
+
+concurrency:
+  group: ipa-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  ipa:
+    name: IPA per sideload (Apple ID gratuito)
+    runs-on: macos-15
+    timeout-minutes: 45
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Seleziona Xcode stabile più recente
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Installa XcodeGen e genera il progetto
+        run: |
+          brew install xcodegen
+          xcodegen generate --spec project.yml
+          dest="JevFit.xcodeproj/project.xcworkspace/xcshareddata/swiftpm"
+          mkdir -p "${dest}"
+          cp Packages/JevKit/Package.resolved "${dest}/Package.resolved"
+
+      - name: Cache Swift Package Manager
+        uses: actions/cache@v4
+        with:
+          path: ~/spm-cache
+          key: spm-ipa-${{ runner.os }}-${{ hashFiles('Packages/**/Package.swift', 'Packages/**/Package.resolved', 'project.yml') }}
+          restore-keys: |
+            spm-ipa-${{ runner.os }}-
+
+      - name: Compila per iPhone (Release, senza firma)
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project JevFit.xcodeproj \
+            -scheme JevFit \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination "generic/platform=iOS" \
+            -derivedDataPath build/dd \
+            -clonedSourcePackagesDirPath "$HOME/spm-cache" \
+            -skipMacroValidation \
+            -skipPackagePluginValidation \
+            CODE_SIGNING_ALLOWED=NO \
+            build 2>&1 | tail -40
+
+      - name: Firma ad-hoc con gli entitlement e crea l'IPA
+        run: |
+          app="build/dd/Build/Products/Release-iphoneos/JevFit.app"
+          test -d "${app}"
+          # Frameworks incorporati (se presenti) prima, poi l'app con gli entitlement HealthKit.
+          if [ -d "${app}/Frameworks" ]; then
+            find "${app}/Frameworks" -maxdepth 1 \( -name "*.framework" -o -name "*.dylib" \) -exec codesign --force --sign - {} \;
+          fi
+          codesign --force --sign - --entitlements Config/Entitlements/Personal.entitlements "${app}"
+          codesign -d --entitlements - "${app}" 2>/dev/null | grep -q healthkit
+          mkdir -p build/ipa/Payload
+          cp -R "${app}" build/ipa/Payload/
+          (cd build/ipa && zip -qry ../JevFit.ipa Payload)
+          ls -lh build/JevFit.ipa
+
+      - name: Pubblica JevFit.ipa
+        uses: actions/upload-artifact@v4
+        with:
+          name: JevFit-ipa
+          path: build/JevFit.ipa
+          retention-days: 30
